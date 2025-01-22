@@ -35,12 +35,6 @@ export const WrittenContainer = styled.div`
   gap: 11px;
 `;
 
-export const Image = styled.div`
-  width: 76px;
-  height: 28px;
-  background-color: #eeeeee;
-`;
-
 export const Written = styled.div`
   font-size: 18px;
   line-height: 27px;
