@@ -3,6 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FirstHeader = styled.div`
   height: 65px;
   display: flex;
   justify-content: center;
@@ -23,6 +28,7 @@ export const Logo = styled(Link)`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 
   img {
     width: 28px;
@@ -50,4 +56,5 @@ export const CreateBtn = styled(NavLink)`
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid #cccccc;
+  cursor: pointer;
 `;
