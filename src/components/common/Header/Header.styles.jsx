@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
@@ -36,4 +36,18 @@ export const Logo = styled(Link)`
     font-weight: 700;
     font-style: normal;
   }
+`;
+
+export const CreateBtn = styled(NavLink)`
+  width: 157px;
+  height: 40px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #181818;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
 `;

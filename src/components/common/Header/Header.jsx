@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation().pathname;
+
+  const isLadingPage = () => {
+    return {
+      display: location === "/" ? "block" : "none",
+    };
+  };
+
   return (
     <S.Container>
       <S.Header>
@@ -12,6 +19,9 @@ export default function Header() {
           <img src={logoIcon} />
           <h1>Rolling</h1>
         </S.Logo>
+        <S.CreateBtn to="/list" style={isLadingPage}>
+          롤링 페이퍼 만들기
+        </S.CreateBtn>
       </S.Header>
     </S.Container>
   );
