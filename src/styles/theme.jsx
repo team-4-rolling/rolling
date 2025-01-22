@@ -1,5 +1,6 @@
-export const theme = {
+const theme = {
   font: {
+    //weight , size , height , fontfamily
     H1: "700 28px/42px 'Pretendard', sans-serif",
     H2Bold: "700 24px/36px 'Pretendard', sans-serif",
     H2Regular: "400 24px/36px 'Pretendard', sans-serif",
@@ -17,3 +18,11 @@ export const theme = {
   },
   color: {},
 };
+
+/* 스타일드 컴포넌트 파일 사용법
+ *const TestStyle = styled.div`
+ *font: ${({ font }) => font.H1}; ->H1 예시 입니다.
+ *`;
+ */
+
+export default theme;
