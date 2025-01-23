@@ -1,21 +1,30 @@
 import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
+
   * {
-    box-sizing: border-box;
-}
+      box-sizing: border-box;
+  }
 
-body{
-  margin:0;
-}
+  a {
+    text-decoration: none;
+  }
 
-a{
-  text-decoration:none;
-}
+  @font-face {
+  font-family: "Pretendard";
+  src: url("./Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  }
 
-h1, ul, li {
-  margin:0;
-}
+@font-face {
+  font-family: "Pretendard";
+  src: url("Pretendard-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  }
 
 `;
 
