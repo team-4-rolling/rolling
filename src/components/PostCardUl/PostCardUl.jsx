@@ -10,6 +10,7 @@ const data = {
   content:
     "훈훈, 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요! 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는요즘이네요. 건강, 체력 모두 조심 또 하세요!코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!",
   font: "나눔손글씨 손편지체",
+  createdAt: "2025.01.23",
 };
 
 export default function PostCardUI({ isEdit = false }) {
@@ -43,7 +44,7 @@ export default function PostCardUI({ isEdit = false }) {
       </S.FromContainer>
       <S.Letter>
         <S.Content $font={fontFamily}>{data.content}</S.Content>
-        <S.Date>2025.01.23</S.Date>
+        <S.Date>{data.createdAt}</S.Date>
       </S.Letter>
     </S.Card>
   );
