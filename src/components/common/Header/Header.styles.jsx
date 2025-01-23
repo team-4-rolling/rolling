@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import theme from "../../../styles/theme";
 import { Link, NavLink } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${theme.color.white};
 `;
 
 export const FirstHeader = styled.div`
@@ -48,15 +49,15 @@ export const CreateBtn = styled(NavLink)`
   width: 157px;
   height: 40px;
   padding: 8px 16px;
-  font: ${({ theme }) => theme.font.H5Bold};
+  font: ${theme.font.H5Bold};
   color: #181818;
   text-align: center;
   background-color: transparent;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+  border: 1px solid ${theme.color.Grayscale300};
   cursor: pointer;
 
   &:visited {
-    color: ${({ theme }) => theme.color.Grayscale900};
+    color: ${theme.color.Grayscale900};
   }
 `;
