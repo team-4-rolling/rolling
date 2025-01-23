@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 export const FirstHeader = styled.div`
@@ -12,7 +13,6 @@ export const FirstHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
   border-bottom: 1px solid #ededed;
 `;
 
@@ -53,10 +53,10 @@ export const CreateBtn = styled(NavLink)`
   text-align: center;
   background-color: transparent;
   border-radius: 8px;
-  border: 1px solid #cccccc;
+  border: 1px solid ${({ theme }) => theme.color.Grayscale300};
   cursor: pointer;
 
   &:visited {
-    color: #181818;
+    color: ${({ theme }) => theme.color.Grayscale900};
   }
 `;

@@ -6,7 +6,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
   border-bottom: 1px solid #ededed;
   position: sticky;
   top: 0;
@@ -21,6 +20,7 @@ export const Header = styled.div`
 
 export const ToUser = styled.div`
   font: ${({ theme }) => theme.font.H1};
+  color: ${({ theme }) => theme.color.Grayscale800};
 `;
 
 export const Div = styled.div`
@@ -37,9 +37,8 @@ export const WrittenContainer = styled.div`
 
 export const Written = styled.div`
   font: ${({ theme }) => theme.font.H4Regular};
-  font-size: 18px;
-  line-height: 27px;
-  color: #181818;
+  color: ${({ theme }) => theme.color.Grayscale900};
+
   span {
     font: ${({ theme }) => theme.font.H4Bold};
   }
@@ -72,8 +71,8 @@ export const AddBtn = styled.button`
   display: flex;
   gap: 4px;
   font: ${({ theme }) => theme.font.H5Regular};
-  color: #181818;
-  border: 1px solid #cccccc;
+  color: ${({ theme }) => theme.color.Grayscale900};
+  border: 1px solid ${({ theme }) => theme.color.Grayscale300};
   border-radius: 6px;
   background-color: transparent;
   cursor: pointer;
@@ -88,7 +87,7 @@ export const ShareBtn = styled.button`
   width: 56px;
   height: 36px;
   padding: 6px 16px;
-  border: 1px solid #cccccc;
+  border: 1px solid ${({ theme }) => theme.color.Grayscale300};
   border-radius: 6px;
   background-color: transparent;
   cursor: pointer;
