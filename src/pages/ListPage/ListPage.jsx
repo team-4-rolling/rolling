@@ -1,7 +1,11 @@
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { MainPrimaryButton } from "../../components/button/button";
+
 export default function ListPage() {
   return (
     <>
-      <h1>hi</h1>
+      <button>hi</button>
     </>
   );
 }
