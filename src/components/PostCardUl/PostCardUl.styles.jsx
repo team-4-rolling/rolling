@@ -45,13 +45,6 @@ export const UserName = styled.div`
   }
 `;
 
-export const Badge = styled.div`
-  width: 41px;
-  height: 20px;
-  color: black;
-  background-color: yellow;
-`;
-
 export const Trash = styled.div`
   width: 40px;
   height: 40px;
