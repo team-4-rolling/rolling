@@ -12,8 +12,9 @@ export default function Header() {
       display: location === "/" ? "block" : "none",
     };
   };
+  ㄴ;
 
-  const isIdPostPage = location === "/post:id";
+  const isIdPostPage = location === "/post/:id";
 
   return (
     <S.Container>
