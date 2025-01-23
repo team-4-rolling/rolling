@@ -20,7 +20,7 @@ export default function SecondHeader() {
         <S.ToUser>To. {data.name}</S.ToUser>
         <S.Div>
           <S.WrittenContainer>
-            <CircleImages writtenCount={data.writtenCount} images={sliceImage} />
+            {data.images.length !== 0 && <CircleImages writtenCount={data.writtenCount} images={sliceImage} />}
             <S.Written>
               <span>{data.writtenCount}</span>명이 작성했어요!
             </S.Written>
