@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Card = styled.div`
@@ -70,7 +70,7 @@ export const Letter = styled.div`
   padding: 24px 0;
 `;
 
-export const Content = styled.div`
+export const Content = styled.p`
   height: 84px;
   font-family: ${({ $font }) => `'${$font}', serif`};
   font-size: 18px;
