@@ -8,6 +8,8 @@ export const Container = styled.div`
   align-items: center;
   background-color: white;
   border-bottom: 1px solid #ededed;
+  position: sticky;
+  top: 0;
 `;
 
 export const Header = styled.div`
@@ -18,9 +20,7 @@ export const Header = styled.div`
 `;
 
 export const ToUser = styled.div`
-  font-size: 42px;
-  font-weight: 700px;
-  line-height: 42px;
+  font: ${({ theme }) => theme.font.H1};
 `;
 
 export const Div = styled.div`
@@ -36,11 +36,12 @@ export const WrittenContainer = styled.div`
 `;
 
 export const Written = styled.div`
+  font: ${({ theme }) => theme.font.H4Regular};
   font-size: 18px;
   line-height: 27px;
   color: #181818;
   span {
-    font-weight: 700;
+    font: ${({ theme }) => theme.font.H4Bold};
   }
 `;
 
@@ -70,8 +71,7 @@ export const AddBtn = styled.button`
   padding: 6px 15px;
   display: flex;
   gap: 4px;
-  font-size: 16px;
-  line-height: 24px;
+  font: ${({ theme }) => theme.font.H5Regular};
   color: #181818;
   border: 1px solid #cccccc;
   border-radius: 6px;

@@ -48,13 +48,15 @@ export const CreateBtn = styled(NavLink)`
   width: 157px;
   height: 40px;
   padding: 8px 16px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
+  font: ${({ theme }) => theme.font.H5Bold};
   color: #181818;
   text-align: center;
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid #cccccc;
   cursor: pointer;
+
+  &:visited {
+    color: #181818;
+  }
 `;
