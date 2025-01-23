@@ -16,7 +16,50 @@ const theme = {
     H7Regular: "400 14px/20px 'Pretendard', sans-serif",
     H8: "400 12px/20px 'Pretendard', sans-serif",
   },
-  color: {},
+  color: {
+    Purple100: "#F8F0FF",
+    Purple200: "#ECD9FF",
+    Purple300: "#DCB9FF",
+    Purple400: "#C894FD",
+    Purple500: "#AB57FF",
+    Purple600: "#9935FF",
+    Purple700: "#861DEE",
+    Purple800: "#6E0AD1",
+    Purple900: "#5603A7",
+
+    Beige100: "#FFF0D6",
+    Beige200: "#FFE2AD",
+    Beige300: "#FFC583",
+    Beige400: "#FFAE65",
+    Beige500: "#FF8832",
+
+    Blue100: "#E2F5FF",
+    Blue200: "#B1E4FF",
+    Blue300: "#7CD2FF",
+    Blue400: "#34B9FF",
+    Blue500: "#00A2FE",
+
+    Green100: "#E4FBDC",
+    Green200: "#D0F5C3",
+    Green300: "#9BE282",
+    Green400: "#60CF37",
+    Green500: "#2BA600",
+
+    Grayscale100: "#F6F6F6",
+    Grayscale200: "#EEEEEE",
+    Grayscale300: "#CCCCCC",
+    Grayscale400: "#999999",
+    Grayscale500: "#555555",
+    Grayscale600: "#4A4A4A",
+    Grayscale700: "#3A3A3A",
+    Grayscale800: "#2B2B2B",
+    Grayscale900: "#181818",
+
+    White: "#FFFFFF",
+    Black: "#000000",
+    Error: "#DC3A3A",
+    Surface: "#F6F8FF",
+  },
 };
 
 /* 스타일드 컴포넌트 파일 사용법
