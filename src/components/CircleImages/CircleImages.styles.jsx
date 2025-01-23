@@ -12,7 +12,7 @@ export const Image = styled.img`
   width: 28px;
   height: 28px;
   position: absolute;
-  left: ${({ idx }) => `${idx * 16}px`};
+  left: ${({ $idx }) => `${$idx * 16}px`};
   border-radius: 140px;
   outline: 1.4px solid white;
 `;
