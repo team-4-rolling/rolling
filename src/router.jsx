@@ -5,7 +5,8 @@ import ToPage from "./pages/ToPage/ToPage";
 import RollingPage from "./pages/RollingPage/RollingPage";
 import FromPage from "./pages/FromPage/FromPage";
 import Layout from "./styles/Layout";
-
+import Test from "./pages/RollingPage/Test";
+import Test2 from "./pages/RollingPage/Test2";
 export default function Routers() {
   return (
     <BrowserRouter>
@@ -15,6 +16,8 @@ export default function Routers() {
           <Route path="list" element={<ListPage />}></Route>
           <Route path="post" element={<ToPage />}></Route>
           <Route path="post/:id" element={<RollingPage />}></Route>
+          <Route path="post/17266" element={<Test />}></Route>
+          <Route path="post/17266/message" element={<Test2 />}></Route>
           <Route path="post/:id/message" element={<FromPage />}></Route>
         </Route>
       </Routes>
