@@ -1,27 +1,17 @@
-import React from "react";
+import React, { Children } from "react";
 import styled, { css } from "styled-components";
 
-function Button({
-  width,
-  height,
-  font,
-  children,
-  onClick,
-  disabled,
-  className,
-  type = "button",
-  ...props
-}) {
+function Button({ children, type = "button", ...props }) {
+  const { medium, outlineMedium, outlinesmall, large, outline, ...restProps } =
+    props;
   return (
     <StyledButton
-      width={width}
-      height={height}
-      font={font}
-      onClick={onClick}
-      disabled={disabled}
-      className={className}
-      type={type}
-      {...props}
+      $medium={medium}
+      $outlineMedium={outlineMedium}
+      $outlinesmall={outlinesmall}
+      $large={large}
+      $outline={outline}
+      {...restProps}
     >
       {children}
     </StyledButton>
@@ -32,8 +22,8 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ width }) => (width ? width : "200px")};
-  height: ${({ height }) => (height ? height : "56px")};
+  width: ${({ width }) => (width ? width : "120px")};
+  height: ${({ height }) => (height ? height : "40px")};
   font: ${({ font }) => font};
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.Purple600};
@@ -44,8 +34,11 @@ const StyledButton = styled.button`
   }
 
   ${(props) =>
-    props.outline &&
+    props.$outline &&
     css`
+      font: ${({ font }) => font};
+      width: ${({ width }) => (width ? width : "157px")};
+      height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
       color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
@@ -53,15 +46,53 @@ const StyledButton = styled.button`
     `}
 
   ${(props) =>
-    props.secondary &&
+    props.$outlineMedium &&
     css`
-      width: ${(width) => (width ? width.width : "122px")};
-      height: ${(height) => (height ? height.height : "40px")};
-      padding: 7px 16px;
+      font: ${({ font }) => font};
+      width: ${({ width }) => (width ? width : "88px")};
+      height: ${({ height }) => (height ? height : "40px")};
+      border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+      color: ${({ theme }) => theme.color.Grayscale900};
+      background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
+    `}
+
+  ${(props) =>
+    props.$outlinesmall &&
+    css`
+      font: ${({ font }) => font};
+      width: ${({ width }) => (width ? width : "56px")};
+      height: ${({ height }) => (height ? height : "36px")};
+      border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+      color: ${({ theme }) => theme.color.Grayscale900};
+      background: ${({ theme }) => theme.color.White};
+      border-radius: 6px;
+    `}
+
+  ${(props) =>
+    props.$medium &&
+    css`
+      font: ${({ font }) => font};
+      width: ${({ width }) => (width ? width : "280px")};
+      height: ${({ height }) => (height ? height : "56px")};
       border: 1px solid ${({ theme }) => theme.color.Purple600};
-      background: ${({ theme }) => theme.color.white};
       color: ${({ theme }) => theme.color.Purple700};
+      background: ${({ theme }) => theme.color.white};
+      color: ${({ theme }) => theme.color.White};
+      border-radius: 12px;
+    `}
+
+    ${(props) =>
+    props.$large &&
+    css`
+      font: ${({ font }) => font};
+      width: ${({ width }) => (width ? width : "720px")};
+      height: ${({ height }) => (height ? height : "56px")};
+      border: 1px solid ${({ theme }) => theme.color.Purple600};
+      color: ${({ theme }) => theme.color.Purple700};
+      background: ${({ theme }) => theme.color.white};
+      color: ${({ theme }) => theme.color.White};
+      border-radius: 12px;
     `}
 `;
 
