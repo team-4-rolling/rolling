@@ -1,11 +1,13 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { MainPrimaryButton } from "../../components/button/button";
+import { ThemeProvider } from "styled-components";
+import theme from "../../styles/theme";
+import Button from "../../components/common/Button/Button";
 
 export default function ListPage() {
   return (
-    <>
-      <button>hi</button>
-    </>
+    <ThemeProvider theme={theme}>
+      <Button>Primary Button</Button>
+      <Button outline>Outline Button</Button>
+      <Button secondary>Secondary Button</Button>
+    </ThemeProvider>
   );
 }
