@@ -10,6 +10,7 @@ export default function PostCardUI({ data, isEdit = false }) {
     나눔명조: "NanumMyeongjo",
     "나눔손글씨 손편지체": "Handletter",
   };
+
   const date = new Date(data.createdAt);
   const formattedDate = `${date.getFullYear()}.${String(
     date.getMonth() + 1

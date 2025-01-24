@@ -6,7 +6,7 @@ import arrowClose from "../../../assets/icons/arrowClose.svg";
 //
 
 function SelectDropDown({ options }) {
-  const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option) => {
