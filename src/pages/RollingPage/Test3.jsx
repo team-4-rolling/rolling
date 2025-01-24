@@ -1,13 +1,7 @@
-import { MessageBox, GridBoxes } from "./TestStyle";
-
+import { GridBoxes } from "./TestStyle";
+import PostCardUI from "../../components/PostCardUl/PostCardUl";
 export function Message({ message }) {
-  return (
-    <MessageBox>
-      <p>{message.recipientId}</p>
-      <p>sender:{message.sender}</p>
-      <p>{message.content}</p>
-    </MessageBox>
-  );
+  return <PostCardUI data={message} />;
 }
 
 function Test3({ messages }) {

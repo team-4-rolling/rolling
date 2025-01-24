@@ -19,13 +19,12 @@ function Test() {
   return (
     <>
       <S.Contents>
-        {!messages && (
-          <S.CreateBox>
-            <Link to="message">
-              <S.Plus src={PlusIcon} />
-            </Link>
-          </S.CreateBox>
-        )}
+        <S.CreateBox>
+          <Link to="message">
+            <S.Plus src={PlusIcon} />
+          </Link>
+        </S.CreateBox>
+
         <Test3 messages={messages} />
       </S.Contents>
     </>
