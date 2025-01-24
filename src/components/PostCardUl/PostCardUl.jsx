@@ -10,6 +10,10 @@ export default function PostCardUI({ data, isEdit = false }) {
     나눔명조: "NanumMyeongjo",
     "나눔손글씨 손편지체": "Handletter",
   };
+  const date = new Date(data.createdAt);
+  const formattedDate = `${date.getFullYear()}.${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 
   const fontFamily = fonts[data.font];
 
@@ -34,7 +38,7 @@ export default function PostCardUI({ data, isEdit = false }) {
       </S.FromContainer>
       <S.Letter>
         <S.Content $font={fontFamily}>{data.content}</S.Content>
-        <S.Date>{data.createdAt}</S.Date>
+        <S.Date>{formattedDate}</S.Date>
       </S.Letter>
     </S.Card>
   );

@@ -31,11 +31,3 @@ export const Plus = styled.img`
   width: 56px;
   height: 56px;
 `;
-
-export const MessageBox = styled.div`
-  //card 컴포넌트로 대체
-  width: 384px;
-  height: 280px;
-  background-color: ${theme.color.White};
-  border-radius: 16px;
-`;

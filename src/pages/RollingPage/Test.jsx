@@ -1,10 +1,9 @@
 import * as S from "./TestStyle";
-import PlusIcon from "../../assets/icons/PlusIcon.svg";
-import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import { getMessage } from "./TestApi";
 import Test3 from "./Test3";
-//
+// rolling page를 test 하는 파일임.
 function Test() {
   const [messages, setMessages] = useState([]);
 
@@ -19,12 +18,6 @@ function Test() {
   return (
     <>
       <S.Contents>
-        <S.CreateBox>
-          <Link to="message">
-            <S.Plus src={PlusIcon} />
-          </Link>
-        </S.CreateBox>
-
         <Test3 messages={messages} />
       </S.Contents>
     </>

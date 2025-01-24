@@ -1,20 +1,21 @@
-import { GridBoxes } from "./TestStyle";
+import * as S from "./TestStyle";
 import PostCardUI from "../../components/PostCardUl/PostCardUl";
-export function Message({ message }) {
-  return <PostCardUI data={message} />;
-}
+import PlusIcon from "../../assets/icons/PlusIcon.svg";
+import { Link } from "react-router-dom";
+//
 
 function Test3({ messages }) {
   return (
-    <GridBoxes>
+    <S.GridBoxes>
+      <S.CreateBox>
+        <Link to="message">
+          <S.Plus src={PlusIcon} />
+        </Link>
+      </S.CreateBox>
       {messages.map((message) => {
-        return (
-          <li key={message.id}>
-            <Message message={message} />
-          </li>
-        );
+        return <PostCardUI data={message} />;
       })}
-    </GridBoxes>
+    </S.GridBoxes>
   );
 }
 
