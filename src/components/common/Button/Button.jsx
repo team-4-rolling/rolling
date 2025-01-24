@@ -1,4 +1,3 @@
-import React, { Children } from "react";
 import styled, { css } from "styled-components";
 
 function Button({ children, type = "button", ...props }) {

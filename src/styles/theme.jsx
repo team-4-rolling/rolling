@@ -60,14 +60,6 @@ const theme = {
     Error: "#DC3A3A",
     Surface: "#F6F8FF",
   },
-  // fontWeights: {
-  //   regular: 400,
-  //   bold: 700,
-  // },
-  // breakpoint: {
-  //   tablet: `(min-width: 768px) and (max-width: 1199px) `,
-  //   mobile: `(min-width: 375px) and (max-width: 767px)`,
-  // },
 };
 
 /* 스타일드 컴포넌트 파일 사용법
