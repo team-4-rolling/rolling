@@ -13,7 +13,7 @@ function Test3({ messages }) {
         </Link>
       </S.CreateBox>
       {messages.map((message) => {
-        return <PostCardUI data={message} />;
+        return <PostCardUI key={message.id} data={message} />;
       })}
     </S.GridBoxes>
   );
