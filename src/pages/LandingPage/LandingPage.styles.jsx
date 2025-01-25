@@ -9,7 +9,15 @@ export const Div = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px 0;
+  gap: 70px;
+`;
 
 export const CardContainer = styled.div`
   display: flex;
