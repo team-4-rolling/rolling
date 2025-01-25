@@ -8,5 +8,5 @@ export async function getMessage(limit, offset) {
   }
   const body = await response.json();
 
-  return body.results;
+  return body;
 }

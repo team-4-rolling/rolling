@@ -4,14 +4,16 @@ import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
 //
 
-function Test3({ messages }) {
+function Test3({ isEdit, messages }) {
   return (
     <S.GridBoxes>
-      <S.CreateBox>
-        <Link to="message">
-          <S.Plus src={PlusIcon} />
-        </Link>
-      </S.CreateBox>
+      {!isEdit && (
+        <S.CreateBox>
+          <Link to="message">
+            <S.Plus src={PlusIcon} />
+          </Link>
+        </S.CreateBox>
+      )}
       {messages.map((message) => {
         return <PostCardUI key={message.id} data={message} />;
       })}

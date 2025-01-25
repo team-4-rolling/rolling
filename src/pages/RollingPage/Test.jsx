@@ -10,16 +10,16 @@ function Test() {
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   //
 
   //
   const handleLoad = async () => {
     setIsLoading(true);
-    let limit;
-    limit = offset === 0 ? 8 : 9;
-    const result = await getMessage(limit, offset);
-    if (!result) return;
-    setMessages((prevMessages) => [...prevMessages, ...result]);
+    let limit = offset === 0 ? 8 : 9;
+    const { results } = await getMessage(limit, offset);
+    if (!results) return;
+    setMessages((prevMessages) => [...prevMessages, ...results]);
     setOffset(offset + limit);
   };
 
@@ -36,6 +36,10 @@ function Test() {
     };
   }, [isScrollEnd]);
 
+  const handelEditClick = () => {
+    setIsEdit(true);
+    console.log(isEdit);
+  };
   const infiniteScroll = useCallback(
     throttle(() => {
       if (!isLoading) {
@@ -49,11 +53,17 @@ function Test() {
     []
   );
 
+  const handelDeleteClick = () => {
+    setIsEdit(false);
+    console.log(isEdit);
+  };
   //
   return (
     <div style={{ overflowY: "auto" }}>
       <S.Contents>
-        <Test3 messages={messages} />
+        {!isEdit && <button onClick={handelEditClick}>편집하기</button>}
+        {isEdit && <button onClick={handelDeleteClick}>삭제하기</button>}
+        <Test3 isEdit={isEdit} messages={messages} />
       </S.Contents>
     </div>
   );
