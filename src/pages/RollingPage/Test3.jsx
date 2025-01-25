@@ -15,7 +15,7 @@ function Test3({ isEdit, messages }) {
         </S.CreateBox>
       )}
       {messages.map((message) => {
-        return <PostCardUI key={message.id} data={message} />;
+        return <PostCardUI isEdit={isEdit} key={message.id} data={message} />;
       })}
     </S.GridBoxes>
   );

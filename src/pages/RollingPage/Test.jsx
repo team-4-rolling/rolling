@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getMessage } from "./TestApi";
 import Test3 from "./Test3";
 import { throttle } from "lodash";
+import Button from "../../components/common/Button/Button.jsx";
 // rolling page를 test 하는 파일임.
 
 function Test() {
@@ -61,8 +62,12 @@ function Test() {
   return (
     <div style={{ overflowY: "auto" }}>
       <S.Contents>
-        {!isEdit && <button onClick={handelEditClick}>편집하기</button>}
-        {isEdit && <button onClick={handelDeleteClick}>삭제하기</button>}
+        {!isEdit && (
+          <Button style={{ marginBottom: "11px" }} onClick={handelEditClick}>
+            편집하기
+          </Button>
+        )}
+        {isEdit && <Button onClick={handelDeleteClick}>저장하기</Button>}
         <Test3 isEdit={isEdit} messages={messages} />
       </S.Contents>
     </div>
