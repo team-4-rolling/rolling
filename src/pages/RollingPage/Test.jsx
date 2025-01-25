@@ -1,12 +1,17 @@
 import * as S from "./TestStyle";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage } from "./TestApi";
+import { getMessage, getRecipientsId } from "./TestApi";
 import Test3 from "./Test3";
 import { throttle } from "lodash";
 import Button from "../../components/common/Button/Button.jsx";
+import { useParams } from "react-router-dom";
 // rolling page를 test 하는 파일임.
 
 function Test() {
+  //useParams 테스트 부분
+  const { id } = useParams();
+
+  //
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
@@ -16,9 +21,10 @@ function Test() {
 
   //
   const handleLoad = async () => {
+    const recipientId = await getRecipientsId(id);
     setIsLoading(true);
     let limit = offset === 0 ? 8 : 9;
-    const { results } = await getMessage(limit, offset);
+    const { results } = await getMessage(limit, offset, recipientId);
     if (!results) return;
     setMessages((prevMessages) => [...prevMessages, ...results]);
     setOffset(offset + limit);
@@ -39,7 +45,6 @@ function Test() {
 
   const handelEditClick = () => {
     setIsEdit(true);
-    console.log(isEdit);
   };
   const infiniteScroll = useCallback(
     throttle(() => {
@@ -56,7 +61,6 @@ function Test() {
 
   const handelDeleteClick = () => {
     setIsEdit(false);
-    console.log(isEdit);
   };
   //
   return (
