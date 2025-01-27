@@ -5,10 +5,16 @@ export const Contents = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 245px;
-  padding-bottom: 246px;
+  padding-bottom: 500px;
   background-color: ${theme.color.Purple400};
 `;
 
+export const ButtonDiv = styled.div`
+  width: 1200px;
+  display: flex;
+  margin: 0px auto 11px;
+  justify-content: right;
+`;
 export const GridBoxes = styled.div`
   width: 1200px;
   display: grid;

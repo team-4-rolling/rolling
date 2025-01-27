@@ -1,17 +1,15 @@
-import * as S from "./TestStyle";
+import * as S from "./Test.style";
 import { useCallback, useEffect, useState } from "react";
 import { getMessage, getRecipients } from "./TestApi";
 import Test3 from "./Test3";
 import { throttle } from "lodash";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
+//
 // rolling page를 test 하는 파일임.
 
 function Test() {
-  //useParams 테스트 부분
   const { id: queryId } = useParams();
-
-  //
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
@@ -19,7 +17,6 @@ function Test() {
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   //
-
   //
   const handleLoad = async () => {
     const { id } = await getRecipients(queryId);
@@ -28,7 +25,7 @@ function Test() {
     const { results, next } = await getMessage(limit, offset, id);
     if (!results) return;
     setMessages((prevMessages) => [...prevMessages, ...results]);
-    setOffset(offset + limit);
+    setOffset((prevOffset) => prevOffset + limit);
     setIsLoading(false);
     setHasNext(next);
   };
@@ -37,14 +34,12 @@ function Test() {
     if (!isLoading) {
       handleLoad();
     }
-    if (hasNext) {
-      console.log("이벤트 등록");
+    if (!isLoading && hasNext) {
       window.addEventListener("scroll", infiniteScroll);
     }
     return () => {
       infiniteScroll.cancel();
       window.removeEventListener("scroll", infiniteScroll);
-      console.log("이벤트 삭제");
     };
   }, [isScrollEnd]);
 
@@ -67,15 +62,15 @@ function Test() {
     setIsEdit(false);
   };
   //
+  //
+
   return (
     <div style={{ overflowY: "auto" }}>
       <S.Contents>
-        {!isEdit && (
-          <Button style={{ marginBottom: "11px" }} onClick={handelEditClick}>
-            편집하기
-          </Button>
-        )}
-        {isEdit && <Button onClick={handelDeleteClick}>저장하기</Button>}
+        <S.ButtonDiv>
+          {!isEdit && <Button onClick={handelEditClick}>편집하기</Button>}
+          {isEdit && <Button onClick={handelDeleteClick}>저장하기</Button>}
+        </S.ButtonDiv>
         <Test3 isEdit={isEdit} messages={messages} />
       </S.Contents>
     </div>

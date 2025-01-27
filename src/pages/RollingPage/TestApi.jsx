@@ -23,5 +23,9 @@ export async function getRecipients(queryId) {
   }
   const body = await response.json();
   const recipient = body.results.find((recipient) => recipient.id == queryId);
+  if (!recipient) {
+    console.log("해당 recipient가 존재하지 않습니다.");
+    throw new Error("recipients 찾기 실패");
+  }
   return recipient;
 }

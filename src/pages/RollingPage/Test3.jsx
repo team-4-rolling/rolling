@@ -1,4 +1,4 @@
-import * as S from "./TestStyle";
+import * as S from "./Test.style";
 import PostCardUI from "../../components/PostCardUl/PostCardUl";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
