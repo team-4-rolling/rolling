@@ -1,10 +1,10 @@
-import * as S from "./Test.style";
+import * as S from "./RollingPage.style";
 import PostCardUI from "../../components/PostCardUl/PostCardUl";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
 //
 
-function Test3({ isEdit, messages }) {
+function Messages({ isEdit, messages }) {
   return (
     <S.GridBoxes>
       {!isEdit && (
@@ -21,4 +21,4 @@ function Test3({ isEdit, messages }) {
   );
 }
 
-export default Test3;
+export default Messages;
