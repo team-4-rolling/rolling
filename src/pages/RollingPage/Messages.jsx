@@ -9,7 +9,16 @@ function Messages({ isEdit, messages }) {
   const [filterMessages, setFilterMessages] = useState([]);
 
   useEffect(() => {
-    setFilterMessages(messages || []);
+    const savedMessages = localStorage.getItem("filterMessages");
+    if (savedMessages) {
+      setFilterMessages(JSON.parse(savedMessages));
+      console.log(
+        "Restored messages from localStorage:",
+        JSON.parse(savedMessages)
+      );
+    } else {
+      setFilterMessages(messages || []);
+    }
   }, [messages]);
 
   const handleClickFilter = (e) => {
@@ -17,6 +26,9 @@ function Messages({ isEdit, messages }) {
       (message) => message.id != e.currentTarget.dataset.value
     );
     setFilterMessages(disappearMessage);
+    localStorage.setItem("filterMessages", JSON.stringify(disappearMessage));
+
+    console.log("Updated messages saved in localStorage:", disappearMessage);
   };
   //
   return (
