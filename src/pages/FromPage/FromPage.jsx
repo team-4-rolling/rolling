@@ -1,3 +1,3 @@
 export default function FromPage() {
-  return <></>;
+  return <>from 페이지</>;
 }
