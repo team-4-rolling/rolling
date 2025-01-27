@@ -1,6 +1,5 @@
 import * as S from "./PostCardUl.styles";
 import trash from "../../assets/icons/trash.svg";
-import cat from "../../assets/icons/cat.jpeg";
 import Badge from "../Badge/Badge";
 
 export default function PostCardUI({ data, isEdit = false, onClick }) {
@@ -32,7 +31,7 @@ export default function PostCardUI({ data, isEdit = false, onClick }) {
           </S.UserInfo>
         </S.From>
         {isEdit && (
-          <S.Trash onClick={onClick}>
+          <S.Trash data-value={data.id} onClick={onClick}>
             <img src={trash} />
           </S.Trash>
         )}

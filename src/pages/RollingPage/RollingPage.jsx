@@ -5,7 +5,7 @@ import { getMessage, getRecipients } from "../../api/api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
-import Messages from "./Mesages.jsx";
+import Messages from "./Messages.jsx";
 //
 function RollingPage() {
   const { id: queryId } = useParams();
@@ -32,9 +32,11 @@ function RollingPage() {
     if (!isLoading) {
       handleLoad();
     }
+
     if (!isLoading && hasNext) {
       window.addEventListener("scroll", infiniteScroll);
     }
+
     return () => {
       infiniteScroll.cancel();
       window.removeEventListener("scroll", infiniteScroll);
@@ -46,7 +48,7 @@ function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
-        if (clientHeight + scrollTop >= scrollHeight - 1) {
+        if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
       }

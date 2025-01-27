@@ -2,9 +2,23 @@ import * as S from "./RollingPage.style";
 import PostCardUI from "../../components/PostCardUl/PostCardUl";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 //
 
 function Messages({ isEdit, messages }) {
+  const [filterMessages, setFilterMessages] = useState([]);
+
+  useEffect(() => {
+    setFilterMessages(messages || []);
+  }, [messages]);
+
+  const handleClickFilter = (e) => {
+    const disappearMessage = filterMessages.filter(
+      (message) => message.id != e.currentTarget.dataset.value
+    );
+    setFilterMessages(disappearMessage);
+  };
+  //
   return (
     <S.GridBoxes>
       {!isEdit && (
@@ -14,10 +28,11 @@ function Messages({ isEdit, messages }) {
           </Link>
         </S.CreateBox>
       )}
-      {messages.map((message) => {
+
+      {filterMessages.map((message) => {
         return (
           <PostCardUI
-            onClick={""}
+            onClick={handleClickFilter}
             isEdit={isEdit}
             key={message.id}
             data={message}
@@ -27,5 +42,5 @@ function Messages({ isEdit, messages }) {
     </S.GridBoxes>
   );
 }
-
+//
 export default Messages;
