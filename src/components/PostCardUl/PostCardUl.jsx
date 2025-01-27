@@ -3,7 +3,7 @@ import trash from "../../assets/icons/trash.svg";
 import cat from "../../assets/icons/cat.jpeg";
 import Badge from "../Badge/Badge";
 
-export default function PostCardUI({ data, isEdit = false }) {
+export default function PostCardUI({ data, isEdit = false, onClick }) {
   const fonts = {
     "Noto Sans": "Noto Sans KR",
     Pretendard: "Pretendard",
@@ -32,7 +32,7 @@ export default function PostCardUI({ data, isEdit = false }) {
           </S.UserInfo>
         </S.From>
         {isEdit && (
-          <S.Trash>
+          <S.Trash onClick={onClick}>
             <img src={trash} />
           </S.Trash>
         )}

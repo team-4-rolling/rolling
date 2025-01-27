@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
 import { getMessage, getRecipients } from "../../api/api.jsx";
-import { throttle } from "lodash";
+import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Mesages.jsx";
@@ -66,8 +66,11 @@ function RollingPage() {
     <div style={{ overflowY: "auto" }}>
       <S.Contents>
         <S.ButtonDiv>
-          {!isEdit && <Button onClick={handelEditClick}>편집하기</Button>}
-          {isEdit && <Button onClick={handelDeleteClick}>저장하기</Button>}
+          {isEdit ? (
+            <Button onClick={handelDeleteClick}>저장하기</Button>
+          ) : (
+            <Button onClick={handelEditClick}>편집하기</Button>
+          )}
         </S.ButtonDiv>
         <Messages isEdit={isEdit} messages={messages} />
       </S.Contents>
