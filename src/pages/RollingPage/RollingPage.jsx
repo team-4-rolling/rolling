@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage, getRecipients } from "../../api/api.jsx";
+import { getMessage, getRecipients } from "../../api/axios.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
@@ -15,17 +15,29 @@ function RollingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+  const [recipient, setRecipient] = useState({
+    id: null,
+    name: "",
+    color: "Purple200",
+    img: null,
+  });
   //
+
   const handleLoad = async () => {
-    const { id } = await getRecipients(queryId);
-    setIsLoading(true);
-    let limit = offset === 0 ? 8 : 9;
-    const { results, next } = await getMessage(limit, offset, id);
-    if (!results) return;
-    setMessages((prevMessages) => [...prevMessages, ...results]);
-    setOffset((prevOffset) => prevOffset + limit);
-    setIsLoading(false);
-    setHasNext(next);
+    try {
+      const recipientData = await getRecipients(queryId);
+      const id = recipientData.id;
+      setRecipient(recipientData);
+      setIsLoading(true);
+      let limit = offset == 0 ? 8 : 9;
+      const { results, next } = await getMessage(limit, offset, id);
+      setMessages((prevMessages) => [...prevMessages, ...results]);
+      setOffset((prevOffset) => prevOffset + limit);
+      setIsLoading(false);
+      setHasNext(next);
+    } catch {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -63,20 +75,22 @@ function RollingPage() {
   };
   //
   //
-
+  console.log(recipient.color, recipient.img);
   return (
-    <div style={{ overflowY: "auto" }}>
-      <S.Contents>
-        <S.ButtonDiv>
-          {isEdit ? (
-            <Button onClick={handelDeleteClick}>저장하기</Button>
-          ) : (
-            <Button onClick={handelEditClick}>편집하기</Button>
-          )}
-        </S.ButtonDiv>
-        <Messages isEdit={isEdit} messages={messages} />
-      </S.Contents>
-    </div>
+    <>
+      <div style={{ overflowY: "auto" }}>
+        <S.Contents color={recipient.color} $img={recipient.img}>
+          <S.ButtonDiv>
+            {isEdit ? (
+              <Button onClick={handelDeleteClick}>저장하기</Button>
+            ) : (
+              <Button onClick={handelEditClick}>편집하기</Button>
+            )}
+          </S.ButtonDiv>
+          <Messages isEdit={isEdit} messages={messages} />
+        </S.Contents>
+      </div>
+    </>
   );
 }
 
