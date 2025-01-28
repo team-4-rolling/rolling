@@ -73,7 +73,7 @@ function RollingPage() {
   const handelDeleteClick = () => {
     setIsEdit(false);
   };
-  //
+
   //
   console.log(recipient.color, recipient.img);
   return (
