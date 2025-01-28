@@ -6,10 +6,12 @@ export const Contents = styled.div`
   height: 100%;
   padding-top: 113px;
   padding-bottom: 500px;
-  background-color: ${(props) => props.color || "transparent"};
   background-image: ${(props) => (props.$img ? `url(${props.$img})` : "none")};
-  background-size: cover; /* 이미지가 요소를 완전히 덮도록 설정 */
-  background-position: center top; /* 이미지를 상단에 위치 */
+  background-color: ${(props) =>
+    props.$img ? "transparent" : theme.color[props.color]};
+
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
 `;

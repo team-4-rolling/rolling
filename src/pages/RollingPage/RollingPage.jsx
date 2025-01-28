@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage, getRecipients } from "../../api/axios.jsx";
+import { getMessage, getRecipients } from "../../api/api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
@@ -16,10 +16,10 @@ function RollingPage() {
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [recipient, setRecipient] = useState({
-    id: null,
+    id: 0,
     name: "",
-    color: "Purple200",
-    img: null,
+    color: "purple",
+    img: "",
   });
   //
 

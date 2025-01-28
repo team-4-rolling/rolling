@@ -15,7 +15,12 @@ export async function getRecipients(queryId) {
     recipient = null;
   }
 
-  const { id, name, backgroundColor: color, backgroundImgUrl: img } = recipient;
+  const {
+    id,
+    name,
+    backgroundColor: color,
+    backgroundImageURL: img,
+  } = recipient;
   return { id, name, color, img };
 }
 
