@@ -32,7 +32,7 @@ export const Card = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-radius: 16px;
-  background-color: ${theme.color.Purple100};
+  background-color: ${theme.color.Surface};
   flex-direction: ${({ $id }) => ($id === 2 ? "row-reverse" : "row")};
 `;
 

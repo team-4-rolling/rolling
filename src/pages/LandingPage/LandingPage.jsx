@@ -40,7 +40,7 @@ export default function LandingPage() {
             </S.Card>
           ))}
         </S.CardContainer>
-        <Button medium $font={`${theme.font.H4Bold}`} onClick={() => navigate("/list")}>
+        <Button medium $font={`${theme.font.H4Bold}`} style={{ cursor: "pointer" }} onClick={() => navigate("/list")}>
           구경해보기
         </Button>
       </S.Container>
