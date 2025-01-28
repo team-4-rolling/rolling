@@ -1,7 +1,7 @@
 export default function ToPage() {
   return (
     <>
-      <h1>hello</h1>
+      <h1>to page임 </h1>
     </>
   );
 }

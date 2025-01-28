@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Card = styled.div`
-  width: 394px;
+  width: 384px;
   height: 280px;
   border-radius: 16px;
   background-color: ${theme.color.White};
