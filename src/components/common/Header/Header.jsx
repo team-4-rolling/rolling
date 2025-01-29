@@ -14,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    <S.Container>
+    <S.Container $hide={location.startsWith("/post/")}>
       <S.Header>
         <S.Logo to="/">
           <img src={logoIcon} />

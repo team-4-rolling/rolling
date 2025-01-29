@@ -8,10 +8,15 @@ export const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 24px;
   background-color: ${theme.color.White};
   border-bottom: 1px solid #ededed;
   position: sticky;
   top: 0;
+
+  @media (max-width: 480px) {
+    display: ${({ $hide }) => ($hide ? "none" : "block")};
+  }
 `;
 
 export const Header = styled.div`
