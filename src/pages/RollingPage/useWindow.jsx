@@ -17,6 +17,7 @@ export default function useWindowSize() {
   };
 
   const throttledResize = throttle(handleResize, 2000);
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", throttledResize);

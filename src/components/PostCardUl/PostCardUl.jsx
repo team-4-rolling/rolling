@@ -1,7 +1,6 @@
 import * as S from "./PostCardUl.styles";
 import trash from "../../assets/icons/trash.svg";
 import Badge from "../Badge/Badge";
-import useWindowSize from "../../pages/RollingPage/useWindow";
 
 export default function PostCardUI({ data, isEdit = false, onClick }) {
   const fonts = {
@@ -10,8 +9,6 @@ export default function PostCardUI({ data, isEdit = false, onClick }) {
     나눔명조: "NanumMyeongjo",
     "나눔손글씨 손편지체": "Handletter",
   };
-  const device = useWindowSize();
-
   const date = new Date(data.createdAt);
   const formattedDate = `${date.getFullYear()}.${String(
     date.getMonth() + 1
@@ -20,7 +17,7 @@ export default function PostCardUI({ data, isEdit = false, onClick }) {
   const fontFamily = fonts[data.font];
 
   return (
-    <S.Card device={device}>
+    <S.Card>
       <S.FromContainer>
         <S.From>
           <S.UserImg src={data.profileImageURL} />

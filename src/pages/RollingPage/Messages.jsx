@@ -1,3 +1,4 @@
+//messages 를 복사한 페이지 입니다.
 import * as S from "./RollingPage.style";
 import PostCardUI from "../../components/PostCardUl/PostCardUl";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 //
 
-function Messages({ isEdit, messages }) {
+export default function Message({ isEdit, messages }) {
   const [filterMessages, setFilterMessages] = useState([]);
 
   useEffect(() => {
@@ -54,4 +55,3 @@ function Messages({ isEdit, messages }) {
   );
 }
 //
-export default Messages;
