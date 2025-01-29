@@ -2,19 +2,16 @@ import styled from "styled-components";
 import theme from "../../../styles/theme";
 import { Link } from "react-router-dom";
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: ${theme.color.white};
-`;
-
-export const FirstHeader = styled.div`
   height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${theme.color.White};
   border-bottom: 1px solid #ededed;
+  position: sticky;
+  top: 0;
 `;
 
 export const Header = styled.div`
