@@ -4,6 +4,7 @@ import theme from "../../styles/theme";
 export const Card = styled.div`
   width: 384px;
   min-width: 320px;
+  width: 100%;
   height: 280px;
   border-radius: 16px;
   background-color: ${theme.color.White};
@@ -20,6 +21,15 @@ export const Card = styled.div`
   }
   @media (min-width: 769px) and (max-width: 1280px) {
     width: 100%;
+    min-width: 320px;
+    height: 230px;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    min-width: 320px;
+    height: 284px;
+  }
+  @media (min-width: 769px) and (max-width: 1280px) {
+    min-width: 352px;
     height: 284px;
   }
 `;
@@ -87,6 +97,15 @@ export const Letter = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding: 24px 0;
+
+  @media (max-width: 480px) {
+    height: 130px;
+    padding: 20px 0;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    height: 184px;
+    padding: 20px 0;
+  }
 `;
 
 export const Content = styled.p`

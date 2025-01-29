@@ -1,8 +1,8 @@
-import * as S from "./PostCardUl.styles";
+import * as S from "./RollingCard.styles";
 import trash from "../../assets/icons/trash.svg";
 import Badge from "../Badge/Badge";
 
-export default function PostCardUI({ data, isEdit = false, onClick }) {
+export default function RollingCard({ data, isEdit = false, onClick }) {
   const fonts = {
     "Noto Sans": "Noto Sans KR",
     Pretendard: "Pretendard",
@@ -10,9 +10,9 @@ export default function PostCardUI({ data, isEdit = false, onClick }) {
     "나눔손글씨 손편지체": "Handletter",
   };
   const date = new Date(data.createdAt);
-  const formattedDate = `${date.getFullYear()}.${String(
-    date.getMonth() + 1
-  ).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+  const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(
+    date.getDate()
+  ).padStart(2, "0")}`;
 
   const fontFamily = fonts[data.font];
 
