@@ -2,8 +2,6 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Card = styled.div`
-  width: 384px;
-  min-width: 320px;
   width: 100%;
   height: 280px;
   border-radius: 16px;
@@ -12,15 +10,6 @@ export const Card = styled.div`
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
 
   @media (max-width: 480px) {
-    width: 320px;
-    height: 230px;
-  }
-  @media (min-width: 481px) and (max-width: 768px) {
-    width: 100%;
-    height: 230px;
-  }
-  @media (min-width: 769px) and (max-width: 1280px) {
-    width: 100%;
     min-width: 320px;
     height: 230px;
   }
@@ -59,6 +48,7 @@ export const UserInfo = styled.div`
   flex-direction: column;
   gap: 6px;
 `;
+
 export const UserName = styled.div`
   font: ${theme.font.H3Bold};
 
@@ -110,7 +100,7 @@ export const Letter = styled.div`
 
 export const Content = styled.p`
   height: 84px;
-  font-family: ${({ $font }) => "${$font}"}; //serif
+  font-family: ${({ $font }) => `'${$font}', serif`};
   font-size: 18px;
   font-weight: 400;
   line-height: 28px;

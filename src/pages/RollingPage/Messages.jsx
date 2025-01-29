@@ -1,6 +1,6 @@
 //messages 를 복사한 페이지 입니다.
 import * as S from "./RollingPage.style";
-import PostCardUI from "../../components/PostCardUl/PostCardUl";
+import PostCardUI from "../../components/RollingCard/RollingCard";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
