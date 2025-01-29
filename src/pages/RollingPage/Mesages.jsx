@@ -1,7 +1,8 @@
 import * as S from "./RollingPage.style";
-import PostCardUI from "../../components/PostCardUl/PostCardUl";
+import RollingCard from "../../components/RollingCard/RollingCard";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
+
 //
 
 function Messages({ isEdit, messages }) {
@@ -15,14 +16,7 @@ function Messages({ isEdit, messages }) {
         </S.CreateBox>
       )}
       {messages.map((message) => {
-        return (
-          <PostCardUI
-            onClick={""}
-            isEdit={isEdit}
-            key={message.id}
-            data={message}
-          />
-        );
+        return <RollingCard onClick={""} isEdit={isEdit} key={message.id} data={message} />;
       })}
     </S.GridBoxes>
   );
