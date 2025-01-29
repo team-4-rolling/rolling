@@ -6,6 +6,7 @@ import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
+import SecondHeader from "../../components/common/Header/SecondHeader";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -57,8 +58,7 @@ export default function RollingPage() {
   const infiniteScroll = useCallback(
     throttle(() => {
       if (!isLoading) {
-        const { clientHeight, scrollHeight, scrollTop } =
-          document.documentElement;
+        const { clientHeight, scrollHeight, scrollTop } = document.documentElement;
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
@@ -78,6 +78,7 @@ export default function RollingPage() {
   console.log(recipient.color, recipient.img);
   return (
     <>
+      <SecondHeader />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
           <S.ButtonFlex>

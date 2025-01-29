@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
   height: 68px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #ededed;
+  background-color: ${theme.color.White};
   position: sticky;
-  top: 0;
+  top: 65px;
 `;
 
 export const Header = styled.div`
@@ -63,36 +64,6 @@ export const Btns = styled.div`
   justify-content: center;
   align-items: center;
   gap: 13px;
-`;
-
-export const AddBtn = styled.button`
-  width: 88px;
-  height: 36px;
-  padding: 6px 15px;
-  display: flex;
-  gap: 4px;
-  font: ${theme.font.H5Regular};
-  color: ${theme.color.Grayscale900};
-  border: 1px solid ${theme.color.Grayscale300};
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-export const ShareBtn = styled.button`
-  width: 56px;
-  height: 36px;
-  padding: 6px 16px;
-  border: 1px solid ${theme.color.Grayscale300};
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-
   img {
     width: 24px;
     height: 24px;

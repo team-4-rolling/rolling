@@ -4,6 +4,8 @@ import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
 import CircleImages from "../../CircleImages/CircleImages";
 import cat from "../../../assets/icons/cat.jpeg";
+import Button from "../Button/Button";
+import theme from "../../../styles/theme";
 
 export default function SecondHeader() {
   const data = {
@@ -29,14 +31,14 @@ export default function SecondHeader() {
           <S.Box>
             <S.Icons></S.Icons>
             <S.Btns>
-              <S.AddBtn>
-                <img src={smile} />
+              <Button outlineMedium $font={`${theme.font.H5Regular}`} style={{ cursor: "pointer" }}>
+                <img src={smile} style={{ marginRight: "4px" }} />
                 추가
-              </S.AddBtn>
+              </Button>
               <Line width="1px" height="28px" />
-              <S.ShareBtn>
+              <Button outlinesmall style={{ cursor: "pointer" }}>
                 <img src={share} />
-              </S.ShareBtn>
+              </Button>
             </S.Btns>
           </S.Box>
         </S.Div>
