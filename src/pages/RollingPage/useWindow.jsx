@@ -5,10 +5,12 @@ export default function useWindowSize() {
   const [deviceType, setDeviceType] = useState("desktop");
 
   const handleResize = () => {
-    if (window.matchMedia("(max-width: 767px)").matches) {
+    if (window.matchMedia("(max-width: 480px)").matches) {
       setDeviceType("mobile");
-    } else if (window.matchMedia("(max-width: 1199px)").matches) {
+    } else if (window.matchMedia("(max-width: 768px)").matches) {
       setDeviceType("tablet");
+    } else if (window.matchMedia("(max-width: 1280px)").matches) {
+      setDeviceType("laptop");
     } else {
       setDeviceType("desktop");
     }

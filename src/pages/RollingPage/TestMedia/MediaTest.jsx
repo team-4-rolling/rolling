@@ -1,14 +1,16 @@
 //messages 를 복사한 페이지 입니다.
-import * as S from "./RollingPage.style";
-import PostCardUI from "../../components/PostCardUl/PostCardUl";
-import PlusIcon from "../../assets/icons/PlusIcon.svg";
+import * as S from "./Style.test";
+import PostCardUI from "../../../components/PostCardUl/PostCardUl";
+import PlusIcon from "../../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
+import useWindowSize from "../useWindow";
 import { useEffect, useState } from "react";
 //
 
-function Messages({ isEdit, messages }) {
+export default function MediaTest({ isEdit, messages }) {
   const [filterMessages, setFilterMessages] = useState([]);
-
+  const device = useWindowSize();
+  console.log(device);
   useEffect(() => {
     const savedMessages = localStorage.getItem("filterMessages");
     if (savedMessages) {
@@ -32,9 +34,9 @@ function Messages({ isEdit, messages }) {
   };
   //
   return (
-    <S.GridBoxes>
+    <S.GridBoxes device={device}>
       {!isEdit && (
-        <S.CreateBox>
+        <S.CreateBox device={device}>
           <Link to="message">
             <S.Plus src={PlusIcon} />
           </Link>
@@ -55,4 +57,3 @@ function Messages({ isEdit, messages }) {
   );
 }
 //
-export default Messages;

@@ -1,14 +1,15 @@
 //Rollingpage의 사본 페이지
 import React from "react";
-import * as S from "./RollingPage.style.jsx";
+import * as S from "./Style.test.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage, getRecipients } from "../../api/api.jsx";
+import { getMessage, getRecipients } from "../../../api/api.jsx";
 import throttle from "lodash.throttle";
-import Button from "../../components/common/Button/Button.jsx";
+import Button from "../../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
-import Messages from "./Messages.jsx";
+import Messages from "./mediaTest.jsx";
+import useWindowSize from "../useWindow.jsx";
 //
-function RollingPage() {
+export default function RollingTest() {
   const { id: queryId } = useParams();
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -23,6 +24,7 @@ function RollingPage() {
     img: "",
   });
   //
+  const device = useWindowSize();
 
   const handleLoad = async () => {
     try {
@@ -76,6 +78,13 @@ function RollingPage() {
   };
 
   //
+  const sizeProps =
+    device === "mobile"
+      ? { medium: true }
+      : device === "tablet"
+      ? { large: true }
+      : {};
+
   console.log(recipient.color, recipient.img);
   return (
     <>
@@ -83,9 +92,13 @@ function RollingPage() {
         <S.Contents color={recipient.color} $img={recipient.img}>
           <S.ButtonDiv>
             {isEdit ? (
-              <Button onClick={handelDeleteClick}>저장하기</Button>
+              <Button {...sizeProps} onClick={handelDeleteClick}>
+                저장하기
+              </Button>
             ) : (
-              <Button onClick={handelEditClick}>편집하기</Button>
+              <Button {...sizeProps} onClick={handelEditClick}>
+                편집하기
+              </Button>
             )}
           </S.ButtonDiv>
           <Messages isEdit={isEdit} messages={messages} />
@@ -94,5 +107,3 @@ function RollingPage() {
     </>
   );
 }
-
-export default RollingPage;

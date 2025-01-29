@@ -2,7 +2,10 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Card = styled.div`
-  width: 384px;
+  width: ${({ device }) => {
+    const sizes = { mobile: "320px", tablet: "352px", desktop: "384px" };
+    return sizes[{ device }] || "384px";
+  }};
   height: 280px;
   border-radius: 16px;
   background-color: ${theme.color.White};
