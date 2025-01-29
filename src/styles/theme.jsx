@@ -59,6 +59,10 @@ const theme = {
     Black: "#000000",
     Error: "#DC3A3A",
     Surface: "#F6F8FF",
+    purple: "#ECD9FF",
+    green: "#D0F5C3",
+    blue: "#B1E4FF",
+    beige: "#FFE2AD",
   },
 };
 

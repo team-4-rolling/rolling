@@ -1,6 +1,5 @@
 import * as S from "./RollingCard.styles";
 import trash from "../../assets/icons/trash.svg";
-import cat from "../../assets/icons/cat.jpeg";
 import Badge from "../Badge/Badge";
 
 export default function RollingCard({ data, isEdit = false, onClick }) {
@@ -10,7 +9,6 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
     나눔명조: "NanumMyeongjo",
     "나눔손글씨 손편지체": "Handletter",
   };
-
   const date = new Date(data.createdAt);
   const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(
     date.getDate()
@@ -32,7 +30,7 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
           </S.UserInfo>
         </S.From>
         {isEdit && (
-          <S.Trash onClick={onClick}>
+          <S.Trash data-value={data.id} onClick={onClick}>
             <img src={trash} />
           </S.Trash>
         )}
