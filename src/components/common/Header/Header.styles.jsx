@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
@@ -42,22 +42,5 @@ export const Logo = styled(Link)`
     font-size: 20px;
     font-weight: 700;
     font-style: normal;
-  }
-`;
-
-export const CreateBtn = styled(NavLink)`
-  width: 157px;
-  height: 40px;
-  padding: 8px 16px;
-  font: ${theme.font.H5Bold};
-  color: #181818;
-  text-align: center;
-  background-color: transparent;
-  border-radius: 8px;
-  border: 1px solid ${theme.color.Grayscale300};
-  cursor: pointer;
-
-  &:visited {
-    color: ${theme.color.Grayscale900};
   }
 `;
