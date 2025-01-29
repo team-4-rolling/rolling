@@ -41,7 +41,7 @@ export const ButtonFlex = styled.div`
 
   //반응형 부분
   @media (max-width: 480px) {
-    width: 320px;
+    width: 100%;
     height: 56px;
     justify-content: center;
     position: fixed;
@@ -50,7 +50,7 @@ export const ButtonFlex = styled.div`
     transform: translateX(-50%);
   }
   @media (min-width: 481px) and (max-width: 768px) {
-    width: 720px;
+    width: 100%;
     height: 56px;
     justify-content: center;
     position: fixed;
@@ -59,7 +59,7 @@ export const ButtonFlex = styled.div`
     transform: translateX(-50%);
   }
   @media (min-width: 769px) and (max-width: 1280px) {
-    width: 1000px;
+    width: 100%;
     height: 39px;
     justify-content: right;
     position: static;
@@ -76,12 +76,12 @@ export const ButtonContain = styled.div`
     height: 56px;
   }
   @media (min-width: 481px) and (max-width: 768px) {
-    min-width: 460px;
+    min-width: 720px;
     height: 39px;
   }
   @media (min-width: 769px) and (max-width: 1280px) {
     height: 39px;
-    min-width: 440px;
+    width: 92px;
   }
 `;
 //버튼 div 아래 그리드 영역
