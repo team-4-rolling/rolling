@@ -21,6 +21,8 @@ export default function RollingPage() {
     name: "",
     color: "purple",
     img: "",
+    messageCount: 0,
+    recentMessages: [],
   });
   //
   const handleLoad = async () => {
@@ -78,7 +80,11 @@ export default function RollingPage() {
   console.log(recipient.color, recipient.img);
   return (
     <>
-      <SecondHeader />
+      <SecondHeader
+        name={recipient.name}
+        messageCount={recipient.messageCount}
+        recentMessages={recipient.recentMessages}
+      />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
           <S.ButtonFlex>

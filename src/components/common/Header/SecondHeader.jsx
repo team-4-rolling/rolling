@@ -7,26 +7,20 @@ import cat from "../../../assets/icons/cat.jpeg";
 import Button from "../Button/Button";
 import theme from "../../../styles/theme";
 
-export default function SecondHeader() {
-  const data = {
-    name: "Ashley Kim",
-    writtenCount: 7,
-    images: [cat, cat, cat, cat, cat, cat, cat],
-  };
-
-  const sliceImage = data.images.slice(0, 3);
+export default function SecondHeader({ name, messageCount, recentMessages }) {
+  const images = recentMessages.map((i) => i.profileImageURL);
 
   return (
     <>
-      <S.Username>To. {data.name}</S.Username>
+      <S.Username>To. {name}</S.Username>
       <S.Container>
         <S.Header>
-          <S.ToUser>To. {data.name}</S.ToUser>
+          <S.ToUser>To. {name}</S.ToUser>
           <S.Div>
             <S.WrittenContainer>
-              {data.images.length !== 0 && <CircleImages writtenCount={data.writtenCount} images={sliceImage} />}
+              {images.length !== 0 && <CircleImages writtenCount={messageCount} images={images} />}
               <S.Written>
-                <span>{data.writtenCount}</span>명이 작성했어요!
+                <span>{messageCount}</span>명이 작성했어요!
               </S.Written>
             </S.WrittenContainer>
             <S.Box>
