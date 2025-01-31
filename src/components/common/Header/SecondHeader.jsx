@@ -5,6 +5,7 @@ import Line from "../Line/Line";
 import CircleImages from "../../CircleImages/CircleImages";
 import Button from "../Button/Button";
 import theme from "../../../styles/theme";
+import Emoji from "../../Emoji/Emoji";
 
 export default function SecondHeader({ name, messageCount, recentMessages }) {
   const images = recentMessages.map((i) => i.profileImageURL);
@@ -25,28 +26,16 @@ export default function SecondHeader({ name, messageCount, recentMessages }) {
               </S.Written>
             </S.WrittenContainer>
             <S.Box>
-              <S.Icons></S.Icons>
-              <S.Btns>
-                <S.Emoji>
-                  <Button
-                    outlineMedium
-                    $font={`${theme.font.H5Regular}`}
-                    style={{ cursor: "pointer", width: "100%" }}
-                  >
-                    <img src={smile} />
-                    <span>추가</span>
-                  </Button>
-                </S.Emoji>
-                <Line width="1px" height="28px" />
-                <S.Share>
-                  <Button
-                    outlinesmall
-                    style={{ cursor: "pointer", width: "100%" }}
-                  >
-                    <img src={share} />
-                  </Button>
-                </S.Share>
-              </S.Btns>
+              <Emoji />
+              <Line width="1px" height="28px" />
+              <S.Share>
+                <Button
+                  outlinesmall
+                  style={{ cursor: "pointer", width: "100%" }}
+                >
+                  <img src={share} />
+                </Button>
+              </S.Share>
             </S.Box>
           </S.Div>
         </S.Header>

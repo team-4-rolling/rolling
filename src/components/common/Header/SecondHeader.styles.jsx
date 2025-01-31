@@ -53,7 +53,7 @@ export const ToUser = styled.div`
     display: none;
   }
   @media (min-width: 481px) and (max-width: 767px) {
-    font: ${theme.font.H4Bold};
+    font: ${theme.font.H3Bold};
   }
 `;
 
@@ -96,6 +96,10 @@ export const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 13px;
+  @media (max-width: 767px) {
+    gap: 10px;
+  }
 `;
 
 export const Icons = styled.div`
@@ -108,38 +112,9 @@ export const Icons = styled.div`
   }
 `;
 
-export const Btns = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 13px;
-
-  @media (max-width: 767px) {
-    gap: 10px;
-  }
-`;
-
-export const Emoji = styled.div`
-  width: 88px;
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
-  span {
-    margin-left: 4px;
-    @media (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 767px) {
-    width: 36px;
-  }
-`;
-
 export const Share = styled.div`
   width: 56px;
+
   @media (max-width: 767px) {
     width: 36px;
   }
