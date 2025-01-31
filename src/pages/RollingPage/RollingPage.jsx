@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
 import { getRecipients } from "../../api/recipient.api.jsx";
-import { getMessage } from "../../api/messages.api.jsx";
+import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ export default function RollingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+  const [deletedIds, setDeletedIds] = useState([]);
   const [recipient, setRecipient] = useState({
     id: 0,
     name: "",
@@ -71,7 +72,9 @@ export default function RollingPage() {
     setIsEdit(true);
   };
   const handelDeleteClick = () => {
+    deleteMessage(deletedIds);
     setIsEdit(false);
+    setDeletedIds([]);
   };
 
   //
@@ -93,7 +96,12 @@ export default function RollingPage() {
               )}
             </S.ButtonContain>
           </S.ButtonFlex>
-          <Messages isEdit={isEdit} messages={messages} />
+          <Messages
+            deletedIds={deletedIds}
+            setDeletedIds={setDeletedIds}
+            isEdit={isEdit}
+            messages={messages}
+          />
         </S.Contents>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>

@@ -2,10 +2,11 @@ import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 // 롤링페이퍼 전체 수신자가 담긴 results를 리턴하는 리퀘스트
 //
+
 export async function getRecipients(queryId) {
   let recipient;
   try {
-    const res = await axios.get(`${BASE_URL}/recipients/?limit=0&offset=0`);
+    const res = await axios.get(`${BASE_URL}13-4/recipients/?limit=0&offset=0`);
     recipient = res.data.results.find((recipient) => recipient.id == queryId);
     if (!recipient) {
       throw new Error("recipients 찾기 실패");
