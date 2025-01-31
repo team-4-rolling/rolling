@@ -1,12 +1,13 @@
 import React from "react";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage, getRecipients } from "../../api/api.jsx";
+import { getRecipients } from "../../api/recipient.api.jsx";
+import { getMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
-//
+
 export default function RollingPage() {
   const { id: queryId } = useParams();
   const [messages, setMessages] = useState([]);
