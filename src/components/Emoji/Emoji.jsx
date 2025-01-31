@@ -1,23 +1,38 @@
 import * as S from "./Emoji.styles";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../common/Button/Button";
+import Icons from "./Icons";
+import { getReactions } from "../../api/reactions";
+import { useState, useEffect } from "react";
 import theme from "../../styles/theme";
 import smile from "../../assets/icons/smile.svg";
-import { useState } from "react";
-import Icons from "./Icons";
 
-export default function Emoji({ topReactions }) {
+export default function Emoji({ recipientId }) {
   const [isOpen, setIsOpen] = useState(false);
   const [pickEmoji, setPickEmoji] = useState("");
+  const [reactions, setReactions] = useState([]);
 
   const handleEmojiClick = (emojiObject) => {
     setPickEmoji(emojiObject.emoji);
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (recipientId) {
+      getReactions(recipientId)
+        .then((result) => {
+          if (!result) return;
+          setReactions(result);
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [recipientId]);
+
+  const topReactions = reactions.slice(0, 3);
+
   return (
     <>
-      <Icons topReactions={topReactions} />
+      <Icons topReactions={topReactions} reactions={reactions} />
       <S.Emoji>
         <Button
           onClick={() => setIsOpen((prev) => !prev)}

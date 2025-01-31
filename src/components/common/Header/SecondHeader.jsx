@@ -8,10 +8,10 @@ import theme from "../../../styles/theme";
 import Emoji from "../../Emoji/Emoji";
 
 export default function SecondHeader({
+  recipientId,
   name,
   messageCount,
-  recentMessages,
-  topReactions
+  recentMessages
 }) {
   const images = recentMessages.map((i) => i.profileImageURL);
 
@@ -31,7 +31,7 @@ export default function SecondHeader({
               </S.Written>
             </S.WrittenContainer>
             <S.Box>
-              <Emoji topReactions={topReactions} />
+              <Emoji recipientId={recipientId} />
               <Line width="1px" height="28px" />
               <S.Share>
                 <Button
