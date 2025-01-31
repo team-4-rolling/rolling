@@ -76,7 +76,6 @@ export default function RollingPage() {
 
   //
 
-  console.log(recipient.color, recipient.img);
   return (
     <>
       <div style={{ overflowY: "auto" }}>
