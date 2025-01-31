@@ -24,7 +24,7 @@ export default function ToPage() {
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
-    setSelected(newMode === "color" ? selected : null); // 기존 선택값 유지
+    setSelected(newMode === "color" ? selected : null);
   };
 
   const handleSelect = (key) => {

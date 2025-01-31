@@ -127,7 +127,7 @@ export const ImageBox = styled.div`
   ${({ selected }) =>
     selected &&
     `
-    filter: brightness(0.6); // 선택된 이미지 흐리게 처리
+    filter: brightness(0.6);
     border: 4px solid ${theme.color.Purple600};
   `}
 `;
