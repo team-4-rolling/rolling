@@ -4,15 +4,20 @@ import Button from "../common/Button/Button";
 import theme from "../../styles/theme";
 import smile from "../../assets/icons/smile.svg";
 import { useState } from "react";
+import Icons from "./Icons";
 
-export default function Emoji() {
+export default function Emoji({ topReactions }) {
   const [isOpen, setIsOpen] = useState(false);
   const [pickEmoji, setPickEmoji] = useState("");
-  // onEmojiClick 이용해서 post 요청?
+
+  const handleEmojiClick = (emojiObject) => {
+    setPickEmoji(emojiObject.emoji);
+    setIsOpen(false);
+  };
 
   return (
     <>
-      <S.Icons></S.Icons>
+      <Icons topReactions={topReactions} />
       <S.Emoji>
         <Button
           onClick={() => setIsOpen((prev) => !prev)}
@@ -25,6 +30,7 @@ export default function Emoji() {
         </Button>
         {isOpen && (
           <EmojiPicker
+            onEmojiClick={handleEmojiClick}
             style={{
               position: "absolute",
               top: "120%",

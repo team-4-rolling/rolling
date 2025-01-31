@@ -7,7 +7,12 @@ import Button from "../Button/Button";
 import theme from "../../../styles/theme";
 import Emoji from "../../Emoji/Emoji";
 
-export default function SecondHeader({ name, messageCount, recentMessages }) {
+export default function SecondHeader({
+  name,
+  messageCount,
+  recentMessages,
+  topReactions
+}) {
   const images = recentMessages.map((i) => i.profileImageURL);
 
   return (
@@ -26,7 +31,7 @@ export default function SecondHeader({ name, messageCount, recentMessages }) {
               </S.Written>
             </S.WrittenContainer>
             <S.Box>
-              <Emoji />
+              <Emoji topReactions={topReactions} />
               <Line width="1px" height="28px" />
               <S.Share>
                 <Button

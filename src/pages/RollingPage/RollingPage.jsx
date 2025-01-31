@@ -22,7 +22,8 @@ export default function RollingPage() {
     color: "purple",
     img: "",
     messageCount: 0,
-    recentMessages: []
+    recentMessages: [],
+    topReactions: []
   });
   //
   const handleLoad = async () => {
@@ -85,6 +86,7 @@ export default function RollingPage() {
         name={recipient.name}
         messageCount={recipient.messageCount}
         recentMessages={recipient.recentMessages}
+        topReactions={recipient.topReactions}
       />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
