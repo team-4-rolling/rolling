@@ -1,7 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getRecipients } from "../../api/recipient.api.jsx";
+import { deleteRecipient, getRecipients } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
@@ -10,6 +11,7 @@ import Messages from "./Messages.jsx";
 
 export default function RollingPage() {
   const { id: queryId } = useParams();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
@@ -71,12 +73,16 @@ export default function RollingPage() {
   const handelEditClick = () => {
     setIsEdit(true);
   };
-  const handelDeleteClick = () => {
+  const handelDeleteMessageClick = () => {
     deleteMessage(deletedIds);
     setIsEdit(false);
     setDeletedIds([]);
   };
 
+  const handelDeletePageClick = async () => {
+    await deleteRecipient(recipient.id);
+    navigate("/");
+  };
   //
 
   return (
@@ -86,14 +92,22 @@ export default function RollingPage() {
           <S.ButtonFlex>
             <S.ButtonContain>
               {isEdit ? (
-                <Button style={{ width: "100%" }} onClick={handelDeleteClick}>
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={handelDeleteMessageClick}
+                >
                   저장하기
                 </Button>
               ) : (
                 <Button style={{ width: "100%" }} onClick={handelEditClick}>
-                  편집하기
+                  메시지 삭제하기
                 </Button>
               )}
+            </S.ButtonContain>
+            <S.ButtonContain>
+              <Button style={{ width: "100%" }} onClick={handelDeletePageClick}>
+                롤링페이퍼 삭제하기
+              </Button>
             </S.ButtonContain>
           </S.ButtonFlex>
           <Messages

@@ -24,3 +24,14 @@ export async function getRecipients(queryId) {
   } = recipient;
   return { id, name, color, img };
 }
+
+export async function deleteRecipient(id) {
+  console.log(id);
+  if (!id) return;
+  try {
+    await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
+  } catch (error) {
+    alert("해당 롤링페이퍼를 삭제할 수 없습니다.");
+    console.error(error);
+  }
+}
