@@ -12,9 +12,10 @@ export const Image = styled.img`
   width: 28px;
   height: 28px;
   position: absolute;
-  left: ${({ $idx }) => `${$idx * 16}px`};
+  right: ${({ $idx }) => `${$idx * 16}px`};
   border-radius: 140px;
   outline: 1.4px solid white;
+  z-index: ${({ $idx }) => 10 - $idx};
 `;
 
 export const Count = styled.div`
@@ -24,7 +25,7 @@ export const Count = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  left: 48px;
+  right: 0;
   font-size: 12px;
   font-weight: 600;
   line-height: 18px;
@@ -32,4 +33,5 @@ export const Count = styled.div`
   background-color: white;
   border-radius: 140px;
   outline: 1px solid #e3e3e3;
+  z-index: 10;
 `;
