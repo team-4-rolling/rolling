@@ -22,7 +22,7 @@ export default function RollingPage() {
     color: "purple",
     img: "",
     messageCount: 0,
-    recentMessages: [],
+    recentMessages: []
   });
   //
   const handleLoad = async () => {
@@ -60,7 +60,8 @@ export default function RollingPage() {
   const infiniteScroll = useCallback(
     throttle(() => {
       if (!isLoading) {
-        const { clientHeight, scrollHeight, scrollTop } = document.documentElement;
+        const { clientHeight, scrollHeight, scrollTop } =
+          document.documentElement;
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }

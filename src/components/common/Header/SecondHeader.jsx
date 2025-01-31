@@ -3,7 +3,6 @@ import share from "../../../assets/icons/share.svg";
 import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
 import CircleImages from "../../CircleImages/CircleImages";
-import cat from "../../../assets/icons/cat.jpeg";
 import Button from "../Button/Button";
 import theme from "../../../styles/theme";
 
