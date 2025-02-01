@@ -1,11 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import * as S from "./ToPage.styles";
-import { useState, useEffect } from "react"; // 상태 관리 & 사이드 이펙트 (API 요청)
-import axios from "axios";
+import { useState, useEffect } from "react";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
 import SelectableBox from "./SelectableBox";
 import Input from "../../components/common/Input/Input";
-import { getBackgroundImages } from "../../api/backgroundImages"; // API 함수 import
+import { getBackgroundImages, submitToPage } from "../../api/backgroundImages";
 
 const COLORS = [
   { key: "beige", color: theme.color.Beige200 },
@@ -15,61 +15,56 @@ const COLORS = [
 ];
 
 export default function ToPage() {
-  const [mode, setMode] = useState("color"); // 현재 선택된 모드 ('color' 또는 'image')
-  const [selected, setSelected] = useState("beige"); // 현재 선택된 배경(컬러 또는 이미지 URL)
-  const [images, setImages] = useState([]); // API에서 불러온 이미지 리스트
-  const [recipientName, setRecipientName] = useState(""); // 사용자가 입력한 받는 사람 이름
+  const navigate = useNavigate();
 
-  // 모드가 'image'로 변경되었을 때 API에서 이미지 불러오기
+  const [mode, setMode] = useState("color");
+  const defaultValue = mode === "color" ? "beige" : 0;
+  const [selected, setSelected] = useState(defaultValue);
+  const [images, setImages] = useState([]);
+  const [dataToSend, setDataToSend] = useState({
+    name: "",
+    backgroundColor: "beige",
+    backgroundImageURL: null,
+  });
+
+  const modeName = mode === "color" ? "backgroundColor" : "backgroundImageURL";
+
   useEffect(() => {
-    if (mode === "image") {
-      axios
-        .get("https://rolling-api.vercel.app/background-images/")
-        .then((response) => {
-          console.log("Fetched images:", response.data.imageUrls); // 디버깅
-          setImages(response.data.imageUrls);
-        })
-        .catch((error) => console.error("Failed to fetch images:", error));
-    }
-  }, [mode]); // mode가 변경될 때만 실행됨
+    getBackgroundImages()
+      .then((response) => {
+        setImages(response);
+      })
+      .catch((error) => console.error("Failed to fetch images:", error));
+  }, []);
 
-  // 토글 버튼 클릭 시 모드 변경 함수
   const handleModeChange = (newMode) => {
-    setMode(newMode); // 모드 업데이트
-    setSelected(newMode === "color" ? "beige" : null); // 컬러 모드에서는 기본값 'beige' 설정
+    setMode(newMode);
+    setSelected(newMode === "color" ? "beige" : 0);
   };
 
-  // 컬러 또는 이미지 선택 시 실행되는 함수
   const handleSelect = (key) => {
-    setSelected(key); // 선택한 컬러 키 또는 이미지 URL을 저장
+    setSelected(key);
   };
 
-  // 생성하기 버튼 클릭 시 실행되는 함수 (POST 요청)
+  const handleChange = (name, value) => {
+    setDataToSend((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleNameChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
+
   const handleSubmit = async () => {
-    if (!recipientName.trim()) {
-      alert("받는 사람 이름을 입력해 주세요.");
-      return;
-    }
-
-    const dataToSend = {
-      recipientName, // 입력된 이름
-      background: mode === "color" ? selected : selected || null, // 선택된 배경 (컬러 키 또는 이미지 URL)
-    };
-
-    try {
-      const response = await axios.post(
-        "https://rolling-api.vercel.app/13-4/recipients",
-        dataToSend
-      );
-      if (response.status === 201) {
-        alert("롤링페이퍼가 성공적으로 생성되었습니다!");
-      } else {
-        alert("롤링페이퍼 생성에 실패했습니다.");
-      }
-    } catch (error) {
-      console.error("Error creating rolling paper:", error);
-      alert("롤링페이퍼 생성 중 오류가 발생했습니다.");
-    }
+    await submitToPage(dataToSend)
+      .then((id) => {
+        alert("🎉성공");
+        navigate(`/post/${id}`);
+      })
+      .catch((error) => console.error("Error creating rolling paper:", error));
   };
 
   return (
@@ -79,8 +74,9 @@ export default function ToPage() {
           <S.Heading>To.</S.Heading>
           <Input
             placeholder="받는 사람 이름을 입력해 주세요."
-            value={recipientName}
-            onChange={(e) => setRecipientName(e.target.value)} // 입력값 업데이트
+            value={dataToSend.name}
+            name="name"
+            onChange={handleNameChange}
           />
 
           <S.Title>배경화면을 선택해 주세요.</S.Title>
@@ -111,10 +107,12 @@ export default function ToPage() {
         </S.ToggleContainer>
 
         <SelectableBox
-          items={mode === "color" ? COLORS : images} // 선택된 모드에 따라 데이터 전달
-          selected={selected} // 현재 선택된 배경
-          onSelect={handleSelect} // 선택 이미지 핸들러 전달
-          type={mode} // 'color' 또는 'image' 전달
+          items={mode === "color" ? COLORS : images}
+          modeName={modeName}
+          selected={selected}
+          onClick={handleChange}
+          onSelect={handleSelect}
+          type={mode}
         />
 
         <Button
