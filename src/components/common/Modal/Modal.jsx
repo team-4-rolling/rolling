@@ -2,7 +2,7 @@ import * as S from "./Modal.styles";
 import { createPortal } from "react-dom";
 import Button from "../Button/Button";
 
-export default function RollingPaperModal({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return createPortal(

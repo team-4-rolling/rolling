@@ -32,7 +32,7 @@ export const PageContainer = styled.div`
 export const Title = styled.div`
   font: ${theme.font.H2Bold};
   color: ${theme.color.Grayscale900};
-  margin-top: 30px;
+  margin-top: 10px;
   height: 30px;
 `;
 
@@ -69,17 +69,18 @@ export const ToggleOption = styled.div`
   width: 50%;
   height: 100%;
   padding: 10px 20px;
-  font: ${theme.font.H6Bold};
+  font: ${theme.font.H6Regular};
   text-align: center;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
 
-  background: ${({ active }) => (active ? "white" : "transparent")};
-  color: ${({ active }) =>
-    active ? theme.color.Purple600 : theme.color.Grayscale700};
-  border: ${({ active }) =>
-    active ? `2px solid ${theme.color.Purple600}` : "none"};
+  background: ${({ $active }) =>
+    $active ? "white" : theme.color.Grayscale200};
+  color: ${({ $active }) =>
+    $active ? theme.color.Purple600 : theme.color.Grayscale700};
+  border: ${({ $active }) =>
+    $active ? `2px solid ${theme.color.Purple600}` : "none"};
 `;
 
 export const ColorGrid = styled.div`

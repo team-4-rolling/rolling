@@ -2,12 +2,25 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Card = styled.div`
-  width: 394px;
+  width: 100%;
   height: 280px;
   border-radius: 16px;
   background-color: ${theme.color.White};
   padding: 0 24px;
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+
+  @media (max-width: 480px) {
+    min-width: 320px;
+    height: 230px;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    min-width: 320px;
+    height: 284px;
+  }
+  @media (min-width: 769px) and (max-width: 1280px) {
+    min-width: 352px;
+    height: 284px;
+  }
 `;
 
 export const FromContainer = styled.div`
@@ -43,6 +56,12 @@ export const UserName = styled.div`
     font: ${theme.font.H3Regular};
     margin-right: 6px;
   }
+  @media (max-width: 480px) {
+    font: ${theme.font.H5Bold};
+    span {
+      font: ${theme.font.H5Regular};
+    }
+  }
 `;
 
 export const Trash = styled.div`
@@ -68,6 +87,15 @@ export const Letter = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding: 24px 0;
+
+  @media (max-width: 480px) {
+    height: 130px;
+    padding: 20px 0;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    height: 184px;
+    padding: 20px 0;
+  }
 `;
 
 export const Content = styled.p`
@@ -82,6 +110,12 @@ export const Content = styled.p`
   -webkit-line-clamp: 3;
   text-align: left;
   overflow: hidden;
+  @media (max-width: 480px) {
+    height: 44px;
+    font-size: 15px;
+    line-height: 22px;
+    -webkit-line-clamp: 2;
+  }
 `;
 
 export const Date = styled.div`
