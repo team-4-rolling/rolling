@@ -1,20 +1,22 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const Container = styled.div`
+export const Container = styled.header`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: ${theme.color.white};
-`;
-
-export const FirstHeader = styled.div`
   height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 24px;
+  background-color: ${theme.color.White};
   border-bottom: 1px solid #ededed;
+  position: sticky;
+  top: 0;
+
+  @media (max-width: 480px) {
+    display: ${({ $hide }) => ($hide ? "none" : "block")};
+  }
 `;
 
 export const Header = styled.div`
@@ -42,22 +44,5 @@ export const Logo = styled(Link)`
     font-size: 20px;
     font-weight: 700;
     font-style: normal;
-  }
-`;
-
-export const CreateBtn = styled(NavLink)`
-  width: 157px;
-  height: 40px;
-  padding: 8px 16px;
-  font: ${theme.font.H5Bold};
-  color: #181818;
-  text-align: center;
-  background-color: transparent;
-  border-radius: 8px;
-  border: 1px solid ${theme.color.Grayscale300};
-  cursor: pointer;
-
-  &:visited {
-    color: ${theme.color.Grayscale900};
   }
 `;

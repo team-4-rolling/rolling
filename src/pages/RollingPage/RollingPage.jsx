@@ -8,7 +8,8 @@ import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
-
+import SecondHeader from "../../components/common/Header/SecondHeader";
+//
 export default function RollingPage() {
   const { id: queryId } = useParams();
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ export default function RollingPage() {
     name: "",
     color: "purple",
     img: "",
+    messageCount: 0,
+    recentMessages: [],
   });
   //
   const handleLoad = async () => {
@@ -87,6 +90,11 @@ export default function RollingPage() {
 
   return (
     <>
+      <SecondHeader
+        name={recipient.name}
+        messageCount={recipient.messageCount}
+        recentMessages={recipient.recentMessages}
+      />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
           <S.ButtonFlex>
