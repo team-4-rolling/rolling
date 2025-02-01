@@ -12,8 +12,6 @@ export default function Emoji({ recipientId }) {
   const [reactions, setReactions] = useState([]);
   const [emoji, setEmoji] = useState({ emoji: "", type: "increase" });
 
-  // localStorage 이용해 emoji 저장하고 해당 emoji가 있으면 active 상태 보여주기, 해당 이모지 click하면 post 요청, active 상태인 이모지 click하면 type decrease
-
   const handleGetReactions = () => {
     if (recipientId) {
       getReactions(recipientId)
@@ -34,11 +32,14 @@ export default function Emoji({ recipientId }) {
       const postEmoji = { ...prev, emoji: emojiObject.emoji };
 
       postReaction(recipientId, postEmoji)
-        .then(handleGetReactions)
+        .then(() => {
+          handleGetReactions();
+        })
         .catch((error) => console.error(error));
 
       return postEmoji;
     });
+
     setIsOpen(false);
   };
 
