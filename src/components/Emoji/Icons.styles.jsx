@@ -9,11 +9,13 @@ export const Icons = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 
   img {
     width: 24px;
     height: 24px;
     padding: 6px;
+    cursor: pointer;
   }
 `;
 
@@ -41,10 +43,8 @@ export const Count = styled.div`
 `;
 
 export const Reactions = styled.div`
-  width: 248px;
-  height: 134px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ $columns }) => `repeat(${$columns}, 1fr)`};
   grid-template-rows: 1fr, 1fr;
   gap: 10px;
   padding: 24px 20px;

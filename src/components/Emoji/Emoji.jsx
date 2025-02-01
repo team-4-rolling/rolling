@@ -47,7 +47,11 @@ export default function Emoji({ recipientId }) {
 
   return (
     <>
-      <Icons topReactions={topReactions} reactions={reactions} />
+      {reactions?.length === 0 ? (
+        <S.NoneEmoji>이모지를 추가해보세요 😀</S.NoneEmoji>
+      ) : (
+        <Icons topReactions={topReactions} reactions={reactions} />
+      )}
       <S.Emoji>
         <Button
           onClick={() => setIsOpen((prev) => !prev)}

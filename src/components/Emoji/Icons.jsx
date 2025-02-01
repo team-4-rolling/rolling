@@ -14,6 +14,7 @@ function IconUI({ icon }) {
 
 export default function Icons({ topReactions, reactions }) {
   const [isOpen, setIsOpen] = useState(false);
+  const columns = reactions.length >= 4 ? 4 : reactions.length;
 
   return (
     <S.Container>
@@ -28,7 +29,7 @@ export default function Icons({ topReactions, reactions }) {
         )}
       </S.Icons>
       {isOpen && (
-        <S.Reactions>
+        <S.Reactions $columns={columns}>
           {reactions.map((i) => (
             <IconUI icon={i} key={i.id} />
           ))}
