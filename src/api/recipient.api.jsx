@@ -1,8 +1,7 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-// 롤링페이퍼 전체 수신자가 담긴 results를 리턴하는 리퀘스트
-//
 
+// 롤링페이퍼 전체 수신자가 담긴 results를 리턴하는 리퀘스트
 export async function getRecipients(queryId) {
   let recipient;
   try {
@@ -21,8 +20,10 @@ export async function getRecipients(queryId) {
     name,
     backgroundColor: color,
     backgroundImageURL: img,
+    messageCount,
+    recentMessages,
   } = recipient;
-  return { id, name, color, img };
+  return { id, name, color, img, messageCount, recentMessages };
 }
 
 export async function deleteRecipient(id) {
