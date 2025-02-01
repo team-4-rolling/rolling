@@ -4,6 +4,7 @@ import PostCardUI from "../../components/RollingCard/RollingCard";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Skeleton from "./Skeleton";
 //
 
 export default function Message({
@@ -11,6 +12,7 @@ export default function Message({
   messages,
   deletedIds,
   setDeletedIds,
+  isLoading,
 }) {
   const [filterMessages, setFilterMessages] = useState(messages);
 
@@ -40,17 +42,20 @@ export default function Message({
           </Link>
         </S.CreateBox>
       )}
-
-      {filterMessages.map((message) => {
-        return (
-          <PostCardUI
-            onClick={handleClickFilter}
-            isEdit={isEdit}
-            key={message.id}
-            data={message}
-          />
-        );
-      })}
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        filterMessages.map((message) => {
+          return (
+            <PostCardUI
+              onClick={handleClickFilter}
+              isEdit={isEdit}
+              key={message.id}
+              data={message}
+            />
+          );
+        })
+      )}
     </S.GridBoxes>
   );
 }

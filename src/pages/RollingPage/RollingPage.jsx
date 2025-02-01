@@ -123,6 +123,7 @@ export default function RollingPage() {
             setDeletedIds={setDeletedIds}
             isEdit={isEdit}
             messages={messages}
+            isLoading={isLoading}
           />
         </S.Contents>
         <S.Background color={recipient.color} $img={recipient.img} />
