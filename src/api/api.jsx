@@ -20,8 +20,10 @@ export async function getRecipients(queryId) {
     name,
     backgroundColor: color,
     backgroundImageURL: img,
+    messageCount,
+    recentMessages
   } = recipient;
-  return { id, name, color, img };
+  return { id, name, color, img, messageCount, recentMessages };
 }
 
 //해당 수신자를 id로 받아 수신자의 메시지와 메시지 정보들을 리턴하는 리퀘스트

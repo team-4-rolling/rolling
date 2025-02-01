@@ -1,8 +1,8 @@
 import * as S from "./Header.styles";
 import logoIcon from "../../../assets/icons/logo.svg";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-import SecondHeader from "./SecondHeader";
+import { useLocation, NavLink } from "react-router-dom";
+import Button from "../Button/Button";
+import theme from "../../../styles/theme";
 
 export default function Header() {
   const location = useLocation().pathname;
@@ -13,22 +13,19 @@ export default function Header() {
     };
   };
 
-  const isIdPostPage = location === "/post/:id";
-
   return (
-    <S.Container>
-      <S.FirstHeader>
-        <S.Header>
-          <S.Logo to="/">
-            <img src={logoIcon} />
-            <h1>Rolling</h1>
-          </S.Logo>
-          <S.CreateBtn to="/post" style={isLadingPage}>
+    <S.Container $hide={location.startsWith("/post/")}>
+      <S.Header>
+        <S.Logo to="/">
+          <img src={logoIcon} />
+          <h1>Rolling</h1>
+        </S.Logo>
+        <NavLink to="/post" style={isLadingPage}>
+          <Button outline $font={`${theme.font.H5Bold}`} style={{ cursor: "pointer" }}>
             롤링 페이퍼 만들기
-          </S.CreateBtn>
-        </S.Header>
-      </S.FirstHeader>
-      {isIdPostPage && <SecondHeader />}
+          </Button>
+        </NavLink>
+      </S.Header>
     </S.Container>
   );
 }
