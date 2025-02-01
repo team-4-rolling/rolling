@@ -27,7 +27,6 @@ export async function getRecipients(queryId) {
 }
 
 export async function deleteRecipient(id) {
-  console.log(id);
   if (!id) return;
   try {
     await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
