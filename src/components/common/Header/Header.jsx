@@ -20,11 +20,15 @@ export default function Header() {
           <img src={logoIcon} />
           <h1>Rolling</h1>
         </S.Logo>
-        <NavLink to="/post" style={isLadingPage}>
-          <Button outline $font={`${theme.font.H5Bold}`} style={{ cursor: "pointer" }}>
+        <S.CreateRollingBtn to="/post" style={isLadingPage}>
+          <Button
+            outline
+            $font={`${theme.font.H5Regular}`}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
             롤링 페이퍼 만들기
           </Button>
-        </NavLink>
+        </S.CreateRollingBtn>
       </S.Header>
     </S.Container>
   );
