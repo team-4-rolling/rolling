@@ -9,6 +9,7 @@ import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
+
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -91,6 +92,7 @@ export default function RollingPage() {
   return (
     <>
       <SecondHeader
+        recipientId={recipient.id}
         name={recipient.name}
         messageCount={recipient.messageCount}
         recentMessages={recipient.recentMessages}
@@ -123,6 +125,7 @@ export default function RollingPage() {
             setDeletedIds={setDeletedIds}
             isEdit={isEdit}
             messages={messages}
+            isLoading={isLoading}
           />
         </S.Contents>
         <S.Background color={recipient.color} $img={recipient.img} />
