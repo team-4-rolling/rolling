@@ -40,9 +40,15 @@ export default function LandingPage() {
             </S.Card>
           ))}
         </S.CardContainer>
-        <Button medium $font={`${theme.font.H4Bold}`} style={{ cursor: "pointer" }} onClick={() => navigate("/list")}>
-          구경해보기
-        </Button>
+        <S.LookingBtn to="/list">
+          <Button
+            medium
+            $font={`${theme.font.H4Bold}`}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
+            구경해보기
+          </Button>
+        </S.LookingBtn>
       </S.Container>
     </S.Div>
   );
