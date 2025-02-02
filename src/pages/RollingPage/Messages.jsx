@@ -4,7 +4,7 @@ import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
 import Skeleton from "./Skeleton/Skeleton.jsx";
 //
-const DynamicContent = lazy(() => import("./Messages.data.jsx")); // ✨ 데이터 의존 부분만 분리
+const DynamicContent = lazy(() => import("./Messages.data.jsx"));
 
 export default function Message({
   isEdit,

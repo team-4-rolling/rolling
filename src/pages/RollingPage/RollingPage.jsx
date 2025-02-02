@@ -9,6 +9,7 @@ import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
+import arrow from "../../assets/icons/white.arrow.svg";
 
 //
 export default function RollingPage() {
@@ -21,6 +22,7 @@ export default function RollingPage() {
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [deletedIds, setDeletedIds] = useState([]);
+  const [scrollActive, setScrollActive] = useState(false);
   const [recipient, setRecipient] = useState({
     id: 0,
     name: "",
@@ -67,11 +69,16 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
+        if (scrollTop === 0) {
+          setScrollActive(false);
+        } else {
+          setScrollActive(true);
+        }
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
       }
-    }, 200),
+    }, 300),
     []
   );
   const handelEditClick = () => {
@@ -87,7 +94,13 @@ export default function RollingPage() {
     await deleteRecipient(recipient.id);
     navigate("/");
   };
-  //
+
+  const handleScrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -99,6 +112,11 @@ export default function RollingPage() {
       />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
+          {scrollActive && (
+            <S.ScrollUpButton onClick={handleScrollUp}>
+              <S.Arrow src={arrow} />
+            </S.ScrollUpButton>
+          )}
           <S.ButtonFlex>
             <S.ButtonContain>
               {isEdit ? (
