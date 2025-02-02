@@ -114,6 +114,15 @@ export const Icons = styled.div`
 
 export const Share = styled.div`
   width: 56px;
+  img {
+    width: 24px;
+    height: 24px;
+
+    @media (max-width: 480px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
 
   @media (max-width: 767px) {
     width: 36px;
