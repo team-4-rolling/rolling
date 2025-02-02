@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import theme from "../../styles/theme";
 
 //배경컬러, 이미지 부분
@@ -140,19 +140,4 @@ export const CreateBox = styled.div`
 export const Plus = styled.img`
   width: 56px;
   height: 56px;
-`;
-
-const shimmer = keyframes`
-  0% {background-position: -200px 0;}
-  100% {background-position: 200px 0;}
-`;
-
-export const SkeletonBox = styled.div`
-  background-color: ${theme.color.White};
-  background-size: 400% 100%;
-  animation: ${shimmer} 1.5s infinite;
-  border-radius: 8px;
-  width: 100%;
-  height: 280px;
-  margin-bottom: 8px;
 `;
