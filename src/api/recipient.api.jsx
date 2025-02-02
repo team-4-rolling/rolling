@@ -1,11 +1,11 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-// 롤링페이퍼 전체 수신자가 담긴 results 를 리턴하는 리퀘스트
 
+// 롤링페이퍼 전체 수신자가 담긴 results를 리턴하는 리퀘스트
 export async function getRecipients(queryId) {
   let recipient;
   try {
-    const res = await axios.get(`${BASE_URL}/?limit=0&offset=0`);
+    const res = await axios.get(`${BASE_URL}13-4/recipients/?limit=0&offset=0`);
     recipient = res.data.results.find((recipient) => recipient.id == queryId);
     if (!recipient) {
       throw new Error("recipients 찾기 실패");
@@ -26,17 +26,12 @@ export async function getRecipients(queryId) {
   return { id, name, color, img, messageCount, recentMessages };
 }
 
-//해당 수신자를 id로 받아 수신자의 메시지와 메시지 정보들을 리턴하는 리퀘스트
-export async function getMessage(limit = 9, offset = 0, id) {
-  let res;
+export async function deleteRecipient(id) {
+  if (!id) return;
   try {
-    res = await axios.get(
-      `${BASE_URL}/${id}/messages/?limit=${limit}&offset=${offset}`
-    );
+    await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
   } catch (error) {
-    console.error("getMessage api 에러발생", error.message);
-    res = null;
+    alert("해당 롤링페이퍼를 삭제할 수 없습니다.");
+    console.error(error);
   }
-
-  return res.data;
 }

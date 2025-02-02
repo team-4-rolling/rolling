@@ -14,7 +14,6 @@ export default function Routers() {
           <Route path="list" element={<ListPage />}></Route>
           <Route path="post" element={<ToPage />}></Route>
           <Route path="post/:id" element={<RollingPage />}></Route>
-
           <Route path="post/:id/message" element={<FromPage />}></Route>
         </Route>
       </Routes>

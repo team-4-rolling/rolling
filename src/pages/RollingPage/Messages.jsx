@@ -6,30 +6,30 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 //
 
-export default function Message({ isEdit, messages }) {
-  const [filterMessages, setFilterMessages] = useState([]);
-
-  useEffect(() => {
-    const savedMessages = localStorage.getItem("filterMessages");
-    if (savedMessages) {
-      //로컬스토리지에 내용이 있을때
-      setFilterMessages(JSON.parse(savedMessages));
-      console.log("로컬스토리지에 저장된 데이터 불러옴");
-    } else {
-      //로컬스토리지에 내용이 없을때
-      setFilterMessages(messages || []);
-      console.log("저장된 로컬 스토리지가 없으므로 원본을 불러옵니다.");
-    }
-  }, [messages]);
+export default function Message({
+  isEdit,
+  messages,
+  deletedIds,
+  setDeletedIds,
+}) {
+  const [filterMessages, setFilterMessages] = useState(messages);
 
   const handleClickFilter = (e) => {
-    const disappear = filterMessages.filter(
-      (message) => message.id != e.currentTarget.dataset.value
-    );
+    const value = e.currentTarget.dataset.value;
+    if (!value) return;
+    const disappear = filterMessages.filter((message) => message.id != value);
     setFilterMessages(disappear);
-    localStorage.setItem("filterMessages", JSON.stringify(disappear));
-    console.log("로컬스토리지 내용 업데이트");
+
+    setDeletedIds((prev) =>
+      deletedIds.includes(value)
+        ? deletedIds.filter((item) => item !== value)
+        : [...prev, value]
+    );
   };
+
+  useEffect(() => {
+    setFilterMessages(messages);
+  }, [messages]);
   //
   return (
     <S.GridBoxes>
