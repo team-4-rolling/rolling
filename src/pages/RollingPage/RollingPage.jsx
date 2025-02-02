@@ -91,6 +91,7 @@ export default function RollingPage() {
   return (
     <>
       <SecondHeader
+        recipientId={recipient.id}
         name={recipient.name}
         messageCount={recipient.messageCount}
         recentMessages={recipient.recentMessages}
