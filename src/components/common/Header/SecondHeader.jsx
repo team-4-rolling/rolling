@@ -35,7 +35,7 @@ export default function SecondHeader({
               <Line width="1px" height="28px" />
               <S.Share>
                 <Button
-                  outlinesmall
+                  outlineSmall
                   style={{ cursor: "pointer", width: "100%" }}
                 >
                   <img src={share} />
