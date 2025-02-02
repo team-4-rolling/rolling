@@ -23,6 +23,10 @@ export const Emoji = styled.div`
   img {
     width: 24px;
     height: 24px;
+    @media (max-width: 480px) {
+      width: 20px;
+      height: 20px;
+    }
   }
   span {
     margin-left: 4px;
@@ -33,5 +37,18 @@ export const Emoji = styled.div`
 
   @media (max-width: 767px) {
     width: 36px;
+  }
+`;
+
+export const StyledEmoji = styled.div`
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  top: 120%;
+  right: 0;
+
+  @media (max-width: 480px) {
+    width: 270px;
+    right: -20px;
   }
 `;

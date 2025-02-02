@@ -57,20 +57,21 @@ export default function Emoji({ recipientId }) {
           onClick={() => setIsOpen((prev) => !prev)}
           outlineMedium
           $font={`${theme.font.H5Regular}`}
-          style={{ cursor: "pointer", width: "100%" }}
+          style={{ cursor: "pointer", width: "100%", height: "36px" }}
         >
           <img src={smile} />
           <span>추가</span>
         </Button>
         {isOpen && (
-          <EmojiPicker
-            onEmojiClick={handleEmojiClick}
-            style={{
-              position: "absolute",
-              top: "120%",
-              right: "0"
-            }}
-          />
+          <S.StyledEmoji>
+            <EmojiPicker
+              onEmojiClick={handleEmojiClick}
+              style={{
+                width: "100%",
+                height: "100%"
+              }}
+            />
+          </S.StyledEmoji>
         )}
       </S.Emoji>
     </>
