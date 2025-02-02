@@ -21,7 +21,7 @@ export async function getRecipients(queryId) {
     backgroundColor: color,
     backgroundImageURL: img,
     messageCount,
-    recentMessages
+    recentMessages,
   } = recipient;
   return { id, name, color, img, messageCount, recentMessages };
 }
