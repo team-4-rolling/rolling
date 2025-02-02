@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { getMessage, getRecipients } from "../../api/api.jsx";
+import { deleteRecipient, getRecipients } from "../../api/recipient.api.jsx";
+import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
@@ -10,19 +12,21 @@ import SecondHeader from "../../components/common/Header/SecondHeader";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+  const [deletedIds, setDeletedIds] = useState([]);
   const [recipient, setRecipient] = useState({
     id: 0,
     name: "",
     color: "purple",
     img: "",
     messageCount: 0,
-    recentMessages: []
+    recentMessages: [],
   });
   //
   const handleLoad = async () => {
@@ -72,13 +76,18 @@ export default function RollingPage() {
   const handelEditClick = () => {
     setIsEdit(true);
   };
-  const handelDeleteClick = () => {
+  const handelDeleteMessageClick = () => {
+    deleteMessage(deletedIds);
     setIsEdit(false);
+    setDeletedIds([]);
   };
 
+  const handelDeletePageClick = async () => {
+    await deleteRecipient(recipient.id);
+    navigate("/");
+  };
   //
 
-  console.log(recipient.color, recipient.img);
   return (
     <>
       <SecondHeader
@@ -92,17 +101,30 @@ export default function RollingPage() {
           <S.ButtonFlex>
             <S.ButtonContain>
               {isEdit ? (
-                <Button style={{ width: "100%" }} onClick={handelDeleteClick}>
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={handelDeleteMessageClick}
+                >
                   저장하기
                 </Button>
               ) : (
                 <Button style={{ width: "100%" }} onClick={handelEditClick}>
-                  편집하기
+                  메시지 삭제하기
                 </Button>
               )}
             </S.ButtonContain>
+            <S.ButtonContain>
+              <Button style={{ width: "100%" }} onClick={handelDeletePageClick}>
+                롤링페이퍼 삭제하기
+              </Button>
+            </S.ButtonContain>
           </S.ButtonFlex>
-          <Messages isEdit={isEdit} messages={messages} />
+          <Messages
+            deletedIds={deletedIds}
+            setDeletedIds={setDeletedIds}
+            isEdit={isEdit}
+            messages={messages}
+          />
         </S.Contents>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>
