@@ -31,3 +31,12 @@ export async function deleteMessage(deletedIds) {
     alert("삭제할 메시지가 없습니다.");
   }
 }
+
+export async function postMessage(recipientId, payload) {
+  const response = await axios.post(
+    `${BASE_URL}13-4/recipients/${recipientId}/messages/`,
+    payload
+  );
+
+  return response;
+}
