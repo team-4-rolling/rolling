@@ -5,8 +5,11 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 export async function getRecipients(queryId) {
   let recipient;
   try {
-    const res = await axios.get(`${BASE_URL}13-4/recipients/?limit=0&offset=0`);
+    const res = await axios.get(
+      `${BASE_URL}13-4/recipients/?limit=100&offset=0`
+    );
     recipient = res.data.results.find((recipient) => recipient.id == queryId);
+
     if (!recipient) {
       throw new Error("recipients 찾기 실패");
     }
