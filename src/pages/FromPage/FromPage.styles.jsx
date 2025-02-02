@@ -8,7 +8,7 @@ export const FromContainer = styled.div`
   padding-top: 50px;
 `;
 
-export const From = styled.div`
+export const From = styled.form`
   width: 720px;
   display: flex;
   flex-direction: column;
@@ -26,11 +26,13 @@ export const Wrapper = styled.div`
 
 export const Label = styled.h2`
   font: ${theme.font.H2Bold};
+  color: ${theme.color.Grayscale900};
 `;
 
 export const Div = styled.div`
   width: 100%;
   height: 260px;
+  background-color: #cccccc;
 `;
 
 export const CreateBtn = styled.div`
