@@ -9,6 +9,7 @@ import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
+
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();

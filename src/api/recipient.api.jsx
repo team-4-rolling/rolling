@@ -9,6 +9,7 @@ export async function getRecipients(queryId) {
       `${BASE_URL}13-4/recipients/?limit=100&offset=0`
     );
     recipient = res.data.results.find((recipient) => recipient.id == queryId);
+
     if (!recipient) {
       throw new Error("recipients 찾기 실패");
     }
