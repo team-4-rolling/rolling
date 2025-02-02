@@ -1,6 +1,6 @@
 import * as S from "./Header.styles";
 import logoIcon from "../../../assets/icons/logo.svg";
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import theme from "../../../styles/theme";
 

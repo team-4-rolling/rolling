@@ -3,11 +3,8 @@ import rolling from "../../assets/icons/image.png";
 import emoji from "../../assets/icons/emoji.png";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
-import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-
   const Card = [
     {
       cardId: 1,
