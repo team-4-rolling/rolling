@@ -16,6 +16,7 @@ const ToastContent = ({ message, closeToast }) => (
  * @param {string} message
  * @param {("success" | "error")} type
  */
+
 const showToast = (message, type = "success") => {
   toast[type](<ToastContent message={message} />, {
     position: "bottom-center",
