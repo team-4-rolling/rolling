@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 20px;
+  padding: 40px;
 
   @media (max-width: 480px) {
     padding: 0;
@@ -16,15 +16,9 @@ export const Container = styled.div`
 export const ToContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
   width: 100%;
   max-width: 720px;
-`;
-
-export const Heading = styled.div`
-  font: ${theme.font.H2Bold};
-  color: ${theme.color.Grayscale900};
-  margin-top: 30px;
 `;
 
 export const PageContainer = styled.div`
@@ -32,6 +26,7 @@ export const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 50px;
   width: 100%;
   max-width: 720px;
 
@@ -57,7 +52,9 @@ export const SubTitle = styled.div`
 
 export const ToggleContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 4px;
   width: 100%;
   margin: 20px 0;
   justify-content: flex-start;

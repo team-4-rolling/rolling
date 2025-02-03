@@ -57,12 +57,7 @@ export default function ToPage() {
     handleChange(name, value);
   };
 
-  const handleSubmit = async () => {
-    if (!dataToSend.name.trim()) {
-      setError("이름을 입력해 주세요");
-      return;
-    }
-
+  const handleSubmit = async (e) => {
     await submitToPage(dataToSend)
       .then((id) => {
         alert("🎉성공");
@@ -71,28 +66,25 @@ export default function ToPage() {
       .catch((error) => console.error("Error creating rolling paper:", error));
   };
 
-  console.log(dataToSend);
-
   return (
     <S.Container>
       <S.PageContainer>
         <S.ToContainer>
-          <S.Heading>To.</S.Heading>
           <Input
+            label="To."
             placeholder="받는 사람 이름을 입력해 주세요."
             value={dataToSend.name}
             name="name"
             onChange={handleNameChange}
-            // $errorMessage={error}
+            errorMessage="이름을 입력해 주세요"
           />
+        </S.ToContainer>
 
+        <S.ToggleContainer>
           <S.Title>배경화면을 선택해 주세요.</S.Title>
           <S.SubTitle>
             컬러를 선택하거나, 이미지를 선택할 수 있습니다.
           </S.SubTitle>
-        </S.ToContainer>
-
-        <S.ToggleContainer>
           <S.ToggleWrapper role="group" aria-label="배경 선택 모드">
             <S.ToggleOption
               role="button"
