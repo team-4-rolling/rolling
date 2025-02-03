@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   align-items: center;
   width: ${({ width }) => (width ? width : "120px")};
   height: ${({ height }) => (height ? height : "40px")};
-  font: ${({ font }) => font};
+  font: ${({ $font }) => $font};
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.Purple600};
   border: none;
@@ -19,7 +19,7 @@ export const StyledButton = styled.button`
   ${(props) =>
     props.$outline &&
     css`
-      font: ${({ font }) => font};
+      font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "157px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
@@ -31,7 +31,7 @@ export const StyledButton = styled.button`
   ${(props) =>
     props.$outlineMedium &&
     css`
-      font: ${({ font }) => font};
+      font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "88px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
@@ -43,7 +43,7 @@ export const StyledButton = styled.button`
   ${(props) =>
     props.$outlineSmall &&
     css`
-      font: ${({ font }) => font};
+      font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "56px")};
       height: ${({ height }) => (height ? height : "36px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
@@ -55,7 +55,7 @@ export const StyledButton = styled.button`
   ${(props) =>
     props.$medium &&
     css`
-      font: ${({ font }) => font};
+      font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "280px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.Purple700};
@@ -66,7 +66,7 @@ export const StyledButton = styled.button`
     ${(props) =>
     props.$large &&
     css`
-      font: ${({ font }) => font};
+      font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "720px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.Purple700};
