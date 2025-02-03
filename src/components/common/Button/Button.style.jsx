@@ -22,6 +22,7 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "157px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
@@ -33,6 +34,7 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "88px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
@@ -44,6 +46,7 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "56px")};
       height: ${({ height }) => (height ? height : "36px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
+      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
