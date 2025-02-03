@@ -15,7 +15,7 @@ export const Container = styled.header`
   top: 0;
 
   @media (max-width: 480px) {
-    display: ${({ $hide }) => ($hide ? "none" : "block")};
+    display: ${({ $hide }) => ($hide ? "none" : "flex")};
   }
 `;
 

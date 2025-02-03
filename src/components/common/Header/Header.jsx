@@ -9,19 +9,25 @@ export default function Header() {
 
   const isLadingPage = () => {
     return {
-      display: location === "/" ? "block" : "none",
+      display: location === "/" || location === "/list" ? "flex" : "none",
     };
   };
 
+  const isOnlyPostId = /^\/post\/[^/]+$/.test(location);
+
   return (
-    <S.Container $hide={location.startsWith("/post/")}>
+    <S.Container $hide={isOnlyPostId}>
       <S.Header>
         <S.Logo to="/">
           <img src={logoIcon} />
           <h1>Rolling</h1>
         </S.Logo>
         <NavLink to="/post" style={isLadingPage}>
-          <Button outline $font={`${theme.font.H5Bold}`} style={{ cursor: "pointer" }}>
+          <Button
+            outline
+            $font={`${theme.font.H5Bold}`}
+            style={{ cursor: "pointer" }}
+          >
             롤링 페이퍼 만들기
           </Button>
         </NavLink>
