@@ -2,13 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { deleteRecipient, getRecipients } from "../../api/recipient.api.jsx";
+import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
+import arrow from "../../assets/icons/white.arrow.svg";
 
 //
 export default function RollingPage() {
@@ -21,6 +22,7 @@ export default function RollingPage() {
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [deletedIds, setDeletedIds] = useState([]);
+  const [scrollActive, setScrollActive] = useState(false);
   const [recipient, setRecipient] = useState({
     id: 0,
     name: "",
@@ -32,12 +34,11 @@ export default function RollingPage() {
   //
   const handleLoad = async () => {
     try {
-      const recipientData = await getRecipients(queryId);
-      const id = recipientData.id;
+      const recipientData = await getRecipientById(queryId);
       setRecipient(recipientData);
       setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
-      const { results, next } = await getMessage(limit, offset, id);
+      const { results, next } = await getMessage(limit, offset, queryId);
       setMessages((prevMessages) => [...prevMessages, ...results]);
       setOffset((prevOffset) => prevOffset + limit);
       setIsLoading(false);
@@ -67,11 +68,16 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
+        if (scrollTop === 0) {
+          setScrollActive(false);
+        } else {
+          setScrollActive(true);
+        }
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
       }
-    }, 200),
+    }, 300),
     []
   );
   const handelEditClick = () => {
@@ -84,21 +90,32 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
-    await deleteRecipient(recipient.id);
+    await deleteRecipient(queryId);
     navigate("/");
   };
-  //
+
+  const handleScrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       <SecondHeader
-        recipientId={recipient.id}
+        recipientId={queryId}
         name={recipient.name}
         messageCount={recipient.messageCount}
         recentMessages={recipient.recentMessages}
       />
       <div style={{ overflowY: "auto" }}>
         <S.Contents>
+          {scrollActive && (
+            <S.ScrollUpButton onClick={handleScrollUp}>
+              <S.Arrow src={arrow} />
+            </S.ScrollUpButton>
+          )}
           <S.ButtonFlex>
             <S.ButtonContain>
               {isEdit ? (

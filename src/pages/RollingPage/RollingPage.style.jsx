@@ -141,3 +141,24 @@ export const Plus = styled.img`
   width: 56px;
   height: 56px;
 `;
+
+export const ScrollUpButton = styled.button`
+  width: 55px;
+  height: 55px;
+  border-radius: 100px;
+  border: none;
+  position: fixed;
+  bottom: 120px;
+  right: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.color.Grayscale600};
+`;
+
+export const Arrow = styled.img`
+  width: 30px;
+  height: 30px;
+  bottom: 120px;
+  right: 60px;
+`;
