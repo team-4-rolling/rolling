@@ -1,20 +1,20 @@
 const theme = {
   font: {
     //weight , size , height , fontfamily
-    H1: "700 28px/42px 'Pretendard', sans-serif",
-    H2Bold: "700 24px/36px 'Pretendard', sans-serif",
-    H2Regular: "400 24px/36px 'Pretendard', sans-serif",
-    H3Bold: "700 20px/30px 'Pretendard', sans-serif",
-    H3Regular: "400 20px/30px 'Pretendard', sans-serif",
-    H4Bold: "700 18px/28px 'Pretendard', sans-serif",
-    H4Regular: "400 18px/28px 'Pretendard', sans-serif",
-    H5Bold: "700 16px/26px 'Pretendard', sans-serif",
-    H5Regular: "400 16px/26px 'Pretendard', sans-serif",
-    H6Bold: "700 15px/22px 'Pretendard', sans-serif",
-    H6Regular: "400 15px/22px 'Pretendard', sans-serif",
-    H7Bold: "700 14px/20px 'Pretendard', sans-serif",
-    H7Regular: "400 14px/20px 'Pretendard', sans-serif",
-    H8: "400 12px/20px 'Pretendard', sans-serif",
+    H1: "700 28px/42px 'Pretendard-Bold', sans-serif",
+    H2Bold: "700 24px/36px 'Pretendard-Bold', sans-serif",
+    H2Regular: "400 24px/36px 'Pretendard-Regular', sans-serif",
+    H3Bold: "700 20px/30px 'Pretendard-Bold', sans-serif",
+    H3Regular: "400 20px/30px 'Pretendard-Regular', sans-serif",
+    H4Bold: "700 18px/28px 'Pretendard-Bold', sans-serif",
+    H4Regular: "400 18px/28px 'Pretendard-Regular', sans-serif",
+    H5Bold: "700 16px/26px 'Pretendard-Bold', sans-serif",
+    H5Regular: "400 16px/26px 'Pretendard-Regular', sans-serif",
+    H6Bold: "700 15px/22px 'Pretendard-Bold', sans-serif",
+    H6Regular: "400 15px/22px 'Pretendard-Regular', sans-serif",
+    H7Bold: "700 14px/20px 'Pretendard-Bold', sans-serif",
+    H7Regular: "400 14px/20px 'Pretendard-Regular', sans-serif",
+    H8: "400 12px/20px 'Pretendard-Regular', sans-serif",
   },
   color: {
     Purple100: "#F8F0FF",
@@ -59,13 +59,11 @@ const theme = {
     Black: "#000000",
     Error: "#DC3A3A",
     Surface: "#F6F8FF",
+    purple: "#ECD9FF",
+    green: "#D0F5C3",
+    blue: "#B1E4FF",
+    beige: "#FFE2AD",
   },
 };
-
-/* 스타일드 컴포넌트 파일 사용법
- *const TestStyle = styled.div`
- *font: ${({ font }) => font.H1}; ->H1 예시 입니다.
- *`;
- */
 
 export default theme;
