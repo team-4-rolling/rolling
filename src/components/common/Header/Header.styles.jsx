@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Container = styled.header`
   width: 100%;
@@ -15,7 +15,7 @@ export const Container = styled.header`
   top: 0;
 
   @media (max-width: 480px) {
-    display: ${({ $hide }) => ($hide ? "none" : "block")};
+    display: ${({ $hide }) => ($hide ? "none" : "flex")};
   }
 `;
 
@@ -44,5 +44,13 @@ export const Logo = styled(Link)`
     font-size: 20px;
     font-weight: 700;
     font-style: normal;
+  }
+`;
+
+export const CreateRollingBtn = styled(NavLink)`
+  width: 157px;
+
+  @media (max-width: 480px) {
+    width: 142px;
   }
 `;
