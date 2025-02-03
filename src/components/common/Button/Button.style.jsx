@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
   border-radius: 8px;
   border: none;
   color: ${({ theme }) => theme.color.White};
+  background: ${({ theme }) => theme.color.Purple700};
   cursor: pointer;
   &:disabled {
     background: ${({ theme }) => theme.color.Grayscale300};
@@ -58,6 +59,7 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "280px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.White};
+      background: ${({ theme }) => theme.color.Purple700};
       border-radius: 12px;
     `}
 
@@ -68,6 +70,7 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "720px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.White};
+      background: ${({ theme }) => theme.color.Purple700};
       border-radius: 12px;
     `}
 `;
