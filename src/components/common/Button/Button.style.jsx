@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
   background-color: ${({ theme }) => theme.color.Purple600};
   border: none;
   color: ${({ theme }) => theme.color.White};
-  cursor: pointer; // 커서 포인터 추가
+  cursor: pointer;
   &:disabled {
     background: ${({ theme }) => theme.color.Grayscale300};
   }
