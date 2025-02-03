@@ -59,7 +59,6 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "280px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.White};
-      background: ${({ theme }) => theme.color.Purple700};
       border-radius: 12px;
     `}
 
@@ -70,7 +69,6 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "720px")};
       height: ${({ height }) => (height ? height : "56px")};
       color: ${({ theme }) => theme.color.White};
-      background: ${({ theme }) => theme.color.Purple700};
       border-radius: 12px;
     `}
 `;
