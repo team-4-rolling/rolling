@@ -8,7 +8,6 @@ export const StyledButton = styled.button`
   height: ${({ height }) => (height ? height : "40px")};
   font: ${({ $font }) => $font};
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.color.Purple600};
   border: none;
   color: ${({ theme }) => theme.color.White};
   cursor: pointer;
@@ -23,7 +22,6 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "157px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
-      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
@@ -35,7 +33,6 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "88px")};
       height: ${({ height }) => (height ? height : "40px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
-      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
@@ -47,7 +44,6 @@ export const StyledButton = styled.button`
       width: ${({ width }) => (width ? width : "56px")};
       height: ${({ height }) => (height ? height : "36px")};
       border: 1px solid ${({ theme }) => theme.color.Grayscale300};
-      color: ${({ theme }) => theme.color.Grayscale900};
       background: ${({ theme }) => theme.color.White};
       border-radius: 6px;
     `}
@@ -58,7 +54,6 @@ export const StyledButton = styled.button`
       font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "280px")};
       height: ${({ height }) => (height ? height : "56px")};
-      color: ${({ theme }) => theme.color.Purple700};
       color: ${({ theme }) => theme.color.White};
       border-radius: 12px;
     `}
@@ -69,7 +64,6 @@ export const StyledButton = styled.button`
       font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "720px")};
       height: ${({ height }) => (height ? height : "56px")};
-      color: ${({ theme }) => theme.color.Purple700};
       color: ${({ theme }) => theme.color.White};
       border-radius: 12px;
     `}
