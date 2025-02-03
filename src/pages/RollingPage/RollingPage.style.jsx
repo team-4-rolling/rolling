@@ -1,4 +1,3 @@
-//style 사본 파일 입니다.
 import styled from "styled-components";
 import theme from "../../styles/theme";
 
@@ -35,6 +34,7 @@ export const ButtonFlex = styled.div`
   height: 39px;
   width: 1200px;
   display: flex;
+  gap: 10px;
   position: static;
   margin: 0 auto 11px;
   justify-content: right;
@@ -53,6 +53,8 @@ export const ButtonFlex = styled.div`
     width: 100%;
     height: 56px;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: fixed;
     bottom: 24px;
     left: 50%;
@@ -68,7 +70,7 @@ export const ButtonFlex = styled.div`
 
 export const ButtonContain = styled.div`
   height: 39px;
-  width: 92px;
+  width: 140px;
 
   @media (max-width: 480px) {
     width: 320px;
@@ -76,12 +78,13 @@ export const ButtonContain = styled.div`
     height: 56px;
   }
   @media (min-width: 481px) and (max-width: 768px) {
-    min-width: 720px;
+    width: 720px;
+    min-width: 440px;
     height: 39px;
   }
   @media (min-width: 769px) and (max-width: 1280px) {
     height: 39px;
-    width: 92px;
+    width: 140px;
   }
 `;
 //버튼 div 아래 그리드 영역

@@ -3,11 +3,8 @@ import rolling from "../../assets/icons/image.png";
 import emoji from "../../assets/icons/emoji.png";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
-import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-
   const Card = [
     {
       cardId: 1,
@@ -40,14 +37,15 @@ export default function LandingPage() {
             </S.Card>
           ))}
         </S.CardContainer>
-        <Button
-          medium
-          $font={`${theme.font.H4Bold}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/list")}
-        >
-          구경해보기
-        </Button>
+        <S.LookingBtn to="/list">
+          <Button
+            medium
+            $font={`${theme.font.H4Bold}`}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
+            구경해보기
+          </Button>
+        </S.LookingBtn>
       </S.Container>
     </S.Div>
   );
