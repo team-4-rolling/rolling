@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
-import { deleteRecipient, getRecipients } from "../../api/recipient.api.jsx";
+import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
@@ -34,12 +34,11 @@ export default function RollingPage() {
   //
   const handleLoad = async () => {
     try {
-      const recipientData = await getRecipients(queryId);
-      const id = recipientData.id;
+      const recipientData = await getRecipientById(queryId);
       setRecipient(recipientData);
       setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
-      const { results, next } = await getMessage(limit, offset, id);
+      const { results, next } = await getMessage(limit, offset, queryId);
       setMessages((prevMessages) => [...prevMessages, ...results]);
       setOffset((prevOffset) => prevOffset + limit);
       setIsLoading(false);
@@ -91,7 +90,7 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
-    await deleteRecipient(recipient.id);
+    await deleteRecipient(queryId);
     navigate("/");
   };
 
@@ -105,7 +104,7 @@ export default function RollingPage() {
   return (
     <>
       <SecondHeader
-        recipientId={recipient.id}
+        recipientId={queryId}
         name={recipient.name}
         messageCount={recipient.messageCount}
         recentMessages={recipient.recentMessages}
