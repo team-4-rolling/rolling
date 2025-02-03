@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
   border-radius: 8px;
   border: none;
   color: ${({ theme }) => theme.color.White};
+  background: ${({ theme }) => theme.color.Purple700};
   cursor: pointer;
   &:disabled {
     background: ${({ theme }) => theme.color.Grayscale300};
