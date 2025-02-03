@@ -8,9 +8,9 @@ export const StyledButton = styled.button`
   height: ${({ height }) => (height ? height : "40px")};
   font: ${({ $font }) => $font};
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.color.Purple600};
   border: none;
   color: ${({ theme }) => theme.color.White};
+  cursor: pointer;
   &:disabled {
     background: ${({ theme }) => theme.color.Grayscale300};
   }
@@ -57,9 +57,6 @@ export const StyledButton = styled.button`
       font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "280px")};
       height: ${({ height }) => (height ? height : "56px")};
-      border: 1px solid ${({ theme }) => theme.color.Purple600};
-      color: ${({ theme }) => theme.color.Purple700};
-      background: ${({ theme }) => theme.color.white};
       color: ${({ theme }) => theme.color.White};
       border-radius: 12px;
     `}
@@ -70,9 +67,6 @@ export const StyledButton = styled.button`
       font: ${({ $font }) => $font};
       width: ${({ width }) => (width ? width : "720px")};
       height: ${({ height }) => (height ? height : "56px")};
-      border: 1px solid ${({ theme }) => theme.color.Purple600};
-      color: ${({ theme }) => theme.color.Purple700};
-      background: ${({ theme }) => theme.color.white};
       color: ${({ theme }) => theme.color.White};
       border-radius: 12px;
     `}
