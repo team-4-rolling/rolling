@@ -1,4 +1,3 @@
-// ToPage.styles.jsx
 import styled from "styled-components";
 import theme from "../../styles/theme";
 
@@ -6,6 +5,12 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  padding: 20px;
+
+  @media (max-width: 480px) {
+    padding: 0;
+  }
 `;
 
 export const ToContainer = styled.div`
@@ -13,6 +18,7 @@ export const ToContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  max-width: 720px;
 `;
 
 export const Heading = styled.div`
@@ -22,12 +28,18 @@ export const Heading = styled.div`
 `;
 
 export const PageContainer = styled.div`
-  width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: 100%;
+  max-width: 720px;
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 16px;
+  }
 `;
 
 export const Title = styled.div`
@@ -45,9 +57,14 @@ export const SubTitle = styled.div`
 
 export const ToggleContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   margin: 20px 0;
+  justify-content: flex-start;
+
+  @media (max-width: 480px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const ToggleWrapper = styled.div`
@@ -84,58 +101,33 @@ export const ToggleOption = styled.div`
     $active ? `2px solid ${theme.color.Purple600}` : "none"};
 `;
 
-export const ColorGrid = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-`;
-
-export const ColorBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 168px;
-  height: 168px;
-  border-radius: 8px;
-  background-color: ${({ $color }) => $color};
-  cursor: pointer;
-  position: relative;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-export const ImageGrid = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-`;
-
-export const ImageBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 168px;
-  height: 168px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  position: relative;
-  background: ${({ backgroundImage }) =>
-    backgroundImage ? `url(${backgroundImage})` : theme.color.Grayscale300};
-
-  ${({ selected }) =>
-    selected &&
-    `
-    filter: brightness(0.6);
-    border: 4px solid ${theme.color.Purple600};
-  `}
-`;
-
 export const CheckIcon = styled.img`
   position: absolute;
   width: 44px;
   height: 44px;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    justify-content: center;
+    padding: 0 16px;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding: 0 24px;
+    width: 100%;
+  }
+
+  @media (max-width: 1280px) {
+    justify-content: center;
+    padding: 0 32px;
+    width: 100%;
+  }
 `;

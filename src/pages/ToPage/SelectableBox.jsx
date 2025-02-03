@@ -7,8 +7,16 @@ export default function SelectableBox({
   onSelect,
   onClick,
   type,
-  modeName,
 }) {
+  const handleClick = (item, index) => {
+    const isColorType = type === "color";
+    const value = isColorType ? item.key : item;
+
+    onClick("backgroundColor", isColorType ? value : "beige");
+    onClick("backgroundImageURL", isColorType ? null : value);
+    onSelect(isColorType ? item.key : index);
+  };
+
   if (!Array.isArray(items) || items.length === 0) {
     return <div>선택 가능한 항목이 없습니다.</div>;
   }
@@ -18,14 +26,12 @@ export default function SelectableBox({
       {items.map((item, index) => (
         <Box
           key={index}
-          $color={type === "color" ? item.color : null} // 컬러 모드일 경우, 해당 색상을 스타일에 전달
+          $color={type === "color" ? item.color : null}
           $backgroundImage={type === "image" ? `url(${item})` : null}
           onClick={() => {
-            onClick(modeName, type === "color" ? item.key : item);
-            onSelect(type === "color" ? item.key : index);
-            console.log(selected);
-          }} // 박스를 클릭하면 선택된 값 업데이트
-          selected={selected === (type === "color" ? item.key : item)} // 선택된 아이템인지 확인
+            handleClick(item, index);
+          }}
+          selected={selected === (type === "color" ? item.key : item)}
         >
           {selected === (type === "color" ? item.key : index) && (
             <CheckIcon src={select} alt="선택됨" />
@@ -37,20 +43,31 @@ export default function SelectableBox({
 }
 
 const Grid = styled.div`
-  display: flex;
+  display: grid;
   gap: 10px;
   margin-top: 10px;
   margin-bottom: 40px;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const Box = styled.div`
   width: 168px;
   height: 168px;
   border-radius: 8px;
-  background-color: ${({ $color }) =>
-    $color || "transparent"}; // 컬러 모드일 때 배경색 적용
-  background-image: ${({ $backgroundImage }) =>
-    $backgroundImage || "none"}; // 이미지 모드일 때 배경 이미지 적용
+  background-color: ${({ $color }) => $color || "transparent"};
+  background-image: ${({ $backgroundImage }) => $backgroundImage || "none"};
   background-size: cover;
   background-position: center;
   cursor: pointer;

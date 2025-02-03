@@ -5,7 +5,7 @@ import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
 import SelectableBox from "./SelectableBox";
 import Input from "../../components/common/Input/Input";
-import { getBackgroundImages, submitToPage } from "../../api/backgroundImages";
+import { getBackgroundImages, submitToPage } from "../../api/toPageData";
 
 const COLORS = [
   { key: "beige", color: theme.color.Beige200 },
@@ -17,6 +17,7 @@ const COLORS = [
 export default function ToPage() {
   const navigate = useNavigate();
 
+  const [error, setError] = useState("");
   const [mode, setMode] = useState("color");
   const defaultValue = mode === "color" ? "beige" : 0;
   const [selected, setSelected] = useState(defaultValue);
@@ -26,8 +27,6 @@ export default function ToPage() {
     backgroundColor: "beige",
     backgroundImageURL: null,
   });
-
-  const modeName = mode === "color" ? "backgroundColor" : "backgroundImageURL";
 
   useEffect(() => {
     getBackgroundImages()
@@ -59,6 +58,11 @@ export default function ToPage() {
   };
 
   const handleSubmit = async () => {
+    if (!dataToSend.name.trim()) {
+      setError("이름을 입력해 주세요");
+      return;
+    }
+
     await submitToPage(dataToSend)
       .then((id) => {
         alert("🎉성공");
@@ -66,6 +70,8 @@ export default function ToPage() {
       })
       .catch((error) => console.error("Error creating rolling paper:", error));
   };
+
+  console.log(dataToSend);
 
   return (
     <S.Container>
@@ -77,6 +83,7 @@ export default function ToPage() {
             value={dataToSend.name}
             name="name"
             onChange={handleNameChange}
+            // $errorMessage={error}
           />
 
           <S.Title>배경화면을 선택해 주세요.</S.Title>
@@ -90,7 +97,10 @@ export default function ToPage() {
             <S.ToggleOption
               role="button"
               aria-pressed={mode === "color"}
-              onClick={() => handleModeChange("color")}
+              onClick={() => {
+                handleModeChange("color");
+                handleChange("backgroundImageURL", null);
+              }}
               $active={mode === "color"}
             >
               컬러
@@ -98,7 +108,10 @@ export default function ToPage() {
             <S.ToggleOption
               role="button"
               aria-pressed={mode === "image"}
-              onClick={() => handleModeChange("image")}
+              onClick={() => {
+                handleModeChange("image");
+                handleChange("backgroundImageURL", images[0]);
+              }}
               $active={mode === "image"}
             >
               이미지
@@ -108,21 +121,21 @@ export default function ToPage() {
 
         <SelectableBox
           items={mode === "color" ? COLORS : images}
-          modeName={modeName}
           selected={selected}
           onClick={handleChange}
           onSelect={handleSelect}
           type={mode}
         />
-
-        <Button
-          large
-          style={{ cursor: "pointer" }}
-          $font={`${theme.font.H4Regular}`}
-          onClick={handleSubmit}
-        >
-          생성하기
-        </Button>
+        <S.ButtonContainer>
+          <Button
+            large
+            $font={`${theme.font.H4Regular}`}
+            onClick={handleSubmit}
+            disabled={!dataToSend.name.trim()} // 이름이 없으면 비활성화
+          >
+            생성하기
+          </Button>
+        </S.ButtonContainer>
       </S.PageContainer>
     </S.Container>
   );
