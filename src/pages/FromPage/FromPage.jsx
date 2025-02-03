@@ -1,3 +1,9 @@
+import Input from "../../components/common/Input/Input";
+
 export default function FromPage() {
-  return <>from 페이지</>;
+  return (
+    <>
+      <Input />
+    </>
+  );
 }

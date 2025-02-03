@@ -1,11 +1,17 @@
 import { useState } from "react";
 import * as S from "./Input.style";
 
-function Input({ placeholder, onChange, label, ...rest }) {
+function Input({
+  placeholder,
+  onChange,
+  label,
+  errorMessage = "값을 입력해 주세요",
+  ...rest
+}) {
   const [isError, setIsError] = useState(false);
 
   const blurHandler = (e) => {
-    if (!e.target.value) {
+    if (!e.target.value.trim()) {
       setIsError(true);
     }
   };
@@ -25,8 +31,8 @@ function Input({ placeholder, onChange, label, ...rest }) {
           onChange={onChange}
           {...rest}
         />
+        {isError ? <S.ErrorMessage>{errorMessage}</S.ErrorMessage> : null}
       </S.InputWrapper>
-      {isError ? <S.ErrorMessage>{"값을 입력해 주세요"}</S.ErrorMessage> : null}
     </>
   );
 }
