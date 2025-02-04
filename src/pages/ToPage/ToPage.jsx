@@ -6,6 +6,7 @@ import theme from "../../styles/theme";
 import SelectableBox from "./SelectableBox";
 import Input from "../../components/common/Input/Input";
 import { getBackgroundImages, submitToPage } from "../../api/toPageData";
+import { showToast } from "../../components/common/Toast/Toast";
 
 // 컬러 선택을 위한 옵션 리스트
 const COLORS = [
@@ -71,7 +72,7 @@ export default function ToPage() {
   const handleSubmit = async () => {
     await submitToPage(dataToSend)
       .then((id) => {
-        alert("🎉성공");
+        showToast("롤링페이퍼 생성에 성공했습니다!", "success", "top");
         navigate(`/post/${id}`);
       })
       .catch((error) => console.error("Error creating rolling paper:", error));
@@ -146,7 +147,8 @@ export default function ToPage() {
         <S.ButtonContainer>
           <Button
             large
-            type="submit" //강사님이 수정해주신거
+            // type="submit" //강사님이 수정해주신거
+            onClick={handleSubmit}
             $font={`${theme.font.H4Regular}`}
             disabled={!dataToSend.name.trim()} // 이름이 없으면 비활성화
           >

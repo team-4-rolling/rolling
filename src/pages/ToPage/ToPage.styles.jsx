@@ -11,7 +11,6 @@ export const PageContainer = styled.div`
   gap: 40px;
   margin: 0 auto;
   padding-top: 68px;
-  padding-bottom: 312px;
 
   @media (max-width: 480px) {
     padding-right: 20px;
@@ -128,7 +127,7 @@ export const ButtonContainer = styled.div`
 
   @media (max-width: 768px) {
     padding: 0 24px;
-    position: fixed;
+    /* position: fixed; */
     bottom: 20px;
   }
 `;

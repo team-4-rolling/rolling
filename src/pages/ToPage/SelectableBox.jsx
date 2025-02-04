@@ -43,8 +43,8 @@ export default function SelectableBox({
 
 const Grid = styled.div`
   display: grid;
-  aspect-ratio: 1 / 1;
   width: 720px;
+  height: auto;
   gap: 16px;
   margin-top: 10px;
   margin-bottom: 40px;
