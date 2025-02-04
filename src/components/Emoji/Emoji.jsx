@@ -1,33 +1,38 @@
 import * as S from "./Emoji.styles";
+import { useState, useEffect } from "react";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../common/Button/Button";
 import Icons from "./Icons";
-import { getReactions, postReaction } from "../../api/reactions";
-import { useState, useEffect } from "react";
 import theme from "../../styles/theme";
 import smile from "../../assets/icons/smile.svg";
+import { getReactions, postReaction } from "../../api/reactions";
+import { useAutoClose } from "../../hooks/useAutoClose";
 
 export default function Emoji({ recipientId }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [reactions, setReactions] = useState([]);
   const [emoji, setEmoji] = useState({ emoji: "", type: "increase" });
+  const [isLoading, setIsLoading] = useState(false);
+  const { ref, isOpen, setIsOpen } = useAutoClose(false);
 
   const handleGetReactions = () => {
-    if (recipientId) {
-      getReactions(recipientId)
-        .then((result) => {
-          if (!result) return;
-          setReactions(result);
-        })
-        .catch((error) => console.error(error));
-    }
+    if (!recipientId) return;
+    setIsLoading(true);
+
+    getReactions(recipientId)
+      .then((result) => {
+        if (result) setReactions(result);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
     handleGetReactions();
   }, [recipientId]);
 
-  const handleEmojiClick = async (emojiObject) => {
+  const handleEmojiClick = (emojiObject) => {
+    setIsLoading(true);
+
     setEmoji((prev) => {
       const postEmoji = { ...prev, emoji: emojiObject.emoji };
 
@@ -35,7 +40,8 @@ export default function Emoji({ recipientId }) {
         .then(() => {
           handleGetReactions();
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
+        .finally(() => setIsLoading(false));
 
       return postEmoji;
     });
@@ -46,18 +52,18 @@ export default function Emoji({ recipientId }) {
   const topReactions = reactions.slice(0, 3);
 
   return (
-    <>
-      {reactions?.length === 0 ? (
-        <S.NoneEmoji>이모지를 추가해보세요 😀</S.NoneEmoji>
-      ) : (
-        <Icons topReactions={topReactions} reactions={reactions} />
-      )}
-      <S.Emoji>
+    <S.EmojiContainer>
+      <Icons
+        topReactions={topReactions}
+        reactions={reactions}
+        isLoading={isLoading}
+      />
+      <S.Emoji ref={ref}>
         <Button
           onClick={() => setIsOpen((prev) => !prev)}
           outlineMedium
           $font={`${theme.font.H5Regular}`}
-          style={{ cursor: "pointer", width: "100%", height: "36px" }}
+          style={{ width: "100%", height: "36px" }}
         >
           <img src={smile} />
           <span>추가</span>
@@ -68,12 +74,12 @@ export default function Emoji({ recipientId }) {
               onEmojiClick={handleEmojiClick}
               style={{
                 width: "100%",
-                height: "100%"
+                height: "100%",
               }}
             />
           </S.StyledEmoji>
         )}
       </S.Emoji>
-    </>
+    </S.EmojiContainer>
   );
 }

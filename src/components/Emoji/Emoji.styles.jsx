@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
 
-export const NoneEmoji = styled.div`
-  width: 200px;
-  font: ${theme.font.H4Regular};
+export const EmojiContainer = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
 export const Icons = styled.div`
