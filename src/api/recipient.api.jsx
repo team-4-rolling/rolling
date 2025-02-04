@@ -6,8 +6,9 @@ export async function deleteRecipient(id) {
   if (!id) return;
   try {
     await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
+    showToast("롤링페이퍼가 삭제되었습니다!", "success", "top");
   } catch (error) {
-    showToast("해당 롤링페이퍼를 삭제할 수 없습니다 ㅠㅠ", "error");
+    showToast("해당 롤링페이퍼를 삭제할 수 없습니다.", "error", "top");
     console.error(error);
   }
 }
@@ -17,7 +18,7 @@ export async function getRecipientById(id) {
   try {
     recipient = await axios.get(`${BASE_URL}13-4/recipients/${id}/`);
   } catch (error) {
-    showToast("해당 롤링페이퍼를 찾을수 없습니다 ㅠㅠ", "error");
+    showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
     console.error(error);
   }
   const {

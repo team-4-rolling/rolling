@@ -11,7 +11,7 @@ export async function getMessage(limit = 9, offset = 0, id) {
     );
   } catch (error) {
     console.error("getMessage api 에러발생", error.message);
-    showToast("메시지를 불러올수 없습니다. 다시 시도해 주세요", "error");
+    showToast("메시지를 불러올수 없습니다. 다시 시도해 주세요", "error", "top");
     res = null;
   }
 
@@ -24,12 +24,12 @@ export async function deleteMessage(deletedIds) {
       await Promise.all(
         deletedIds.map((id) => axios.delete(`${BASE_URL}13-4/messages/${id}/`))
       );
-      showToast("메시지 삭제 완료!", "success");
+      showToast("메시지 삭제 완료!", "success", "top");
     } catch (error) {
       console.error("deleteMessage api 에러발생", error.message);
-      showToast("삭제 실패, 다시 시도해 주세요", "error");
+      showToast("삭제 실패, 다시 시도해 주세요", "error", "top");
     }
   } else {
-    showToast("삭제할 메시지를 선택해주세요!", "error");
+    showToast("삭제할 메시지를 선택해주세요!", "error", "top");
   }
 }
