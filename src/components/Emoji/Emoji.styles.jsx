@@ -6,11 +6,6 @@ export const EmojiContainer = styled.div`
   gap: 8px;
 `;
 
-export const NoneEmoji = styled.div`
-  width: 200px;
-  font: ${theme.font.H4Regular};
-`;
-
 export const Icons = styled.div`
   width: 246px;
   height: 36px;
