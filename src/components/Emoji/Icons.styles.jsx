@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
 
+export const NoneEmoji = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font: ${theme.font.H4Regular};
+`;
+
 export const Container = styled.div`
   position: relative;
 `;
