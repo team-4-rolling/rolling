@@ -7,6 +7,7 @@ import SelectableBox from "./SelectableBox";
 import Input from "../../components/common/Input/Input";
 import { getBackgroundImages, submitToPage } from "../../api/toPageData";
 
+// 컬러 선택을 위한 옵션 리스트
 const COLORS = [
   { key: "beige", color: theme.color.Beige200 },
   { key: "purple", color: theme.color.Purple200 },
@@ -17,17 +18,19 @@ const COLORS = [
 export default function ToPage() {
   const navigate = useNavigate();
 
-  const [mode, setMode] = useState("color");
-  const defaultValue = mode === "color" ? "beige" : 0;
+  const [mode, setMode] = useState("color"); // 배경 선택 모드 (color 또는 image)
+  const defaultValue = mode === "color" ? "beige" : 0; // 선택된 값 (기본값: 컬러 모드면 "beige", 이미지 모드면 0번 인덱스)
   const [selected, setSelected] = useState(defaultValue);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]); // 배경 이미지 리스트
   const [dataToSend, setDataToSend] = useState({
+    // API로 보낼 데이터 객체
     name: "",
     backgroundColor: "beige",
     backgroundImageURL: null,
   });
 
   useEffect(() => {
+    // 마운트 시 배경 이미지 리스트 가져오기
     getBackgroundImages()
       .then((response) => {
         setImages(response);
@@ -35,15 +38,22 @@ export default function ToPage() {
       .catch((error) => console.error("Failed to fetch images:", error));
   }, []);
 
+  /**
+   * 배경 선택 모드 변경 (컬러 or 이미지)
+   * - 컬러 선택 시: 기본값 "beige"
+   * - 이미지 선택 시: 기본값 0번 인덱스
+   */
   const handleModeChange = (newMode) => {
     setMode(newMode);
     setSelected(newMode === "color" ? "beige" : 0);
   };
 
+  // 사용자가 색상 또는 이미지를 선택하면 `selected` 값 업데이트
   const handleSelect = (key) => {
     setSelected(key);
   };
 
+  // dataToSend 상태 업데이트 (이름, 배경색, 배경 이미지 변경 시 사용)
   const handleChange = (name, value) => {
     setDataToSend((prev) => ({
       ...prev,
@@ -51,12 +61,14 @@ export default function ToPage() {
     }));
   };
 
-  const handleNameChange = () => {
+  // 이름 입력 필드 변경 핸들러 (handleChange 활용)
+  const handleNameChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
 
-  const handleSubmit = async (e) => {
+  // `submitToPage` API 호출 후 성공하면 해당 페이지로 이동
+  const handleSubmit = async () => {
     await submitToPage(dataToSend)
       .then((id) => {
         alert("🎉성공");
@@ -85,23 +97,25 @@ export default function ToPage() {
             컬러를 선택하거나, 이미지를 선택할 수 있습니다.
           </S.SubTitle>
           <S.ToggleWrapper role="group" aria-label="배경 선택 모드">
+            {/* 컬러 선택 버튼 */}
             <S.ToggleOption
               role="button"
               aria-pressed={mode === "color"}
               onClick={() => {
                 handleModeChange("color");
-                handleChange("backgroundImageURL", null);
+                handleChange("backgroundImageURL", null); // 이미지 헤제
               }}
               $active={mode === "color"}
             >
               컬러
             </S.ToggleOption>
+            {/* 이미지 선택 버튼 */}
             <S.ToggleOption
               role="button"
               aria-pressed={mode === "image"}
               onClick={() => {
                 handleModeChange("image");
-                handleChange("backgroundImageURL", images[0]);
+                handleChange("backgroundImageURL", images[0]); // 첫 번째 이미지 선택
               }}
               $active={mode === "image"}
             >
@@ -110,6 +124,7 @@ export default function ToPage() {
           </S.ToggleWrapper>
         </S.ToggleContainer>
 
+        {/* 배경 선택 박스  */}
         <SelectableBox
           items={mode === "color" ? COLORS : images}
           selected={selected}
