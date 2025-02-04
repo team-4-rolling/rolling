@@ -72,7 +72,11 @@ export default function ToPage() {
   const handleSubmit = async () => {
     await submitToPage(dataToSend)
       .then((id) => {
-        showToast("롤링페이퍼 생성에 성공했습니다!", "success", "top");
+        showToast(
+          `${dataToSend.name} 님의 롤링페이퍼 생성에 성공했습니다!`,
+          "success",
+          "top"
+        );
         navigate(`/post/${id}`);
       })
       .catch((error) => console.error("Error creating rolling paper:", error));

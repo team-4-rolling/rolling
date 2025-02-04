@@ -51,17 +51,7 @@ const Grid = styled.div`
   grid-auto-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
 
-  @media (max-width: 480px) {
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: 481px) and (max-width: 740px) {
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: 741px) and (max-width: 765px) {
+  @media (max-width: 765px) {
     width: 100%;
     grid-template-columns: repeat(2, 1fr);
   }

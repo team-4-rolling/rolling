@@ -1,6 +1,7 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+// 배경화면 이미지 API GET
 export async function getBackgroundImages() {
   try {
     const response = await axios.get(`${BASE_URL}background-images/`);
@@ -11,6 +12,7 @@ export async function getBackgroundImages() {
   }
 }
 
+// submit POST 요청
 export async function submitToPage(dataToSend) {
   try {
     const response = await axios.post(
