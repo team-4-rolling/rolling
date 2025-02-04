@@ -80,10 +80,6 @@ export default function ToPage() {
 
   return (
     <div style={{ overflow: "auto" }}>
-      {/* <Header /> */}
-      {/* <Form onSubmit={handleSubmit} />
-      <Bottom />
-      <Container /> */}
       <S.PageContainer>
         <S.ToContainer>
           <Input

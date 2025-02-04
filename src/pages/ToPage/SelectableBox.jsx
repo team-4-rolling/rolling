@@ -25,7 +25,7 @@ export default function SelectableBox({
     <Grid>
       {items.map((item, index) => (
         <Box
-          key={index} //여기 3줄을 어떻게 할까..
+          key={index} //여기 3줄을 어떻게 할지 고민필요
           $color={type === "color" ? item.color : null}
           $backgroundImage={type === "image" ? `url(${item})` : null}
           onClick={() => {
@@ -61,19 +61,18 @@ const Grid = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 741px) and (max-width: 768px) {
+  @media (min-width: 741px) and (max-width: 765px) {
     width: 100%;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 769px) and (max-width: 1280px) {
+  @media (min-width: 766px) and (max-width: 1280px) {
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 const Box = styled.div`
-  width: 168px;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   background-color: ${({ $color }) => $color || "transparent"};
@@ -85,6 +84,8 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-width: 154px;
 
   &:hover {
     opacity: 0.8;
@@ -95,29 +96,6 @@ const Box = styled.div`
     `
     opacity: 0.3;
   `}
-
-  @media (max-width: 480px) {
-    min-width: 168px;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-  }
-
-  @media (min-width: 481px) and (max-width: 740px) {
-    min-width: 168px;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-  }
-
-  @media (min-width: 741px) and (max-width: 768px) {
-    min-width: 168px;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-  }
-
-  @media (min-width: 769px) and (max-width: 1280px) {
-    min-width: 168px;
-    height: 168px;
-  }
 `;
 
 const CheckIcon = styled.img`

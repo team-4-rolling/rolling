@@ -13,21 +13,11 @@ export const PageContainer = styled.div`
   padding-top: 68px;
 
   @media (max-width: 480px) {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 24px 24px 0;
   }
 
-  @media (min-width: 481px) and (max-width: 740px) {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-
-  @media (min-width: 741px) and (max-width: 768px) {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-
-  @media (min-width: 769px) and (max-width: 1280px) {
+  @media (min-width: 481px) and (max-width: 768px) {
+    padding: 48px 24px 0;
   }
 `;
 
@@ -102,20 +92,8 @@ export const ToggleOption = styled.div`
 export const BoxContainer = styled.div`
   width: 720px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 100%;
-  }
-
-  @media (min-width: 481px) and (max-width: 740px) {
-    width: 100%;
-  }
-
-  @media (min-width: 741px) and (max-width: 768px) {
-    width: 100%;
-  }
-
-  @media (min-width: 769px) and (max-width: 1280px) {
-    width: 720px;
   }
 `;
 
@@ -125,9 +103,9 @@ export const ButtonContainer = styled.div`
   margin-top: 20px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    padding: 0 24px;
-    /* position: fixed; */
+  @media (max-width: 766px) {
+    padding: 0 16px;
+    position: fixed;
     bottom: 20px;
   }
 `;
