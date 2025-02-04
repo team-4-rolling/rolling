@@ -16,10 +16,9 @@ const ToastContent = ({ message, closeToast }) => (
  * @param {string} message
  * @param {("success" | "error")} type
  */
-
-const showToast = (message, type = "success") => {
+const showToast = (message, type = "success", position = "bottom") => {
   toast[type](<ToastContent message={message} />, {
-    position: "bottom-center",
+    position: position === "top" ? "top-center" : "bottom-center",
     autoClose: 5000,
     hideProgressBar: true,
     closeOnClick: false,
