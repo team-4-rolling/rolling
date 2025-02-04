@@ -6,11 +6,12 @@ import { getReactions, postReaction } from "../../api/reactions";
 import { useState, useEffect } from "react";
 import theme from "../../styles/theme";
 import smile from "../../assets/icons/smile.svg";
+import { useAutoClose } from "../../hooks/useAutoClose";
 
 export default function Emoji({ recipientId }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [reactions, setReactions] = useState([]);
   const [emoji, setEmoji] = useState({ emoji: "", type: "increase" });
+  const { ref, isOpen, setIsOpen } = useAutoClose(false);
 
   const handleGetReactions = () => {
     if (recipientId) {
@@ -46,13 +47,13 @@ export default function Emoji({ recipientId }) {
   const topReactions = reactions.slice(0, 3);
 
   return (
-    <>
+    <S.EmojiContainer>
       {reactions?.length === 0 ? (
         <S.NoneEmoji>이모지를 추가해보세요 😀</S.NoneEmoji>
       ) : (
         <Icons topReactions={topReactions} reactions={reactions} />
       )}
-      <S.Emoji>
+      <S.Emoji ref={ref}>
         <Button
           onClick={() => setIsOpen((prev) => !prev)}
           outlineMedium
@@ -68,12 +69,12 @@ export default function Emoji({ recipientId }) {
               onEmojiClick={handleEmojiClick}
               style={{
                 width: "100%",
-                height: "100%"
+                height: "100%",
               }}
             />
           </S.StyledEmoji>
         )}
       </S.Emoji>
-    </>
+    </S.EmojiContainer>
   );
 }
