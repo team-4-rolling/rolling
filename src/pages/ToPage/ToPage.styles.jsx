@@ -57,7 +57,6 @@ export const ToggleContainer = styled.div`
   gap: 4px;
   width: 100%;
   margin: 20px 0;
-  justify-content: flex-start;
 
   @media (max-width: 480px) {
     justify-content: flex-start;
@@ -111,20 +110,14 @@ export const ButtonContainer = styled.div`
   width: 100%;
 
   @media (max-width: 480px) {
-    justify-content: center;
     padding: 0 16px;
-    width: 100%;
   }
 
   @media (max-width: 768px) {
-    justify-content: center;
     padding: 0 24px;
-    width: 100%;
   }
 
   @media (max-width: 1280px) {
-    justify-content: center;
     padding: 0 32px;
-    width: 100%;
   }
 `;

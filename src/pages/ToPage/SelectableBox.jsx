@@ -31,7 +31,6 @@ export default function SelectableBox({
           onClick={() => {
             handleClick(item, index);
           }}
-          // selected={selected === (type === "color" ? item.key : item)}
         >
           {selected === (type === "color" ? item.key : index) && (
             <CheckIcon src={select} alt="선택됨" />

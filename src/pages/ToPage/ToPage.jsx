@@ -17,7 +17,6 @@ const COLORS = [
 export default function ToPage() {
   const navigate = useNavigate();
 
-  const [error, setError] = useState("");
   const [mode, setMode] = useState("color");
   const defaultValue = mode === "color" ? "beige" : 0;
   const [selected, setSelected] = useState(defaultValue);
@@ -52,7 +51,7 @@ export default function ToPage() {
     }));
   };
 
-  const handleNameChange = (e) => {
+  const handleNameChange = () => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
