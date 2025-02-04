@@ -25,7 +25,7 @@ export default function SelectableBox({
     <Grid>
       {items.map((item, index) => (
         <Box
-          key={index}
+          key={index} //여기 3줄을 어떻게 할까..
           $color={type === "color" ? item.color : null}
           $backgroundImage={type === "image" ? `url(${item})` : null}
           onClick={() => {
@@ -43,28 +43,39 @@ export default function SelectableBox({
 
 const Grid = styled.div`
   display: grid;
-  gap: 10px;
+  aspect-ratio: 1 / 1;
+  width: 720px;
+  gap: 16px;
   margin-top: 10px;
   margin-bottom: 40px;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
 
-  @media (max-width: 1280px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   @media (max-width: 480px) {
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 481px) and (max-width: 740px) {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 741px) and (max-width: 768px) {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 const Box = styled.div`
   width: 168px;
-  height: 168px;
-  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
   background-color: ${({ $color }) => $color || "transparent"};
   background-image: ${({ $backgroundImage }) => $backgroundImage || "none"};
   background-size: cover;
@@ -82,7 +93,31 @@ const Box = styled.div`
   ${({ selected }) =>
     selected &&
     `
+    opacity: 0.3;
   `}
+
+  @media (max-width: 480px) {
+    min-width: 168px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  @media (min-width: 481px) and (max-width: 740px) {
+    min-width: 168px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  @media (min-width: 741px) and (max-width: 768px) {
+    min-width: 168px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    min-width: 168px;
+    height: 168px;
+  }
 `;
 
 const CheckIcon = styled.img`

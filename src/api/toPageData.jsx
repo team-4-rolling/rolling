@@ -18,7 +18,6 @@ export async function submitToPage(dataToSend) {
       dataToSend
     );
 
-    console.log("데이터 추가 성공, ID:", response.data.id);
     return response.data.id;
   } catch (error) {
     console.error("Failed to submit data:", error);
