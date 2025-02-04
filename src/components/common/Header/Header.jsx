@@ -9,12 +9,14 @@ export default function Header() {
 
   const isLadingPage = () => {
     return {
-      display: location === "/" ? "block" : "none",
+      display: location === "/" || location === "/list" ? "flex" : "none",
     };
   };
 
+  const isOnlyPostId = /^\/post\/[^/]+$/.test(location);
+
   return (
-    <S.Container $hide={location.startsWith("/post/")}>
+    <S.Container $hide={isOnlyPostId}>
       <S.Header>
         <S.Logo to="/">
           <img src={logoIcon} />
@@ -24,7 +26,7 @@ export default function Header() {
           <Button
             outline
             $font={`${theme.font.H5Regular}`}
-            style={{ cursor: "pointer", width: "100%" }}
+            style={{ width: "100%" }}
           >
             롤링 페이퍼 만들기
           </Button>
