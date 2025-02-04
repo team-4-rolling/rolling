@@ -1,7 +1,7 @@
 import React from "react";
 import StyledButton from "./Button.style";
 
-function Button({ children, type = "button", ...props }) {
+function Button({ children, ...props }) {
   const { medium, outlineMedium, outlineSmall, large, outline, ...restProps } =
     props;
   return (
