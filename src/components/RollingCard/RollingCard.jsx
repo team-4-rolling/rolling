@@ -1,4 +1,5 @@
 import * as S from "./RollingCard.styles";
+import { marked } from "marked";
 import trash from "../../assets/icons/trash.svg";
 import Badge from "../Badge/Badge";
 
@@ -10,9 +11,9 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
     "나눔손글씨 손편지체": "Handletter",
   };
   const date = new Date(data.createdAt);
-  const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(
-    date.getDate()
-  ).padStart(2, "0")}`;
+  const formattedDate = `${date.getFullYear()}.${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 
   const fontFamily = fonts[data.font];
 
@@ -36,7 +37,12 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
         )}
       </S.FromContainer>
       <S.Letter>
-        <S.Content $font={fontFamily}>{data.content}</S.Content>
+        <S.Content
+          dangerouslySetInnerHTML={{
+            __html: marked(data.content),
+          }}
+          $font={fontFamily}
+        />
         <S.Date>{formattedDate}</S.Date>
       </S.Letter>
     </S.Card>
