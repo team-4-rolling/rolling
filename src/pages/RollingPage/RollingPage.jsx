@@ -68,8 +68,7 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
-        if (scrollTop < 30) {
-          console.log("infiniteScroll", scrollTop);
+        if (scrollTop == 0) {
           setScrollActive(false);
           console.log(scrollActive);
         } else {
