@@ -39,24 +39,22 @@ export default function RollingPage() {
       setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
       const { results, next } = await getMessage(limit, offset, queryId);
-      setMessages((prevMessages) => [...prevMessages, ...results]);
+      setMessages((prevMessages) =>
+        offset === 0 ? results : [...prevMessages, ...results]
+      );
       setOffset((prevOffset) => prevOffset + limit);
       setIsLoading(false);
-      setHasNext(next);
+      setHasNext(Boolean(next));
     } catch {
       return;
     }
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      handleLoad();
-    }
-
+    handleLoad();
     if (!isLoading && hasNext) {
       window.addEventListener("scroll", infiniteScroll);
     }
-
     return () => {
       infiniteScroll.cancel();
       window.removeEventListener("scroll", infiniteScroll);
@@ -68,11 +66,9 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
-        if (scrollTop == 0) {
-          setScrollActive(false);
-        } else {
-          setScrollActive(true);
-        }
+
+        setScrollActive(scrollTop >= 5);
+
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
@@ -90,6 +86,7 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
+    //TODO 모달창 : 정말 삭제하시겠습니까?
     await deleteRecipient(queryId);
     navigate("/");
   };
