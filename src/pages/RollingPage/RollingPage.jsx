@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
-
+import { showToast } from "../../components/common/Toast/Toast.jsx";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -39,24 +39,26 @@ export default function RollingPage() {
       setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
       const { results, next } = await getMessage(limit, offset, queryId);
-      setMessages((prevMessages) => [...prevMessages, ...results]);
+      setMessages((prevMessages) =>
+        offset === 0 ? results : [...prevMessages, ...results]
+      );
       setOffset((prevOffset) => prevOffset + limit);
       setIsLoading(false);
-      setHasNext(next);
+      setHasNext(Boolean(next));
     } catch {
+      showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
+      setTimeout(() => {
+        navigate("/list");
+      }, 3000);
       return;
     }
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      handleLoad();
-    }
-
+    handleLoad();
     if (!isLoading && hasNext) {
       window.addEventListener("scroll", infiniteScroll);
     }
-
     return () => {
       infiniteScroll.cancel();
       window.removeEventListener("scroll", infiniteScroll);
@@ -68,13 +70,9 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
-        if (scrollTop == 0) {
-          setScrollActive(false);
-          console.log(scrollActive);
-        } else {
-          setScrollActive(true);
-          console.log("else문", scrollActive);
-        }
+
+        setScrollActive(scrollTop >= 5);
+
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
         }
@@ -92,6 +90,7 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
+    //TODO 모달창 : 정말 삭제하시겠습니까?
     await deleteRecipient(queryId);
     navigate("/");
   };

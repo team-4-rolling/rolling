@@ -66,9 +66,6 @@ export const ButtonFlex = styled.div`
   }
   @media (min-width: 769px) and (max-width: 1280px) {
     width: 100%;
-    height: 39px;
-    justify-content: right;
-    position: static;
   }
 `;
 
@@ -85,10 +82,6 @@ export const ButtonContain = styled.div`
     min-width: 320px;
     width: 100%;
     height: 39px;
-  }
-  @media (min-width: 769px) and (max-width: 1280px) {
-    height: 39px;
-    width: 140px;
   }
 `;
 //버튼 div 아래 그리드 영역
@@ -112,12 +105,11 @@ export const GridBoxes = styled.div`
   }
   @media (min-width: 768px) and (max-width: 1280px) {
     width: 100%;
-    gap: 20px; //laptop일때 gap 20
+    gap: 20px;
     grid-template-columns: repeat(2, 1fr);
   }
 `;
 
-//+ 박스 부분, 희진님 card 부분이랑 동일하게 작성했습니다.
 export const CreateBox = styled.div`
   width: 100%;
   height: 280px;
@@ -137,7 +129,7 @@ export const CreateBox = styled.div`
     height: 284px;
   }
   @media (min-width: 769px) and (max-width: 1280px) {
-    min-width: 352px; //laptop일때
+    min-width: 352px;
     height: 284px;
   }
 `;

@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 const GradientWave = keyframes`
   from {
     background-position-x:200%;
-    
+
   }
   to {
     background-position-x: -200%;
@@ -15,7 +15,7 @@ export const SkeletonBox = styled.div`
   background-color: ${theme.color.White};
   border-radius: 16px;
   width: 100%;
-  height: 280px;
+  height: 284px;
   margin-bottom: 8px;
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
   padding: 0 24px;
@@ -26,11 +26,9 @@ export const SkeletonBox = styled.div`
   }
   @media (min-width: 481px) and (max-width: 768px) {
     min-width: 320px;
-    height: 284px;
   }
   @media (min-width: 769px) and (max-width: 1280px) {
     min-width: 352px;
-    height: 284px;
   }
 `;
 
