@@ -70,10 +70,8 @@ export default function RollingPage() {
           document.documentElement;
         if (scrollTop == 0) {
           setScrollActive(false);
-          console.log(scrollActive);
         } else {
           setScrollActive(true);
-          console.log("else문", scrollActive);
         }
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);
