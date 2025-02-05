@@ -68,10 +68,13 @@ export default function RollingPage() {
       if (!isLoading) {
         const { clientHeight, scrollHeight, scrollTop } =
           document.documentElement;
-        if (scrollTop === 0) {
+        if (scrollTop < 30) {
+          console.log("infiniteScroll", scrollTop);
           setScrollActive(false);
+          console.log(scrollActive);
         } else {
           setScrollActive(true);
+          console.log("else문", scrollActive);
         }
         if (clientHeight + scrollTop >= scrollHeight - 4) {
           setIsScrollEnd((prev) => !prev);

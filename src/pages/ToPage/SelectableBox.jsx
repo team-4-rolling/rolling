@@ -25,7 +25,7 @@ export default function SelectableBox({
     <Grid>
       {items.map((item, index) => (
         <Box
-          key={index}
+          key={index} //여기 3줄을 어떻게 할지 고민필요
           $color={type === "color" ? item.color : null}
           $backgroundImage={type === "image" ? `url(${item})` : null}
           onClick={() => {
@@ -43,28 +43,28 @@ export default function SelectableBox({
 
 const Grid = styled.div`
   display: grid;
-  gap: 10px;
+  width: 720px;
+  height: auto;
+  gap: 16px;
   margin-top: 10px;
   margin-bottom: 40px;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
 
-  @media (max-width: 1280px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 765px) {
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 766px) and (max-width: 1280px) {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 const Box = styled.div`
-  width: 168px;
-  height: 168px;
-  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
   background-color: ${({ $color }) => $color || "transparent"};
   background-image: ${({ $backgroundImage }) => $backgroundImage || "none"};
   background-size: cover;
@@ -74,6 +74,8 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-width: 154px;
 
   &:hover {
     opacity: 0.8;
@@ -82,6 +84,7 @@ const Box = styled.div`
   ${({ selected }) =>
     selected &&
     `
+    opacity: 0.3;
   `}
 `;
 

@@ -6,6 +6,7 @@ import theme from "../../styles/theme";
 import SelectableBox from "./SelectableBox";
 import Input from "../../components/common/Input/Input";
 import { getBackgroundImages, submitToPage } from "../../api/toPageData";
+import { showToast } from "../../components/common/Toast/Toast";
 
 // 컬러 선택을 위한 옵션 리스트
 const COLORS = [
@@ -71,14 +72,18 @@ export default function ToPage() {
   const handleSubmit = async () => {
     await submitToPage(dataToSend)
       .then((id) => {
-        alert("🎉성공");
+        showToast(
+          `${dataToSend.name} 님의 롤링페이퍼 생성에 성공했습니다!`,
+          "success",
+          "top"
+        );
         navigate(`/post/${id}`);
       })
       .catch((error) => console.error("Error creating rolling paper:", error));
   };
 
   return (
-    <S.Container>
+    <div style={{ overflow: "auto" }}>
       <S.PageContainer>
         <S.ToContainer>
           <Input
@@ -91,11 +96,14 @@ export default function ToPage() {
           />
         </S.ToContainer>
 
-        <S.ToggleContainer>
+        <S.TitleContainer>
           <S.Title>배경화면을 선택해 주세요.</S.Title>
           <S.SubTitle>
             컬러를 선택하거나, 이미지를 선택할 수 있습니다.
           </S.SubTitle>
+        </S.TitleContainer>
+
+        <S.ToggleContainer>
           <S.ToggleWrapper role="group" aria-label="배경 선택 모드">
             {/* 컬러 선택 버튼 */}
             <S.ToggleOption
@@ -125,24 +133,29 @@ export default function ToPage() {
         </S.ToggleContainer>
 
         {/* 배경 선택 박스  */}
-        <SelectableBox
-          items={mode === "color" ? COLORS : images}
-          selected={selected}
-          onClick={handleChange}
-          onSelect={handleSelect}
-          type={mode}
-        />
+        <S.BoxContainer>
+          <SelectableBox
+            items={mode === "color" ? COLORS : images}
+            selected={selected}
+            onClick={handleChange}
+            onSubmit={handleSubmit}
+            onSelect={handleSelect}
+            type={mode}
+          />
+        </S.BoxContainer>
+
         <S.ButtonContainer>
           <Button
             large
-            $font={`${theme.font.H4Regular}`}
+            // type="submit" //강사님이 수정해주신거
             onClick={handleSubmit}
+            $font={`${theme.font.H4Regular}`}
             disabled={!dataToSend.name.trim()} // 이름이 없으면 비활성화
           >
             생성하기
           </Button>
         </S.ButtonContainer>
       </S.PageContainer>
-    </S.Container>
+    </div>
   );
 }
