@@ -4,7 +4,7 @@ import arrowOpen from "../../../assets/icons/arrowOpen.svg";
 import arrowClose from "../../../assets/icons/arrowClose.svg";
 //
 
-function Select({ options }) {
+function Select({ options, onChange }) {
   const [selected, setSelected] = useState(
     options ? options[0] : "options배열 필요"
   );
@@ -13,6 +13,7 @@ function Select({ options }) {
   const handleOptionClick = (option) => {
     setSelected(option);
     setIsOpen(false);
+    onChange(option);
   };
 
   return (
