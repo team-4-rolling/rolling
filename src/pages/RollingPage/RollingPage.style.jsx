@@ -22,7 +22,7 @@ export const Background = styled.div`
 export const Contents = styled.div`
   width: 100%;
   height: 100%;
-  padding: 113px 30px 500px;
+  padding: 113px 30px 300px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -38,6 +38,8 @@ export const ButtonFlex = styled.div`
   position: static;
   margin: 0 auto 11px;
   justify-content: right;
+  padding-left: 10px;
+  padding-right: 10px;
 
   //반응형 부분
   @media (max-width: 480px) {
@@ -45,9 +47,11 @@ export const ButtonFlex = styled.div`
     height: 56px;
     justify-content: center;
     position: fixed;
+    margin: 0 auto;
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
+    gap: 8px;
   }
   @media (min-width: 481px) and (max-width: 768px) {
     width: 100%;
@@ -73,13 +77,13 @@ export const ButtonContain = styled.div`
   width: 140px;
 
   @media (max-width: 480px) {
-    width: 320px;
-
+    width: 200px;
     height: 56px;
   }
   @media (min-width: 481px) and (max-width: 768px) {
-    width: 720px;
-    min-width: 440px;
+    max-width: 720px;
+    min-width: 320px;
+    width: 100%;
     height: 39px;
   }
   @media (min-width: 769px) and (max-width: 1280px) {
