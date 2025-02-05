@@ -4,9 +4,12 @@ import Button from "../../components/common/Button/Button";
 import Select from "../../components/common/Select/Select";
 import theme from "../../styles/theme";
 import Profile from "../../components/Profile/Profile";
+import EditorContent from "../../components/Editor/Editor";
+import { showToast } from "../../components/common/Toast/Toast";
 import { getProfiles } from "../../api/profiles";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { postMessage } from "../../api/messages.api";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const RELATIONSHIP = ["지인", "친구", "동료", "가족"];
 const FONT = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
@@ -21,6 +24,10 @@ export default function FromPage() {
     font: "Noto Sans",
   });
   const { id } = useParams();
+  const navigate = useNavigate();
+  const editorRef = useRef();
+
+  console.log(message);
 
   useEffect(() => {
     getProfiles()
@@ -45,14 +52,21 @@ export default function FromPage() {
     handleChange(name, value);
   };
 
-  const handleMessageSubmit = (e) => {
-    e.preventDefault();
-    postMessage(id, message);
+  const handleMessageSubmit = () => {
+    postMessage(id, message)
+      .then(() => {
+        showToast("메시지 전달 성공🎉", "success", "top");
+        navigate(`/post/${id}`);
+      })
+      .catch((error) => {
+        console.error(error);
+        showToast("메시지 전달 실패😞", "error", "top");
+      });
   };
 
   return (
     <S.FromContainer>
-      <S.From onSubmit={handleMessageSubmit}>
+      <S.From>
         <S.InputContainer>
           <Input
             label="From."
@@ -78,7 +92,11 @@ export default function FromPage() {
         </S.Wrapper>
         <S.Wrapper>
           <S.Label>내용을 입력해 주세요</S.Label>
-          <S.Div />
+          <EditorContent
+            editorRef={editorRef}
+            content={message.content}
+            onChange={(value) => handleChange("content", value)}
+          />
         </S.Wrapper>
         <S.Wrapper>
           <S.Label>폰트</S.Label>
@@ -89,10 +107,10 @@ export default function FromPage() {
         </S.Wrapper>
         <S.CreateBtn>
           <Button
-            type="submit"
             medium
             $font={`${theme.font.H4Regular}`}
             style={{ width: "100%" }}
+            onClick={handleMessageSubmit}
           >
             생성하기
           </Button>

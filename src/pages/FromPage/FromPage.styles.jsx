@@ -8,7 +8,7 @@ export const FromContainer = styled.div`
   padding-top: 50px;
 `;
 
-export const From = styled.form`
+export const From = styled.div`
   width: 720px;
   display: flex;
   flex-direction: column;
