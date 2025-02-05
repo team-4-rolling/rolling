@@ -3,7 +3,7 @@ import * as S from "./ToPage.styles";
 import { useState, useEffect } from "react";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
-import SelectableBox from "./SelectableBox";
+import SelectableBox from "../../components/SelectableBox/SelectableBox";
 import Input from "../../components/common/Input/Input";
 import { getBackgroundImages, submitToPage } from "../../api/toPageData";
 import { showToast } from "../../components/common/Toast/Toast";

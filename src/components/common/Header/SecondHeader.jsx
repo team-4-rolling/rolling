@@ -6,12 +6,13 @@ import CircleImages from "../../CircleImages/CircleImages";
 import Button from "../Button/Button";
 import theme from "../../../styles/theme";
 import Emoji from "../../Emoji/Emoji";
+import ShareButton from "../../ShareButton/ShareButton";
 
 export default function SecondHeader({
   recipientId,
   name,
   messageCount,
-  recentMessages
+  recentMessages,
 }) {
   const images = recentMessages.map((i) => i.profileImageURL);
 
@@ -33,14 +34,7 @@ export default function SecondHeader({
             <S.Box>
               <Emoji recipientId={recipientId} />
               <Line width="1px" height="28px" />
-              <S.Share>
-                <Button
-                  outlineSmall
-                  style={{ cursor: "pointer", width: "100%" }}
-                >
-                  <img src={share} />
-                </Button>
-              </S.Share>
+              <ShareButton />
             </S.Box>
           </S.Div>
         </S.Header>
