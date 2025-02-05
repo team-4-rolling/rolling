@@ -53,26 +53,27 @@ export default function FromPage() {
   return (
     <S.FromContainer>
       <S.From onSubmit={handleMessageSubmit}>
-        <Input
-          label="From."
-          name="sender"
-          placeholder="이름을 입력해 주세요"
-          onChange={handleInputChange}
-        />
+        <S.InputContainer>
+          <Input
+            label="From."
+            name="sender"
+            placeholder="이름을 입력해 주세요"
+            onChange={handleInputChange}
+          />
+        </S.InputContainer>
         <S.Wrapper>
           <S.Label>프로필</S.Label>
           <Profile
             images={images}
             setImages={setImages}
-            onChange={handleChange}
+            onChange={(value) => handleChange("profileImageURL", value)}
           />
         </S.Wrapper>
         <S.Wrapper>
           <S.Label>관계</S.Label>
           <Select
             options={RELATIONSHIP}
-            name="relationship"
-            onChange={handleChange}
+            onChange={(value) => handleChange("relationship", value)}
           />
         </S.Wrapper>
         <S.Wrapper>
@@ -81,14 +82,17 @@ export default function FromPage() {
         </S.Wrapper>
         <S.Wrapper>
           <S.Label>폰트</S.Label>
-          <Select options={FONT} name="font" onChange={handleChange} />
+          <Select
+            options={FONT}
+            onChange={(value) => handleChange("font", value)}
+          />
         </S.Wrapper>
         <S.CreateBtn>
           <Button
             type="submit"
             medium
             $font={`${theme.font.H4Regular}`}
-            style={{ width: "100%", cursor: "pointer" }}
+            style={{ width: "100%" }}
           >
             생성하기
           </Button>

@@ -10,7 +10,7 @@ export default function Profile({ images, setImages, onChange }) {
         src={images[selected]}
         onClick={() => {
           setSelected(0);
-          onChange("profileImageURL", images[0]);
+          onChange(images[0]);
         }}
       />
       <S.ProfilesWrapper>
@@ -21,7 +21,7 @@ export default function Profile({ images, setImages, onChange }) {
               key={profile}
               src={profile}
               onClick={() => {
-                onChange("profileImageURL", profile);
+                onChange(profile);
                 setSelected(idx + 1);
               }}
             />
