@@ -7,7 +7,7 @@ export const Card = styled.div`
   border-radius: 16px;
   background-color: ${theme.color.White};
   padding: 0 24px;
-  box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 
   @media (max-width: 480px) {
     min-width: 320px;

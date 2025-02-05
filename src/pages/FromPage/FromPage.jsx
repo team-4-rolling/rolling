@@ -27,8 +27,6 @@ export default function FromPage() {
   const navigate = useNavigate();
   const editorRef = useRef();
 
-  console.log(message);
-
   useEffect(() => {
     getProfiles()
       .then((results) => {
