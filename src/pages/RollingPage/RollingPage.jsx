@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
-
+import { showToast } from "../../components/common/Toast/Toast.jsx";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -46,6 +46,10 @@ export default function RollingPage() {
       setIsLoading(false);
       setHasNext(Boolean(next));
     } catch {
+      showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
+      setTimeout(() => {
+        navigate("/list");
+      }, 3000);
       return;
     }
   };
