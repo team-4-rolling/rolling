@@ -1,40 +1,32 @@
 import axios from "axios";
+import { showToast } from "../components/common/Toast/Toast";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-// 롤링페이퍼 전체 수신자가 담긴 results를 리턴하는 리퀘스트
-export async function getRecipients(queryId) {
-  let recipient;
-  try {
-    const res = await axios.get(
-      `${BASE_URL}13-4/recipients/?limit=100&offset=0`
-    );
-    recipient = res.data.results.find((recipient) => recipient.id == queryId);
-
-    if (!recipient) {
-      throw new Error("recipients 찾기 실패");
-    }
-  } catch (error) {
-    console.error("getRecipient 리퀘스트 에러발생", error.message);
-    recipient = null;
-  }
-
-  const {
-    id,
-    name,
-    backgroundColor: color,
-    backgroundImageURL: img,
-    messageCount,
-    recentMessages,
-  } = recipient;
-  return { id, name, color, img, messageCount, recentMessages };
-}
 
 export async function deleteRecipient(id) {
   if (!id) return;
   try {
     await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
+    showToast("롤링페이퍼가 삭제되었습니다!", "success", "top");
   } catch (error) {
-    alert("해당 롤링페이퍼를 삭제할 수 없습니다.");
+    showToast("해당 롤링페이퍼를 삭제할 수 없습니다.", "error", "top");
     console.error(error);
   }
+}
+
+export async function getRecipientById(id) {
+  let recipient;
+  try {
+    recipient = await axios.get(`${BASE_URL}13-4/recipients/${id}/`);
+  } catch (error) {
+    showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
+    console.error(error);
+  }
+  const {
+    name,
+    backgroundColor: color,
+    backgroundImageURL: img,
+    messageCount,
+    recentMessages,
+  } = recipient.data;
+  return { name, color, img, messageCount, recentMessages };
 }
