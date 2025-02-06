@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { GradientWave } from "../../../pages/RollingPage/Skeleton/Skeleton.style";
 import theme from "../../../styles/theme";
+import { GradientWave } from "../../Skeleton/Skeleton.style";
 
 export const Loading = styled.div`
   width: 76px;
