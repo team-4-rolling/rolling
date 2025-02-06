@@ -3,6 +3,7 @@ import rolling from "../../assets/icons/image.png";
 import emoji from "../../assets/icons/emoji.png";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
+import * as C from "../../constants/messageConstants";
 
 export default function LandingPage() {
   const Card = [
@@ -41,9 +42,9 @@ export default function LandingPage() {
           <Button
             medium
             $font={`${theme.font.H4Bold}`}
-            style={{ cursor: "pointer", width: "100%" }}
+            style={{ width: "100%" }}
           >
-            구경해보기
+            {C.BUTTON_LABELS.LANDING_TO_LIST}
           </Button>
         </S.LookingBtn>
       </S.Container>
