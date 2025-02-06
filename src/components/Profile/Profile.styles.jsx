@@ -29,7 +29,12 @@ export const Profiles = styled.div`
   width: 100%;
   display: flex;
   gap: 5px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
+
 export const Profile = styled.img`
   width: 56px;
   height: 56px;

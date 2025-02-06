@@ -2,19 +2,30 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const FromContainer = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding: 50px 24px 0;
+
+  @media (max-width: 480px) {
+    padding: 24px 24px 0;
+  }
 `;
 
 export const From = styled.div`
   width: 720px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 50px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -41,4 +52,12 @@ export const Div = styled.div`
 
 export const CreateBtn = styled.div`
   width: 100%;
+
+  @media (max-width: 768px) {
+    min-width: 320px;
+    padding: 0 16px;
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+  }
 `;
