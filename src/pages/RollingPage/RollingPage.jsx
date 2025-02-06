@@ -11,6 +11,7 @@ import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
 import { showToast } from "../../components/common/Toast/Toast.jsx";
+import useLoading from "../../zustand/rollingPageLoading";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -18,7 +19,6 @@ export default function RollingPage() {
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [deletedIds, setDeletedIds] = useState([]);
@@ -31,12 +31,14 @@ export default function RollingPage() {
     messageCount: 0,
     recentMessages: [],
   });
+  const { isLoading, setIsLoading } = useLoading();
+
   //
   const handleLoad = async () => {
     try {
+      setIsLoading(true);
       const recipientData = await getRecipientById(queryId);
       setRecipient(recipientData);
-      setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
       const { results, next } = await getMessage(limit, offset, queryId);
       setMessages((prevMessages) =>
