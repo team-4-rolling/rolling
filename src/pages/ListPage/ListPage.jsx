@@ -50,7 +50,7 @@ function ListPage() {
       </Section>
 
       <Section>
-        <Title $marginBottom="16px">최근에 만든 롤링 페이퍼 ⭐</Title>
+        <Title>최근에 만든 롤링 페이퍼 ⭐</Title>
         {recentRecipients.length > 0 ? (
           <ListCard recipients={recentRecipients} customId="recent" />
         ) : (

@@ -37,18 +37,17 @@ export const Section = styled.div`
 
 // 섹션 타이틀 스타일
 export const Title = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: ${({ marginBottom }) => marginBottom || "20px"};
+  font: ${theme.font.H2Bold};
+  margin-bottom: 20px; //프롭스로 넘기지말고 CSS에서 다시 작성
 
   @media (max-width: 1024px) {
-    font-size: 24px;
+    font: ${theme.font.H2Bold};
     text-align: left;
     margin-bottom: 16px;
   }
 
   @media (max-width: 600px) {
-    font-size: 18px;
+    font: ${theme.font.H4Bold};
     text-align: left;
     margin-bottom: 12px;
   }
@@ -56,7 +55,7 @@ export const Title = styled.h1`
 
 // 로딩 메시지 스타일
 export const LoadingMessage = styled.p`
-  font-size: 16px;
+  font: ${theme.font.H7Regular};
   color: ${theme.color.gray700};
   text-align: center;
 `;
