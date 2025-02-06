@@ -1,17 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../common/Button/Button";
 import share from "../../assets/icons/share.svg";
 import styled from "styled-components";
 import theme from "../../styles/theme";
 import { showToast } from "../../components/common/Toast/Toast";
 
+const JAVASCRIPT_KEY = import.meta.env.VITE_APP_JAVASCRIPT_KEY;
+const TEMPLATE_ID = 117124;
+
 export default function ShareButton() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // 드롭다운 토글 함수
-  // 버튼 클릭 시 isDropdownOpen 상태를 반전시켜 드롭다운을 열거나 닫음.
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  // 카카오 SDK 초기화
+  useEffect(() => {
+    const initializeKakao = () => {
+      window.Kakao.init(JAVASCRIPT_KEY);
+    };
+
+    if (document.readyState === "complete") {
+      initializeKakao();
+    } else {
+      window.addEventListener("load", initializeKakao);
+      return () => window.removeEventListener("load", initializeKakao);
+    }
+  }, []);
+
+  // 카카오톡 공유 함수
+  const shareKakao = () => {
+    if (!window.Kakao || !window.Kakao.Share) {
+      return;
+    }
+
+    window.Kakao.Share.sendCustom({
+      templateId: TEMPLATE_ID,
+    });
+    setIsDropdownOpen(false); // 공유 후 드롭다운 닫기
   };
 
   // URL 복사 함수
@@ -38,7 +66,7 @@ export default function ShareButton() {
       {/* 드롭다운 메뉴 */}
       {isDropdownOpen && ( //isDropdownOpen이 true일 때만 드롭다운 메뉴가 표시됨.
         <DropdownMenu>
-          <DropdownItem $font={`${theme.font.H4Regular}`}>
+          <DropdownItem $font={`${theme.font.H4Regular}`} onClick={shareKakao}>
             카카오톡 공유
           </DropdownItem>
           <DropdownItem $font={`${theme.font.H4Regular}`} onClick={copyURL}>
@@ -94,6 +122,6 @@ const DropdownItem = styled.div`
     border-bottom: none;
   }
   &:hover {
-    background-color: #f1f1f1;
+    background-color: ${theme.color.Grayscale100};
   }
 `;

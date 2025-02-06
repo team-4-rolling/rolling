@@ -1,10 +1,6 @@
 import * as S from "./SecondHeader.styles";
-import share from "../../../assets/icons/share.svg";
-import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
 import CircleImages from "../../CircleImages/CircleImages";
-import Button from "../Button/Button";
-import theme from "../../../styles/theme";
 import Emoji from "../../Emoji/Emoji";
 import ShareButton from "../../ShareButton/ShareButton";
 
