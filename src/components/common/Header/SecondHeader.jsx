@@ -1,4 +1,5 @@
 import * as S from "./SecondHeader.styles";
+import { useState } from "react";
 import share from "../../../assets/icons/share.svg";
 import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
@@ -11,8 +12,9 @@ export default function SecondHeader({
   recipientId,
   name,
   messageCount,
-  recentMessages
+  recentMessages,
 }) {
+  const [isLoading, setIsLoading] = useState(false);
   const images = recentMessages.map((i) => i.profileImageURL);
 
   return (
@@ -24,7 +26,11 @@ export default function SecondHeader({
           <S.Div>
             <S.WrittenContainer>
               {images.length !== 0 && (
-                <CircleImages messageCount={messageCount} images={images} />
+                <CircleImages
+                  messageCount={messageCount}
+                  images={images}
+                  isLoading={isLoading}
+                />
               )}
               <S.Written>
                 <span>{messageCount}</span>명이 작성했어요!
@@ -34,10 +40,7 @@ export default function SecondHeader({
               <Emoji recipientId={recipientId} />
               <Line width="1px" height="28px" />
               <S.Share>
-                <Button
-                  outlineSmall
-                  style={{ cursor: "pointer", width: "100%" }}
-                >
+                <Button outlineSmall style={{ width: "100%" }}>
                   <img src={share} />
                 </Button>
               </S.Share>

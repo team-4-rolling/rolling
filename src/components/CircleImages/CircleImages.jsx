@@ -1,6 +1,9 @@
 import * as S from "./CircleImages.styles";
+import CircleImgLoading from "./Loading/CircleImgLoading";
 
-export default function CircleImages({ messageCount, images }) {
+export default function CircleImages({ messageCount, images, isLoading }) {
+  if (isLoading) return <CircleImgLoading />;
+
   return (
     <S.Container>
       {images.map((i, idx) => (
