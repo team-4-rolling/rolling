@@ -21,10 +21,8 @@ export default function useWindowSize() {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", throttledResize);
-    console.log("리사이즈 이벤트 등록");
     return () => {
       window.removeEventListener("resize", throttledResize);
-      console.log("리사이즈 이벤트 삭제");
     };
   }, []);
   return deviceType;
