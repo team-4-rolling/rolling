@@ -11,6 +11,10 @@ import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
 import { showToast } from "../../components/common/Toast/Toast.jsx";
+import PaperDelete from "../../components/ModalContent/PaperDelete.jsx";
+import Modal from "../../components/common/Modal/Modal";
+import theme from "../../styles/theme.jsx";
+import * as C from "../../constants/messageConstants.jsx";
 import useLoading from "../../zustand/rollingPageLoading";
 //
 export default function RollingPage() {
@@ -21,6 +25,7 @@ export default function RollingPage() {
   const [isScrollEnd, setIsScrollEnd] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [deletedIds, setDeletedIds] = useState([]);
   const [scrollActive, setScrollActive] = useState(false);
   const [recipient, setRecipient] = useState({
@@ -48,7 +53,7 @@ export default function RollingPage() {
       setIsLoading(false);
       setHasNext(Boolean(next));
     } catch {
-      showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
+      showToast(C.TOAST_TEXT.ERROR_GET_RECIPIENT, "error", "top");
       setTimeout(() => {
         navigate("/list");
       }, 3000);
@@ -92,7 +97,6 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
-    //TODO 모달창 : 정말 삭제하시겠습니까?
     await deleteRecipient(queryId);
     navigate("/");
   };
@@ -103,7 +107,9 @@ export default function RollingPage() {
       behavior: "smooth",
     });
   };
-
+  const handleCloseModal = () => {
+    setDeleteModal(null);
+  };
   return (
     <>
       <SecondHeader
@@ -113,7 +119,7 @@ export default function RollingPage() {
         recentMessages={recipient.recentMessages}
       />
       <div style={{ overflowY: "auto" }}>
-        <S.Contents>
+        <S.Contents onClose={handleCloseModal}>
           {scrollActive && (
             <S.ScrollUpButton onClick={handleScrollUp}>
               <S.Arrow src={arrow} />
@@ -123,23 +129,33 @@ export default function RollingPage() {
             <S.ButtonContain>
               {isEdit ? (
                 <Button
+                  $font={theme.font.H5Regular}
                   style={{ width: "100%" }}
                   onClick={handelDeleteMessageClick}
                 >
-                  저장하기
+                  {C.BUTTON_LABELS.DELETE_REQUEST}
                 </Button>
               ) : (
-                <Button style={{ width: "100%" }} onClick={handelEditClick}>
-                  메시지 삭제하기
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={handelEditClick}
+                  $font={theme.font.H5Regular}
+                >
+                  {C.BUTTON_LABELS.MESSAGE_DELETE}
                 </Button>
               )}
             </S.ButtonContain>
             <S.ButtonContain>
-              <Button style={{ width: "100%" }} onClick={handelDeletePageClick}>
-                롤링페이퍼 삭제하기
+              <Button
+                $font={theme.font.H5Regular}
+                style={{ width: "100%" }}
+                onClick={() => setDeleteModal(true)}
+              >
+                {C.BUTTON_LABELS.PAGE_DELETE}
               </Button>
             </S.ButtonContain>
           </S.ButtonFlex>
+
           <Messages
             deletedIds={deletedIds}
             setDeletedIds={setDeletedIds}
@@ -148,6 +164,11 @@ export default function RollingPage() {
             isLoading={isLoading}
           />
         </S.Contents>
+        <Modal onClose={handleCloseModal} isOpen={deleteModal}>
+          <PaperDelete onClick={handelDeletePageClick}>
+            {C.MODAL_TEXT.DELETE_CONFIRM}
+          </PaperDelete>
+        </Modal>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>
     </>

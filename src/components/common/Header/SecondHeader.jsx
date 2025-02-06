@@ -1,11 +1,8 @@
 import * as S from "./SecondHeader.styles";
-import share from "../../../assets/icons/share.svg";
-import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
 import CircleImages from "../../CircleImages/CircleImages";
-import Button from "../Button/Button";
-import theme from "../../../styles/theme";
 import Emoji from "../../Emoji/Emoji";
+import ShareButton from "../../ShareButton/ShareButton";
 
 export default function SecondHeader({
   recipientId,
@@ -31,11 +28,7 @@ export default function SecondHeader({
             <S.Box>
               <Emoji recipientId={recipientId} />
               <Line width="1px" height="28px" />
-              <S.Share>
-                <Button outlineSmall style={{ width: "100%" }}>
-                  <img src={share} />
-                </Button>
-              </S.Share>
+              <ShareButton />
             </S.Box>
           </S.Div>
         </S.Header>
