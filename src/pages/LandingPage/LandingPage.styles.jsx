@@ -26,9 +26,6 @@ export const Container = styled.div`
     padding: 24px;
     gap: 40px;
   }
-  @media (min-width: 1020px) and (max-width: 1248px) {
-    padding: 60px 24px;
-  }
 `;
 
 export const CardContainer = styled.div`
