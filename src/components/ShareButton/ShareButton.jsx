@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from "../common/Button/Button";
 import share from "../../assets/icons/share.svg";
 import styled from "styled-components";
 import theme from "../../styles/theme";
 import { showToast } from "../../components/common/Toast/Toast";
+import { useAutoClose } from "../../hooks/useAutoClose";
 
 const JAVASCRIPT_KEY = import.meta.env.VITE_APP_JAVASCRIPT_KEY;
 const TEMPLATE_ID = 117124;
 
 export default function ShareButton() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const { ref, isOpen, setIsOpen } = useAutoClose(false);
   // 드롭다운 토글 함수
   const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   // 카카오 SDK 초기화
@@ -39,7 +39,7 @@ export default function ShareButton() {
     window.Kakao.Share.sendCustom({
       templateId: TEMPLATE_ID,
     });
-    setIsDropdownOpen(false); // 공유 후 드롭다운 닫기
+    setIsOpen(false); // 공유 후 드롭다운 닫기
   };
 
   // URL 복사 함수
@@ -53,18 +53,18 @@ export default function ShareButton() {
     document.body.removeChild(textArea);
 
     showToast(`URL이 복사되었습니다!`, "success", "top");
-    setIsDropdownOpen(false);
+    setIsOpen(false);
   };
 
   return (
-    <DropdownContainer>
+    <DropdownContainer ref={ref}>
       {/* 공유하기 버튼 */}
       <Button outlineSmall style={{ width: "100%" }} onClick={toggleDropdown}>
         <img src={share} alt="공유하기" />
       </Button>
 
       {/* 드롭다운 메뉴 */}
-      {isDropdownOpen && ( //isDropdownOpen이 true일 때만 드롭다운 메뉴가 표시됨.
+      {isOpen && ( //isDropdownOpen이 true일 때만 드롭다운 메뉴가 표시됨.
         <DropdownMenu>
           <DropdownItem $font={`${theme.font.H4Regular}`} onClick={shareKakao}>
             카카오톡 공유
