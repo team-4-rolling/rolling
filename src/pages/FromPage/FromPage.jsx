@@ -8,13 +8,14 @@ import EditorContent from "../../components/Editor/Editor";
 import { showToast } from "../../components/common/Toast/Toast";
 import { getProfiles } from "../../api/profiles";
 import { postMessage } from "../../api/messages.api";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const RELATIONSHIP = ["지인", "친구", "동료", "가족"];
 const FONT = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
 
 export default function FromPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState({
     sender: "",
@@ -27,15 +28,25 @@ export default function FromPage() {
   const navigate = useNavigate();
   const editorRef = useRef();
 
+  const getProfilesImg = useCallback(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getProfiles()
+        .then((results) => {
+          setImages(results);
+          if (results.length > 0) {
+            setMessage((prev) => ({ ...prev, profileImageURL: results[0] }));
+          }
+        })
+        .catch((error) => console.error(error))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 2000);
+  }, []);
+
   useEffect(() => {
-    getProfiles()
-      .then((results) => {
-        setImages(results);
-        if (results.length > 0) {
-          setMessage((prev) => ({ ...prev, profileImageURL: results[0] }));
-        }
-      })
-      .catch((error) => console.error(error));
+    getProfilesImg();
   }, []);
 
   const handleChange = (name, value) => {
@@ -62,6 +73,8 @@ export default function FromPage() {
       });
   };
 
+  console.log(isLoading);
+
   return (
     <S.FromContainer>
       <S.From>
@@ -78,6 +91,7 @@ export default function FromPage() {
           <Profile
             images={images}
             setImages={setImages}
+            isLoading={isLoading}
             onChange={(value) => handleChange("profileImageURL", value)}
           />
         </S.Wrapper>

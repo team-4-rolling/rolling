@@ -1,8 +1,11 @@
 import * as S from "./Profile.styles";
 import { useState } from "react";
+import ProfileLoading from "./Loading/ProfileLoading";
 
-export default function Profile({ images, setImages, onChange }) {
+export default function Profile({ images, setImages, onChange, isLoading }) {
   const [selected, setSelected] = useState(0);
+
+  if (isLoading) return <ProfileLoading />;
 
   return (
     <S.ProfileContainer>
