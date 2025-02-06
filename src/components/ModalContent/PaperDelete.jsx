@@ -1,6 +1,6 @@
-import Button from "../../Button/Button";
-import theme from "../../../../styles/theme";
-import * as C from "../../../../constants/messageConstants";
+import Button from "../common/Button/Button";
+import theme from "../../styles/theme";
+import * as C from "../../constants/messageConstants";
 //
 export default function PaperDelete({ children, onClick }) {
   const handleDelete = () => {

@@ -1,7 +1,7 @@
 import PostCardUI from "../../components/RollingCard/RollingCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/common/Modal/Modal";
-import ModalContent from "../../components/common/Modal/ModalContent/ModalContent";
+import ModalContent from "../../components/ModalContent/ModalContent";
 import useWindowSize from "../../hooks/useWindow";
 
 export default function MessagesData({

@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import * as S from "./RollingPage.style";
 import PlusIcon from "../../assets/icons/PlusIcon.svg";
 import { Link } from "react-router-dom";
-import Skeleton from "./Skeleton/Skeleton.jsx";
+import Skeleton from "../../components/Skeleton/Skeleton.jsx";
 //
 const DynamicContent = lazy(() => import("./Messages.data.jsx"));
 
