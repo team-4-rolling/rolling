@@ -1,7 +1,8 @@
 import PostCardUI from "../../components/RollingCard/RollingCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/common/Modal/Modal";
-import ModalContent from "../../components/common/Modal/ModalContent";
+import ModalContent from "../../components/common/Modal/ModalContent/ModalContent";
+import useWindowSize from "../../hooks/useWindow";
 
 export default function MessagesData({
   deletedIds,
@@ -11,6 +12,7 @@ export default function MessagesData({
 }) {
   const [filterMessages, setFilterMessages] = useState(messages);
   const [openModalId, setOpenModalId] = useState(null);
+  const device = useWindowSize();
   //
   const handleClickFilter = (e) => {
     const value = e.currentTarget.dataset.value;
@@ -25,6 +27,7 @@ export default function MessagesData({
     );
   };
   const handleCardClick = (id) => {
+    if (device === "mobile") return null;
     setOpenModalId(id);
   };
   const handleCloseModal = () => {

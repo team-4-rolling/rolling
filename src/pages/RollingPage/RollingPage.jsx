@@ -11,6 +11,9 @@ import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
 import { showToast } from "../../components/common/Toast/Toast.jsx";
+import PaperDelete from "../../components/common/Modal/ModalContent/PaperDelete.jsx";
+import Modal from "../../components/common/Modal/Modal";
+
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -21,6 +24,7 @@ export default function RollingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [deletedIds, setDeletedIds] = useState([]);
   const [scrollActive, setScrollActive] = useState(false);
   const [recipient, setRecipient] = useState({
@@ -31,6 +35,7 @@ export default function RollingPage() {
     messageCount: 0,
     recentMessages: [],
   });
+
   //
   const handleLoad = async () => {
     try {
@@ -90,7 +95,6 @@ export default function RollingPage() {
   };
 
   const handelDeletePageClick = async () => {
-    //TODO 모달창 : 정말 삭제하시겠습니까?
     await deleteRecipient(queryId);
     navigate("/");
   };
@@ -101,7 +105,9 @@ export default function RollingPage() {
       behavior: "smooth",
     });
   };
-
+  const handleCloseModal = () => {
+    setDeleteModal(null);
+  };
   return (
     <>
       <SecondHeader
@@ -111,7 +117,7 @@ export default function RollingPage() {
         recentMessages={recipient.recentMessages}
       />
       <div style={{ overflowY: "auto" }}>
-        <S.Contents>
+        <S.Contents onClose={handleCloseModal}>
           {scrollActive && (
             <S.ScrollUpButton onClick={handleScrollUp}>
               <S.Arrow src={arrow} />
@@ -133,11 +139,15 @@ export default function RollingPage() {
               )}
             </S.ButtonContain>
             <S.ButtonContain>
-              <Button style={{ width: "100%" }} onClick={handelDeletePageClick}>
+              <Button
+                style={{ width: "100%" }}
+                onClick={() => setDeleteModal(true)}
+              >
                 롤링페이퍼 삭제하기
               </Button>
             </S.ButtonContain>
           </S.ButtonFlex>
+
           <Messages
             deletedIds={deletedIds}
             setDeletedIds={setDeletedIds}
@@ -146,6 +156,11 @@ export default function RollingPage() {
             isLoading={isLoading}
           />
         </S.Contents>
+        <Modal onClose={handleCloseModal} isOpen={deleteModal}>
+          <PaperDelete onClick={handelDeletePageClick}>
+            정말 삭제 하시겠습니까?
+          </PaperDelete>
+        </Modal>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>
     </>

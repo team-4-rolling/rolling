@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import theme from "../../../styles/theme";
+import theme from "../../../../styles/theme";
 
 export const Card = styled.div`
   width: 520px;
   height: 376px;
   border-radius: 16px;
   background-color: ${theme.color.White};
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    min-width: 350px;
+    width: 100%;
+    height: 250px;
+  }
 `;
 
 export const FromContainer = styled.div`
@@ -15,6 +21,9 @@ export const FromContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid ${theme.color.Grayscale200};
+  @media (min-width: 481px) and (max-width: 768px) {
+    height: 80px;
+  }
 `;
 
 export const From = styled.div`
@@ -59,13 +68,10 @@ export const Letter = styled.div`
   padding: 24px 0;
   overflow: scroll;
   padding-bottom: 50px;
-  @media (max-width: 480px) {
-    height: 130px;
-    padding: 20px 0;
-  }
+
   @media (min-width: 481px) and (max-width: 768px) {
-    height: 184px;
-    padding: 20px 0;
+    height: 160px;
+    padding: 15px 0;
   }
 `;
 
