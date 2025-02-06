@@ -11,7 +11,7 @@ export const TOAST_TEXT = {
   SUCCESS_DELETE_MESSAGE: "메시지 삭제 완료!",
   FAIL_DELETE_MESSAGE: "메시지 삭제 완료!",
   HAVE_NO_DELETE_MESSAGE: "삭제할 메시지를 선택해주세요!",
-  SUCCESS_DELETE_PAGE: "롤링 페이퍼가 삭제 되었습니다!",
+  SUCCESS_DELETE_PAGE: "롤링 페이퍼가 삭제되었습니다!",
   FAIL_DELETE_PAGE: "해당 롤링 페이퍼를 삭제할 수 없습니다.",
 };
 
