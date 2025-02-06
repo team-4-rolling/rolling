@@ -1,5 +1,5 @@
 import Button from "../../Button/Button";
-
+import theme from "../../../../styles/theme";
 export default function PaperDelete({ children, onClick }) {
   const handleDelete = () => {
     onClick();
@@ -8,7 +8,9 @@ export default function PaperDelete({ children, onClick }) {
     <div>
       <div>{children}</div>
       <div>
-        <Button onClick={handleDelete}>삭제</Button>
+        <Button $font={theme.font.H5Regular} onClick={handleDelete}>
+          삭제
+        </Button>
       </div>
     </div>
   );

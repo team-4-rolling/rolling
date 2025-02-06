@@ -71,7 +71,7 @@ export const ButtonFlex = styled.div`
 
 export const ButtonContain = styled.div`
   height: 39px;
-  width: 140px;
+  width: 160px;
 
   @media (max-width: 480px) {
     width: 200px;

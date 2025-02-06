@@ -13,7 +13,7 @@ import arrow from "../../assets/icons/white.arrow.svg";
 import { showToast } from "../../components/common/Toast/Toast.jsx";
 import PaperDelete from "../../components/common/Modal/ModalContent/PaperDelete.jsx";
 import Modal from "../../components/common/Modal/Modal";
-
+import theme from "../../styles/theme.jsx";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -127,19 +127,25 @@ export default function RollingPage() {
             <S.ButtonContain>
               {isEdit ? (
                 <Button
+                  $font={theme.font.H5Regular}
                   style={{ width: "100%" }}
                   onClick={handelDeleteMessageClick}
                 >
                   저장하기
                 </Button>
               ) : (
-                <Button style={{ width: "100%" }} onClick={handelEditClick}>
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={handelEditClick}
+                  $font={theme.font.H5Regular}
+                >
                   메시지 삭제하기
                 </Button>
               )}
             </S.ButtonContain>
             <S.ButtonContain>
               <Button
+                $font={theme.font.H5Regular}
                 style={{ width: "100%" }}
                 onClick={() => setDeleteModal(true)}
               >
