@@ -145,5 +145,8 @@ export const LookingBtn = styled(NavLink)`
 
   @media (max-width: 1019px) {
     width: 100%;
+    padding: 0 24px;
+    position: fixed;
+    bottom: 20px;
   }
 `;
