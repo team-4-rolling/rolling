@@ -14,6 +14,7 @@ import { showToast } from "../../components/common/Toast/Toast.jsx";
 import PaperDelete from "../../components/common/Modal/ModalContent/PaperDelete.jsx";
 import Modal from "../../components/common/Modal/Modal";
 import theme from "../../styles/theme.jsx";
+import * as C from "../../constants/messageConstants.jsx";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -51,7 +52,7 @@ export default function RollingPage() {
       setIsLoading(false);
       setHasNext(Boolean(next));
     } catch {
-      showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
+      showToast(C.TOAST_TEXT.ERROR_GET_RECIPIENT, "error", "top");
       setTimeout(() => {
         navigate("/list");
       }, 3000);
@@ -131,7 +132,7 @@ export default function RollingPage() {
                   style={{ width: "100%" }}
                   onClick={handelDeleteMessageClick}
                 >
-                  저장하기
+                  {C.BUTTON_LABELS.DELETE_REQUEST}
                 </Button>
               ) : (
                 <Button
@@ -139,7 +140,7 @@ export default function RollingPage() {
                   onClick={handelEditClick}
                   $font={theme.font.H5Regular}
                 >
-                  메시지 삭제하기
+                  {C.BUTTON_LABELS.MESSAGE_DELETE}
                 </Button>
               )}
             </S.ButtonContain>
@@ -149,7 +150,7 @@ export default function RollingPage() {
                 style={{ width: "100%" }}
                 onClick={() => setDeleteModal(true)}
               >
-                롤링페이퍼 삭제하기
+                {C.BUTTON_LABELS.PAGE_DELETE}
               </Button>
             </S.ButtonContain>
           </S.ButtonFlex>
@@ -164,7 +165,7 @@ export default function RollingPage() {
         </S.Contents>
         <Modal onClose={handleCloseModal} isOpen={deleteModal}>
           <PaperDelete onClick={handelDeletePageClick}>
-            정말 삭제 하시겠습니까?
+            {C.MODAL_TEXT.DELETE_CONFIRM}
           </PaperDelete>
         </Modal>
         <S.Background color={recipient.color} $img={recipient.img} />
