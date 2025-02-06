@@ -12,6 +12,8 @@ export const Username = styled.header`
   color: ${theme.color.Grayscale800};
   position: sticky;
   top: 0;
+  z-index: 200;
+
   @media (max-width: 480px) {
     display: flex;
     justify-content: flex-start;

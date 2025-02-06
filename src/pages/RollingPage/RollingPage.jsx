@@ -1,12 +1,10 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
 import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
@@ -15,6 +13,7 @@ import PaperDelete from "../../components/ModalContent/PaperDelete.jsx";
 import Modal from "../../components/common/Modal/Modal";
 import theme from "../../styles/theme.jsx";
 import * as C from "../../constants/messageConstants.jsx";
+import useLoading from "../../zustand/rollingPageLoading";
 //
 export default function RollingPage() {
   const { id: queryId } = useParams();
@@ -22,7 +21,6 @@ export default function RollingPage() {
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
   const [isScrollEnd, setIsScrollEnd] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -36,13 +34,14 @@ export default function RollingPage() {
     messageCount: 0,
     recentMessages: [],
   });
+  const { isLoading, setIsLoading } = useLoading();
 
   //
   const handleLoad = async () => {
     try {
+      setIsLoading(true);
       const recipientData = await getRecipientById(queryId);
       setRecipient(recipientData);
-      setIsLoading(true);
       let limit = offset == 0 ? 8 : 9;
       const { results, next } = await getMessage(limit, offset, queryId);
       setMessages((prevMessages) =>

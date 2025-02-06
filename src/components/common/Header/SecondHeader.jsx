@@ -20,9 +20,7 @@ export default function SecondHeader({
           <S.ToUser>To. {name}</S.ToUser>
           <S.Div>
             <S.WrittenContainer>
-              {images.length !== 0 && (
-                <CircleImages messageCount={messageCount} images={images} />
-              )}
+              <CircleImages messageCount={messageCount} images={images} />
               <S.Written>
                 <span>{messageCount}</span>명이 작성했어요!
               </S.Written>
