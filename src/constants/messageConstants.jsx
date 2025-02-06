@@ -4,7 +4,7 @@ export const TOAST_TEXT = {
   FAIL_CREATE_MESSAGE: "메시지 전송에 실패했어요.",
   //롤링페이퍼 생성
   SUCCESS_CREATE_PAPER: "님의 롤링 페이퍼 생성에 성공했습니다!",
-  FAIL_CREATE_PAPER: "롤링 페이퍼 생성에 실패 했습니다!",
+  FAIL_CREATE_PAPER: "롤링 페이퍼 생성에 실패했습니다!",
   //idPost 페이지
   FAIL_GET_MESSAGE: "메시지를 불러 올 수 없습니다. 다시 시도해 주세요",
   FAIL_GET_RECIPIENT: "해당 롤링 페이퍼를 찾을 수 없습니다.",
