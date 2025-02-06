@@ -4,7 +4,7 @@ export default function CircleImgLoading() {
   return (
     <S.Loading>
       {Array.from({ length: 4 }, (_, idx) => (
-        <S.Circle $idx={idx} />
+        <S.Circle key={idx} $idx={idx} />
       ))}
     </S.Loading>
   );

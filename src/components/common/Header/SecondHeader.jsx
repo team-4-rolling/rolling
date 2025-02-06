@@ -1,5 +1,4 @@
 import * as S from "./SecondHeader.styles";
-import { useState } from "react";
 import share from "../../../assets/icons/share.svg";
 import smile from "../../../assets/icons/smile.svg";
 import Line from "../Line/Line";
@@ -14,7 +13,6 @@ export default function SecondHeader({
   messageCount,
   recentMessages,
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   const images = recentMessages.map((i) => i.profileImageURL);
 
   return (
@@ -25,13 +23,7 @@ export default function SecondHeader({
           <S.ToUser>To. {name}</S.ToUser>
           <S.Div>
             <S.WrittenContainer>
-              {images.length !== 0 && (
-                <CircleImages
-                  messageCount={messageCount}
-                  images={images}
-                  isLoading={isLoading}
-                />
-              )}
+              <CircleImages messageCount={messageCount} images={images} />
               <S.Written>
                 <span>{messageCount}</span>명이 작성했어요!
               </S.Written>

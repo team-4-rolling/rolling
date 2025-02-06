@@ -1,8 +1,13 @@
+import useLoading from "../../zustand/rollingPageLoading";
 import * as S from "./CircleImages.styles";
 import CircleImgLoading from "./Loading/CircleImgLoading";
 
-export default function CircleImages({ messageCount, images, isLoading }) {
+export default function CircleImages({ messageCount, images }) {
+  const { isLoading } = useLoading();
+
   if (isLoading) return <CircleImgLoading />;
+
+  if (images.length === 0) return;
 
   return (
     <S.Container>
