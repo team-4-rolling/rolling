@@ -116,8 +116,7 @@ export const Overlay = styled.div`
 // 제목
 export const Title = styled.h3`
   margin-top: 10px;
-  font-size: 24px;
-  font-weight: 700;
+  font: ${theme.font.H2Bold};
   z-index: 1;
 `;
 
@@ -147,21 +146,20 @@ export const MoreProfiles = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font: ${theme.font.H8};
   margin-left: -10px;
 `;
 
 // 메시지 카운트 텍스트
 export const MessageCount = styled.p`
   margin-top: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  font: ${theme.font.H5Regular};
   color: ${({ $whiteText }) =>
     $whiteText ? theme.color.White : theme.color.Grayscale900};
   z-index: 1;
 
   span {
-    font-weight: 700;
+    font: ${theme.font.H5bold};
   }
 `;
 
@@ -192,7 +190,7 @@ export const Reaction = styled.div`
   color: ${({ theme }) => theme.color.White};
   padding: 8px 12px;
   border-radius: 18px;
-  font-size: 18px;
+  font: ${theme.font.H5Regular};
   height: 36px;
   width: 65px;
   justify-content: center;
@@ -200,13 +198,12 @@ export const Reaction = styled.div`
   @media (max-width: 600px) {
     width: 55px;
     height: 32px;
-    font-size: 13px;
+    font: ${theme.font.H8};
   }
 `;
 // 반응 없음 문구 스타일
 export const NoReactions = styled.p`
-  font-size: 14px;
-  font-weight: 500;
+  font: ${theme.font.H7Regular};
   color: ${({ $whiteText }) =>
     $whiteText ? theme.color.White : theme.color.Grayscale900};
   text-align: center;
