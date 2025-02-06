@@ -18,7 +18,6 @@ export async function getRecipientById(id) {
   try {
     recipient = await axios.get(`${BASE_URL}13-4/recipients/${id}/`);
   } catch (error) {
-    showToast("해당 롤링페이퍼를 찾을수 없습니다.", "error", "top");
     console.error(error);
   }
   const {

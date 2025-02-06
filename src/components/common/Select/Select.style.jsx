@@ -9,6 +9,7 @@ export const DropDown = styled.div`
 `;
 
 export const Selected = styled.div`
+  background-color: #ffffff;
   cursor: pointer;
   border: ${({ isOpen, theme }) =>
     isOpen
@@ -24,6 +25,7 @@ export const Selected = styled.div`
 
 export const Options = styled.ul`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  background-color: #ffffff;
   color: ${({ isOpen, theme }) =>
     isOpen ? theme.color.Grayscale900 : theme.color.Grayscale500};
   font: ${({ theme }) => theme.font.H5Regular};
@@ -36,6 +38,7 @@ export const Options = styled.ul`
 export const OptionList = styled.li`
   padding: 16px 12px;
   border-radius: 8px;
+  background-color: #ffffff;
   &:hover {
     background-color: ${({ theme }) => theme.color.Grayscale100};
   }
