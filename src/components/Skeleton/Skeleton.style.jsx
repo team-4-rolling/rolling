@@ -1,7 +1,7 @@
 import theme from "../../styles/theme";
 import styled, { keyframes } from "styled-components";
 
-const GradientWave = keyframes`
+export const GradientWave = keyframes`
   from {
     background-position-x:200%;
 

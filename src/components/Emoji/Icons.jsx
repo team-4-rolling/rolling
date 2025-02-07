@@ -22,7 +22,7 @@ export default function Icons({ topReactions, reactions, isLoading }) {
   if (isLoading) return <EmojiLoading />;
 
   if (reactions.length === 0)
-    return <S.NoneEmoji>이모지를 추가해보세요 😀</S.NoneEmoji>;
+    return <S.NoneEmoji>이모지를 추가해 보세요 😀</S.NoneEmoji>;
 
   return (
     <S.Container ref={ref}>
