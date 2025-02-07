@@ -1,9 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
-import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
@@ -19,12 +18,13 @@ export default function RollingPage() {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [isScrollEnd, setIsScrollEnd] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
   const [deletedIds, setDeletedIds] = useState([]);
   const [scrollActive, setScrollActive] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const { isLoading, setIsLoading } = useLoading();
   const [recipient, setRecipient] = useState({
     id: 0,
     name: "",
@@ -33,15 +33,23 @@ export default function RollingPage() {
     messageCount: 0,
     recentMessages: [],
   });
-  const { isLoading, setIsLoading } = useLoading();
-
   //
-  const handleLoad = async () => {
+  const topRef = useRef(null);
+  const endRef = useRef(null);
+  const isInitialLoad = useRef(true);
+  //
+  const handleLoadRecipient = async () => {
     try {
-      setIsLoading(true);
       const recipientData = await getRecipientById(queryId);
       setRecipient(recipientData);
-      let limit = offset == 0 ? 8 : 9;
+    } catch {
+      handleError();
+    }
+  };
+
+  const handleLoad = async () => {
+    try {
+      const limit = offset === 0 ? 8 : 9;
       const { results, next } = await getMessage(limit, offset, queryId);
       setMessages((prevMessages) =>
         offset === 0 ? results : [...prevMessages, ...results]
@@ -50,43 +58,57 @@ export default function RollingPage() {
       setIsLoading(false);
       setHasNext(Boolean(next));
     } catch {
-      showToast(C.TOAST_TEXT.FAIL_GET_RECIPIENT, "error", "top");
-      setTimeout(() => {
-        navigate("/list");
-      }, 3000);
-      return;
+      handleError();
     }
   };
-
+  //
+  const handleError = () => {
+    showToast(C.TOAST_TEXT.FAIL_GET_RECIPIENT, "error", "top");
+    setTimeout(() => {
+      navigate("/list");
+    }, 3000);
+  };
+  //
   useEffect(() => {
-    handleLoad();
-    if (!isLoading && hasNext) {
-      window.addEventListener("scroll", infiniteScroll);
+    if (isInitialLoad.current) {
+      handleLoadRecipient();
+      isInitialLoad.current = false;
     }
-    return () => {
-      infiniteScroll.cancel();
-      window.removeEventListener("scroll", infiniteScroll);
-    };
-  }, [isScrollEnd]);
-
-  const infiniteScroll = useCallback(
-    throttle(() => {
-      if (!isLoading) {
-        const { clientHeight, scrollHeight, scrollTop } =
-          document.documentElement;
-
-        setScrollActive(scrollTop >= 5);
-
-        if (clientHeight + scrollTop >= scrollHeight - 4) {
-          setIsScrollEnd((prev) => !prev);
+    if (isIntersecting && hasNext) {
+      handleLoad();
+    }
+    const topObserver = new IntersectionObserver(
+      ([entry]) => {
+        setScrollActive(!entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+    const endObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (hasNext) {
+          setIsIntersecting(entry.isIntersecting);
         }
+      },
+      { threshold: 0.5, rootMargin: "100px" }
+    );
+
+    if (topRef.current) topObserver.observe(topRef.current);
+    if (endRef.current) endObserver.observe(endRef.current);
+
+    return () => {
+      if (endRef.current) {
+        endObserver.unobserve(endRef.current);
       }
-    }, 300),
-    []
-  );
+      if (topRef.current) {
+        topObserver.unobserve(topRef.current);
+      }
+    };
+  }, [isIntersecting]);
+
   const handelEditClick = () => {
     setIsEdit(true);
   };
+
   const handelDeleteMessageClick = () => {
     deleteMessage(deletedIds);
     setIsEdit(false);
@@ -104,9 +126,11 @@ export default function RollingPage() {
       behavior: "smooth",
     });
   };
+
   const handleCloseModal = () => {
     setDeleteModal(null);
   };
+  //
   return (
     <>
       <SecondHeader
@@ -117,6 +141,7 @@ export default function RollingPage() {
       />
       <div style={{ overflowY: "auto" }}>
         <S.Contents onClose={handleCloseModal}>
+          <div ref={topRef} style={{ height: "5px" }}></div>
           {scrollActive && (
             <S.ScrollUpButton onClick={handleScrollUp}>
               <S.Arrow src={arrow} />
@@ -160,6 +185,7 @@ export default function RollingPage() {
             messages={messages}
             isLoading={isLoading}
           />
+          <p ref={endRef} style={{ height: "5px" }}></p>
         </S.Contents>
         <Modal
           buttonFunction={handelDeletePageClick}
