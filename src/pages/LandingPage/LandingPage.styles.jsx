@@ -26,9 +26,6 @@ export const Container = styled.div`
     padding: 24px;
     gap: 40px;
   }
-  @media (min-width: 1020px) and (max-width: 1248px) {
-    padding: 60px 24px;
-  }
 `;
 
 export const CardContainer = styled.div`
@@ -145,5 +142,8 @@ export const LookingBtn = styled(NavLink)`
 
   @media (max-width: 1019px) {
     width: 100%;
+    padding: 0 24px;
+    position: fixed;
+    bottom: 20px;
   }
 `;
