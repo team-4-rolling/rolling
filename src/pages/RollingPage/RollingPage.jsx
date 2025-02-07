@@ -9,7 +9,6 @@ import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
 import { showToast } from "../../components/common/Toast/Toast.jsx";
-import PaperDelete from "../../components/ModalContent/PaperDelete.jsx";
 import Modal from "../../components/common/Modal/Modal";
 import theme from "../../styles/theme.jsx";
 import * as C from "../../constants/messageConstants.jsx";
@@ -162,10 +161,13 @@ export default function RollingPage() {
             isLoading={isLoading}
           />
         </S.Contents>
-        <Modal onClose={handleCloseModal} isOpen={deleteModal}>
-          <PaperDelete onClick={handelDeletePageClick}>
-            {C.MODAL_TEXT.DELETE_CONFIRM}
-          </PaperDelete>
+        <Modal
+          buttonFunction={handelDeletePageClick}
+          onClose={handleCloseModal}
+          buttonName={C.BUTTON_LABELS.DELETE}
+          isOpen={deleteModal}
+        >
+          {C.MODAL_TEXT.DELETE_CONFIRM}
         </Modal>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>
