@@ -12,6 +12,8 @@ export const Username = styled.header`
   color: ${theme.color.Grayscale800};
   position: sticky;
   top: 0;
+  z-index: 200;
+
   @media (max-width: 480px) {
     display: flex;
     justify-content: flex-start;
@@ -109,22 +111,5 @@ export const Icons = styled.div`
 
   @media (max-width: 767px) {
     width: 215px;
-  }
-`;
-
-export const Share = styled.div`
-  width: 56px;
-  img {
-    width: 24px;
-    height: 24px;
-
-    @media (max-width: 480px) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    width: 36px;
   }
 `;

@@ -13,6 +13,7 @@ export const Container = styled.header`
   border-bottom: 1px solid #ededed;
   position: sticky;
   top: 0;
+  z-index: 200;
 
   @media (max-width: 480px) {
     display: ${({ $hide }) => ($hide ? "none" : "flex")};
