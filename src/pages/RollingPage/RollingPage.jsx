@@ -162,10 +162,13 @@ export default function RollingPage() {
             isLoading={isLoading}
           />
         </S.Contents>
-        <Modal onClose={handleCloseModal} isOpen={deleteModal}>
-          <PaperDelete onClick={handelDeletePageClick}>
-            {C.MODAL_TEXT.DELETE_CONFIRM}
-          </PaperDelete>
+        <Modal
+          buttonFunction={handelDeletePageClick}
+          onClose={handleCloseModal}
+          buttonName={C.BUTTON_LABELS.DELETE}
+          isOpen={deleteModal}
+        >
+          {C.MODAL_TEXT.DELETE_CONFIRM}
         </Modal>
         <S.Background color={recipient.color} $img={recipient.img} />
       </div>
