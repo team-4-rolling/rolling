@@ -1,5 +1,5 @@
 import * as S from "./ModalContent.styles";
-import Badge from "../../../Badge/Badge";
+import Badge from "../Badge/Badge";
 
 export default function ModalContent({ data }) {
   const fonts = {

@@ -1,14 +1,15 @@
 import axios from "axios";
 import { showToast } from "../components/common/Toast/Toast";
+import * as C from "../constants/messageConstants";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function deleteRecipient(id) {
   if (!id) return;
   try {
     await axios.delete(`${BASE_URL}13-4/recipients/${id}/`);
-    showToast("롤링페이퍼가 삭제되었습니다!", "success", "top");
+    showToast(C.TOAST_TEXT.SUCCESS_DELETE_PAGE, "success", "top");
   } catch (error) {
-    showToast("해당 롤링페이퍼를 삭제할 수 없습니다.", "error", "top");
+    showToast(C.TOAST_TEXT.FAIL_DELETE_PAGE, "error", "top");
     console.error(error);
   }
 }
