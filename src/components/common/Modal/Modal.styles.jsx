@@ -9,6 +9,7 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
 `;
 
 export const ModalBox = styled.div`
@@ -26,6 +27,7 @@ export const ModalBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  z-index: 999;
 `;
 
 export const ButtonContainer = styled.div`
