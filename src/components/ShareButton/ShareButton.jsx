@@ -19,7 +19,9 @@ export default function ShareButton() {
   // 카카오 SDK 초기화
   useEffect(() => {
     const initializeKakao = () => {
-      window.Kakao.init(JAVASCRIPT_KEY);
+      if (!Kakao.isInitialized()) {
+        window.Kakao.init(JAVASCRIPT_KEY);
+      }
     };
 
     if (document.readyState === "complete") {
