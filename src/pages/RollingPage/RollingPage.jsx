@@ -1,12 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
 import { useCallback, useEffect, useState } from "react";
 import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import throttle from "lodash.throttle";
 import Button from "../../components/common/Button/Button.jsx";
-import { useParams } from "react-router-dom";
 import Messages from "./Messages.jsx";
 import SecondHeader from "../../components/common/Header/SecondHeader";
 import arrow from "../../assets/icons/white.arrow.svg";
@@ -52,7 +51,7 @@ export default function RollingPage() {
       setIsLoading(false);
       setHasNext(Boolean(next));
     } catch {
-      showToast(C.TOAST_TEXT.ERROR_GET_RECIPIENT, "error", "top");
+      showToast(C.TOAST_TEXT.FAIL_GET_RECIPIENT, "error", "top");
       setTimeout(() => {
         navigate("/list");
       }, 3000);
