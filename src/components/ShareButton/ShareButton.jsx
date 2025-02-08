@@ -19,7 +19,7 @@ export default function ShareButton() {
   useEffect(() => {
     const initializeKakao = () => {
       if (window.Kakao) {
-        if (!Kakao.isInitialized()) {
+        if (!window.Kakao.isInitialized()) {
           window.Kakao.init(JAVASCRIPT_KEY);
         }
       }
