@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import closeIcon from "../../../assets/icons/close.svg";
 import { ToastWrapper, ToastText, CloseButton } from "./Toast.style";
 
