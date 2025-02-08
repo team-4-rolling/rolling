@@ -63,6 +63,7 @@ export default function FromPage() {
         <S.Wrapper>
           <S.Label>프로필</S.Label>
           <Profile
+            setMessage={setMessage}
             onChange={(value) => handleChange("profileImageURL", value)}
           />
         </S.Wrapper>

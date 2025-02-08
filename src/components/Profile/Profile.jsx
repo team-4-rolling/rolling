@@ -3,27 +3,24 @@ import { useState, useEffect, useCallback } from "react";
 import { getProfiles } from "../../api/images.api";
 import ProfileLoading from "./Loading/ProfileLoading";
 
-export default function Profile({ onChange }) {
+export default function Profile({ setMessage, onChange }) {
   const [selected, setSelected] = useState(0);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getProfilesImg = useCallback(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      getProfiles()
-        .then((results) => {
-          setImages(results);
-          if (results.length > 0) {
-            setMessage((prev) => ({ ...prev, profileImageURL: results[0] }));
-          }
-        })
-        .catch((error) => console.error(error))
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 2000);
-  }, []);
+  const getProfilesImg = () => {
+    getProfiles()
+      .then((results) => {
+        setImages(results);
+        if (results.length > 0) {
+          setMessage((prev) => ({ ...prev, profileImageURL: results[0] }));
+        }
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   useEffect(() => {
     getProfilesImg();
