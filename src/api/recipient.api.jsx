@@ -49,6 +49,7 @@ export async function submitToPage(dataToSend) {
     return response.data.id;
   } catch (error) {
     console.error("Failed to submit data:", error);
+    showToast(C.TOAST_TEXT.FAIL_CREATE_PAPER, "error", "top");
     return null;
   }
 }

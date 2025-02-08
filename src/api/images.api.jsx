@@ -7,6 +7,7 @@ export async function getBackgroundImages() {
     const response = await axios.get(`${BASE_URL}/background-images/`);
     return response.data.imageUrls;
   } catch (error) {
+    showToast("해당 이미지를 불러오는 데 실패했습니다.", "error", "top");
     console.error("Failed to fetch background images:", error);
     return [];
   }
