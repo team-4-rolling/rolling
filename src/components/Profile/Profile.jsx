@@ -1,9 +1,33 @@
 import * as S from "./Profile.styles";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { getProfiles } from "../../api/images.api";
 import ProfileLoading from "./Loading/ProfileLoading";
 
-export default function Profile({ images, setImages, onChange, isLoading }) {
+export default function Profile({ onChange }) {
   const [selected, setSelected] = useState(0);
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getProfilesImg = useCallback(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getProfiles()
+        .then((results) => {
+          setImages(results);
+          if (results.length > 0) {
+            setMessage((prev) => ({ ...prev, profileImageURL: results[0] }));
+          }
+        })
+        .catch((error) => console.error(error))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    getProfilesImg();
+  }, []);
 
   if (isLoading) return <ProfileLoading />;
 
