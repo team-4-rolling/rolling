@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./RollingPage.style.jsx";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { deleteRecipient, getRecipientById } from "../../api/recipient.api.jsx";
 import { getMessage, deleteMessage } from "../../api/messages.api.jsx";
 import Button from "../../components/common/Button/Button.jsx";
