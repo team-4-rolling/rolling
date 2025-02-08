@@ -5,7 +5,8 @@ import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
 import SelectableBox from "../../components/SelectableBox/SelectableBox";
 import Input from "../../components/common/Input/Input";
-import { getBackgroundImages, submitToPage } from "../../api/toPageData";
+import { getBackgroundImages } from "../../api/toPageData";
+import { submitToPage } from "../../api/recipient.api";
 import { showToast } from "../../components/common/Toast/Toast";
 
 // 컬러 선택을 위한 옵션 리스트
