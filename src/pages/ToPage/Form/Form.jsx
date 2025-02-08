@@ -102,7 +102,6 @@ export default function Form({
           <Button
             large
             type="submit"
-            onClick={handleSubmit}
             $font={`${theme.font.H4Regular}`}
             disabled={!dataToSend.name.trim()}
           >
