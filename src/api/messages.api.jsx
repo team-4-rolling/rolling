@@ -39,7 +39,7 @@ export async function deleteMessage(deletedIds) {
 
 export async function postMessage(recipientId, payload) {
   const response = await axios.post(
-    `${BASE_URL}13-4/recipients/${recipientId}/messages/`,
+    `${RECIPIENTS_URL}${recipientId}/messages/`,
     payload
   );
 
