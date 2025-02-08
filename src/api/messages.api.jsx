@@ -10,7 +10,7 @@ export async function getMessage(limit = 9, offset = 0, id) {
   let res;
   try {
     res = await axios.get(
-      `${RECIPIENTS_URL}/${id}/messages/?limit=${limit}&offset=${offset}`
+      `${RECIPIENTS_URL}${id}/messages/?limit=${limit}&offset=${offset}`
     );
   } catch (error) {
     console.error("getMessage api 에러발생", error.message);
@@ -25,7 +25,7 @@ export async function deleteMessage(deletedIds) {
   if (deletedIds.length > 0) {
     try {
       await Promise.all(
-        deletedIds.map((id) => axios.delete(`${MESSAGES_URL}/${id}/`))
+        deletedIds.map((id) => axios.delete(`${MESSAGES_URL}${id}/`))
       );
       showToast(C.TOAST_TEXT.SUCCESS_DELETE_MESSAGE, "success", "top");
     } catch (error) {

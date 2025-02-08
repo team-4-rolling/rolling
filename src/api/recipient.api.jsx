@@ -7,7 +7,7 @@ const RECIPIENTS_URL = import.meta.env.VITE_RECIPIENTS_URL;
 export async function deleteRecipient(id) {
   if (!id) return;
   try {
-    await axios.delete(`${RECIPIENTS_URL}/${id}/`);
+    await axios.delete(`${RECIPIENTS_URL}${id}/`);
     showToast(C.TOAST_TEXT.SUCCESS_DELETE_PAGE, "success", "top");
   } catch (error) {
     showToast(C.TOAST_TEXT.FAIL_DELETE_PAGE, "error", "top");
@@ -18,7 +18,7 @@ export async function deleteRecipient(id) {
 export async function getRecipientById(id) {
   let recipient;
   try {
-    recipient = await axios.get(`${RECIPIENTS_URL}/${id}/`);
+    recipient = await axios.get(`${RECIPIENTS_URL}${id}/`);
   } catch (error) {
     console.error(error);
   }
@@ -34,7 +34,7 @@ export async function getRecipientById(id) {
 
 export async function getAllRecipients() {
   try {
-    const res = await axios.get(`${RECIPIENTS_URL}/?limit=100&offset=0`);
+    const res = await axios.get(`${RECIPIENTS_URL}?limit=100&offset=0`);
     return res.data.results;
   } catch (error) {
     console.error("getAllRecipients API 에러 발생:", error.message);
@@ -44,7 +44,7 @@ export async function getAllRecipients() {
 
 export async function submitToPage(dataToSend) {
   try {
-    const response = await axios.post(`${RECIPIENTS_URL}/`, dataToSend);
+    const response = await axios.post(`${RECIPIENTS_URL}`, dataToSend);
 
     return response.data.id;
   } catch (error) {
