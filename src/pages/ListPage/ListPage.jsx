@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllRecipients } from "../../api/recipientsApi";
+import { getAllRecipients } from "../../api/recipient.api";
 import ListCard from "../../components/ListCard/Listcard";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";

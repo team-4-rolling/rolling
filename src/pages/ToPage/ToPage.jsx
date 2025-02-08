@@ -1,7 +1,8 @@
 import * as C from "../../constants/messageConstants";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getBackgroundImages, submitToPage } from "../../api/toPageData";
+import { submitToPage } from "../../api/recipient.api";
+import { getBackgroundImages } from "../../api/images.api";
 import { showToast } from "../../components/common/Toast/Toast";
 import Form from "./Form/Form";
 
