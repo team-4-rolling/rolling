@@ -101,10 +101,10 @@ export default function Form({
         <S.ButtonContainer>
           <Button
             large
-            type="submit" // 폼 제출 버튼으로 변경
+            type="submit"
             onClick={handleSubmit}
             $font={`${theme.font.H4Regular}`}
-            disabled={!dataToSend.name.trim()} // 이름이 없으면 비활성화
+            disabled={!dataToSend.name.trim()}
           >
             생성하기
           </Button>
