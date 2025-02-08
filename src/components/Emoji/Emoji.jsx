@@ -5,7 +5,7 @@ import Button from "../common/Button/Button";
 import Icons from "./Icons";
 import theme from "../../styles/theme";
 import smile from "../../assets/icons/smile.svg";
-import { getReactions, postReaction } from "../../api/reactions";
+import { getReactions, postReaction } from "../../api/reactions.api";
 import { useAutoClose } from "../../hooks/useAutoClose";
 
 export default function Emoji({ recipientId }) {
