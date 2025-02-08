@@ -5,6 +5,7 @@ export const DropDown = styled.div`
   width: 320px;
   height: 50px;
   position: relative;
+  z-index: 100;
 `;
 
 export const Selected = styled.div`
