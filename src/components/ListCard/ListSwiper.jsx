@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -8,10 +8,12 @@ const ListSwiper = ({
   recipients,
   customId,
   renderCard,
+  setSwiperInstance,
   setIsBeginning,
   setIsEnd,
 }) => {
-  // ✅ 부모에서 상태 업데이트 받음
+  const swiperRef = useRef(null);
+
   return (
     <Swiper
       modules={[Navigation]}
@@ -25,7 +27,9 @@ const ListSwiper = ({
         1920: { slidesPerView: 4, spaceBetween: 20 },
       }}
       onSwiper={(swiper) => {
-        setIsBeginning(swiper.isBeginning); // ✅ Swiper 초기 상태 업데이트
+        swiperRef.current = swiper;
+        setSwiperInstance(swiper);
+        setIsBeginning(swiper.isBeginning);
         setIsEnd(swiper.isEnd);
       }}
       onSlideChange={(swiper) => {
