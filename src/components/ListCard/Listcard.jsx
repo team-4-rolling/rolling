@@ -5,8 +5,9 @@ import ArrowButton from "./ArrowButton";
 import RecipientCard from "./RecipientCard";
 
 function ListCard({ recipients = [], customId }) {
-  const [isBeginning, setIsBeginning] = useState(true); // ✅ 처음 상태
-  const [isEnd, setIsEnd] = useState(false); // ✅ 끝 상태
+  const [swiperInstance, setSwiperInstance] = useState(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   if (!Array.isArray(recipients)) {
     console.error("리스트 카드 프롭스가 배열이 아닙니다.", recipients);
@@ -17,9 +18,9 @@ function ListCard({ recipients = [], customId }) {
     <Container>
       <ArrowButton
         direction="prev"
+        swiperInstance={swiperInstance}
         className={`swiper-button-prev-${customId}`}
-        onClick={() => {}}
-        hidden={isBeginning} // ✅ 왼쪽 끝이면 숨김
+        hidden={isBeginning}
       />
 
       <ListSwiper
@@ -28,15 +29,16 @@ function ListCard({ recipients = [], customId }) {
         renderCard={(recipient) => (
           <RecipientCard key={recipient.id} recipient={recipient} />
         )}
-        setIsBeginning={setIsBeginning} // ✅ Swiper에서 상태 업데이트 받음
+        setSwiperInstance={setSwiperInstance}
+        setIsBeginning={setIsBeginning}
         setIsEnd={setIsEnd}
       />
 
       <ArrowButton
         direction="next"
+        swiperInstance={swiperInstance}
         className={`swiper-button-next-${customId}`}
-        onClick={() => {}}
-        hidden={isEnd} // ✅ 오른쪽 끝이면 숨김
+        hidden={isEnd}
       />
     </Container>
   );
