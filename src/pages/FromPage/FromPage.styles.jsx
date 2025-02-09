@@ -7,10 +7,14 @@ export const FromContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 24px 0;
+  padding: 50px 24px 250px;
 
-  @media (max-width: 768px) {
+  @media (min-width: 481px;) and (max-width: 768px) {
     padding: 24px 24px 350px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 24px 24px 200px;
   }
 `;
 
@@ -45,14 +49,16 @@ export const Label = styled.h2`
 `;
 
 export const CreateBtn = styled.div`
+  max-width: 720px;
   width: 100%;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 
   @media (max-width: 768px) {
     min-width: 320px;
     padding: 0 16px;
-    position: fixed;
-    bottom: 20px;
-    right: 0px;
-    z-index: 101;
   }
 `;
