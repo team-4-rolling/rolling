@@ -178,8 +178,16 @@ export const Reaction = styled.div`
   border-radius: 18px;
   font: ${theme.font.H5Regular};
   height: 36px;
-  width: 70px;
+  width: 67px;
   justify-content: center;
+
+  @media (max-width: 1200px) {
+    width: 64px;
+    height: 36px;
+    font: ${theme.font.H7Regular};
+    /* font-size: 14px;
+    font: sans-serif; */
+  }
 
   @media (max-width: 600px) {
     width: 60px;
