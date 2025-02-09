@@ -66,6 +66,7 @@ export default function FromPage() {
             label="From."
             name="sender"
             placeholder="이름을 입력해 주세요"
+            errorMessage="이름을 입력해 주세요"
             onChange={handleInputChange}
           />
         </S.InputContainer>
