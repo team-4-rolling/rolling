@@ -44,12 +44,6 @@ export const Label = styled.h2`
   color: ${theme.color.Grayscale900};
 `;
 
-export const Div = styled.div`
-  width: 100%;
-  height: 260px;
-  background-color: #cccccc;
-`;
-
 export const CreateBtn = styled.div`
   width: 100%;
 

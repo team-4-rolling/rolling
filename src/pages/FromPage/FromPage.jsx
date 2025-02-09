@@ -1,4 +1,5 @@
 import * as S from "./FromPage.styles";
+import * as C from "../../constants/messageConstants";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
 import Select from "../../components/common/Select/Select";
@@ -40,12 +41,12 @@ export default function FromPage() {
   const handleMessageSubmit = () => {
     postMessage(id, message)
       .then(() => {
-        showToast("메시지 전달 성공🎉", "success", "top");
+        showToast(`${C.TOAST_TEXT.SUCCESS_CREATE_MESSAGE}🎉`, "success", "top");
         navigate(`/post/${id}`);
       })
       .catch((error) => {
         console.error(error);
-        showToast("메시지 전달 실패😞", "error", "top");
+        showToast(`${C.TOAST_TEXT.FAIL_CREATE_MESSAGE}😞`, "error", "top");
       });
   };
 
