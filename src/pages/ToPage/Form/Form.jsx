@@ -32,7 +32,7 @@ export default function Form({
   };
 
   return (
-    <form
+    <div
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
@@ -102,6 +102,7 @@ export default function Form({
           <Button
             large
             type="submit"
+            onClick={handleSubmit}
             $font={`${theme.font.H4Regular}`}
             disabled={!dataToSend.name.trim()}
           >
@@ -109,6 +110,6 @@ export default function Form({
           </Button>
         </S.ButtonContainer>
       </S.PageContainer>
-    </form>
+    </div>
   );
 }
