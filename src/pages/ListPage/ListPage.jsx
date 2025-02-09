@@ -2,37 +2,37 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllRecipients } from "../../api/recipient.api";
 import ListCard from "../../components/ListCard/Listcard";
+import SkeletonCardList from "../../components/ListCard/SkeletonCardList";
 import Button from "../../components/common/Button/Button";
 import theme from "../../styles/theme";
 import {
   Container,
   Section,
   Title,
-  LoadingMessage,
   ButtonContainer,
-} from "./ListPage.style";
+} from "../ListPage/ListPage.style";
 
 function ListPage() {
   const [popularRecipients, setPopularRecipients] = useState([]);
   const [recentRecipients, setRecentRecipients] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true); // 데이터 요청 전 로딩 상태 true
       const data = await getAllRecipients();
-      // console.log("받아온 recipients 데이터:", data);
 
       if (Array.isArray(data)) {
         const sortedByReaction = [...data].sort(
           (a, b) => b.reactionCount - a.reactionCount
         );
-        const sortedByDate = [...data].sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
 
         setPopularRecipients(sortedByReaction);
-        setRecentRecipients(sortedByDate);
+        setRecentRecipients(data);
       }
+
+      setLoading(false); // ✅ 데이터 로드 완료 후 false로 변경
     }
 
     fetchData();
@@ -42,19 +42,19 @@ function ListPage() {
     <Container>
       <Section>
         <Title>인기 롤링 페이퍼 🔥</Title>
-        {popularRecipients.length > 0 ? (
-          <ListCard recipients={popularRecipients} customId="popular" />
+        {loading ? (
+          <SkeletonCardList />
         ) : (
-          <LoadingMessage>데이터를 불러오는 중...</LoadingMessage>
+          <ListCard recipients={popularRecipients} customId="popular" />
         )}
       </Section>
 
       <Section>
         <Title>최근에 만든 롤링 페이퍼 ⭐</Title>
-        {recentRecipients.length > 0 ? (
-          <ListCard recipients={recentRecipients} customId="recent" />
+        {loading ? (
+          <SkeletonCardList />
         ) : (
-          <LoadingMessage>데이터를 불러오는 중...</LoadingMessage>
+          <ListCard recipients={recentRecipients} customId="recent" />
         )}
       </Section>
 

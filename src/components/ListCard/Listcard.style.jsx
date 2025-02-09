@@ -192,11 +192,11 @@ export const Reaction = styled.div`
   border-radius: 18px;
   font: ${theme.font.H5Regular};
   height: 36px;
-  width: 65px;
+  width: 70px;
   justify-content: center;
 
   @media (max-width: 600px) {
-    width: 55px;
+    width: 60px;
     height: 32px;
     font: ${theme.font.H8};
   }
