@@ -4,6 +4,16 @@ import reset from "styled-reset";
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  :root {
+    /* class로 적용이 왜 안되는지 의문 */
+    --toastify-container-width: 524px;
+  }
+
+  /* 실제 모바일에서 확인했을 때, 이유가 있는지 그것이 궁금하다 */
+  .Toastify__toast-container--top-center {
+    top: 16px;
+  }
+
   * {
       box-sizing: border-box;
   }
@@ -11,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
 
   @font-face {
     font-family: 'Pretendard';
