@@ -89,7 +89,7 @@ export default function RollingPage() {
           setIsIntersecting(entry.isIntersecting);
         }
       },
-      { threshold: 0.5, rootMargin: "100px" }
+      { threshold: 0.5, rootMargin: "50px" }
     );
 
     if (topRef.current) topObserver.observe(topRef.current);
@@ -185,7 +185,7 @@ export default function RollingPage() {
             messages={messages}
             isLoading={isLoading}
           />
-          <p ref={endRef} style={{ height: "5px" }}></p>
+          <S.InfiniteScrollRef ref={endRef} style={{ height: "5px" }} />
         </S.Contents>
         <Modal
           buttonFunction={handelDeletePageClick}
