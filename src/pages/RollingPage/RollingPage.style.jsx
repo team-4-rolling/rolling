@@ -22,11 +22,15 @@ export const Background = styled.div`
 export const Contents = styled.div`
   width: 100%;
   height: 100%;
-  padding: 113px 30px 300px;
+  padding: 113px 30px 100px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  overflow-x: hidden;
+  @media (max-width: 480px) {
+    padding-top: 50px;
+  }
 `;
 //버튼 div
 export const ButtonFlex = styled.div`
@@ -157,4 +161,8 @@ export const Arrow = styled.img`
   height: 30px;
   bottom: 120px;
   right: 60px;
+`;
+
+export const InfiniteScrollRef = styled.div`
+  height: 200px;
 `;
