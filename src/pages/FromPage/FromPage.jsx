@@ -54,7 +54,7 @@ export default function FromPage() {
     const content = JSON.parse(message.content || "{}");
 
     return (
-      message.sender.trim() && content.blocks?.map(({ text }) => text.trim())
+      message.sender.trim() && content.blocks?.some(({ text }) => text.trim())
     );
   };
 
