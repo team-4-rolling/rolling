@@ -45,4 +45,7 @@ export const Profile = styled.img`
   &:hover {
     opacity: 1;
   }
+  @media (max-width: 768px) {
+    opacity: 1;
+  }
 `;
