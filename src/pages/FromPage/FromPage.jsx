@@ -49,7 +49,13 @@ export default function FromPage() {
       });
   };
 
-  const fromValidate = message.sender.trim() && message.content.trim();
+  const fromValidate = () => {
+    const content = JSON.parse(message.content || "{}");
+
+    return (
+      message.sender.trim() && content.blocks?.map(({ text }) => text.trim())
+    );
+  };
 
   return (
     <S.FromContainer>
@@ -97,7 +103,7 @@ export default function FromPage() {
             $font={`${theme.font.H4Regular}`}
             style={{ width: "100%" }}
             onClick={handleMessageSubmit}
-            disabled={!fromValidate}
+            disabled={!fromValidate()}
           >
             생성하기
           </Button>
