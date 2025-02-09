@@ -1,5 +1,6 @@
 import * as S from "./RollingCard.styles";
-import { marked } from "marked";
+import { EditorState, convertFromRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 import trash from "../../assets/icons/trash.svg";
 import Badge from "../Badge/Badge";
 
@@ -16,6 +17,15 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
   ).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 
   const fontFamily = fonts[data.font];
+
+  const contentToHtml = () => {
+    try {
+      const content = JSON.parse(data.content);
+      return draftToHtml(content);
+    } catch {
+      return data.content;
+    }
+  };
 
   return (
     <S.Card>
@@ -38,10 +48,10 @@ export default function RollingCard({ data, isEdit = false, onClick }) {
       </S.FromContainer>
       <S.Letter>
         <S.Content
-          dangerouslySetInnerHTML={{
-            __html: marked(data.content),
-          }}
           $font={fontFamily}
+          dangerouslySetInnerHTML={{
+            __html: contentToHtml(),
+          }}
         />
         <S.Date>{formattedDate}</S.Date>
       </S.Letter>
