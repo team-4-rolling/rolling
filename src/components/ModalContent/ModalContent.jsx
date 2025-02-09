@@ -1,4 +1,5 @@
 import * as S from "./ModalContent.styles";
+import draftToHtml from "draftjs-to-html";
 import Badge from "../Badge/Badge";
 
 export default function ModalContent({ data }) {
@@ -14,6 +15,15 @@ export default function ModalContent({ data }) {
   ).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 
   const fontFamily = fonts[data.font];
+
+  const contentToHtml = () => {
+    try {
+      const content = JSON.parse(data.content);
+      return draftToHtml(content);
+    } catch {
+      return data.content;
+    }
+  };
 
   return (
     <S.Card>
@@ -31,7 +41,12 @@ export default function ModalContent({ data }) {
         <S.Date>{formattedDate}</S.Date>
       </S.FromContainer>
       <S.Letter>
-        <S.Content $font={fontFamily}>{data.content}</S.Content>
+        <S.Content
+          dangerouslySetInnerHTML={{
+            __html: contentToHtml(),
+          }}
+          $font={fontFamily}
+        />
       </S.Letter>
     </S.Card>
   );

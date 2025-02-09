@@ -1,5 +1,4 @@
 import * as S from "./RollingCard.styles";
-import { EditorState, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import trash from "../../assets/icons/trash.svg";
 import Badge from "../Badge/Badge";
