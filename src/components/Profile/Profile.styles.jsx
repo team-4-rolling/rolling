@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 export const ProfileContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
 `;
 

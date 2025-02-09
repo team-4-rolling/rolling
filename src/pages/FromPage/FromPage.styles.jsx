@@ -9,8 +9,8 @@ export const FromContainer = styled.div`
   align-items: center;
   padding: 50px 24px 0;
 
-  @media (max-width: 480px) {
-    padding: 24px 24px 0;
+  @media (max-width: 768px) {
+    padding: 24px 24px 350px;
   }
 `;
 
@@ -59,5 +59,6 @@ export const CreateBtn = styled.div`
     position: fixed;
     bottom: 20px;
     right: 0px;
+    z-index: 101;
   }
 `;
