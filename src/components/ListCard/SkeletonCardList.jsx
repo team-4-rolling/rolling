@@ -23,15 +23,15 @@ const SkeletonCardList = () => {
       if (width >= 1024) {
         setCount(4);
       } else if (width >= 768) {
-        setCount(3); // 2.6개 표현을 위해 반 내림 → 3개
+        setCount(3);
       } else if (width >= 360) {
-        setCount(2); // 1.6개 표현을 위해 반 내림 → 2개
+        setCount(2);
       } else {
         setCount(1);
       }
     };
 
-    updateCount(); // 초기 실행
+    updateCount();
     window.addEventListener("resize", updateCount);
     return () => window.removeEventListener("resize", updateCount);
   }, []);

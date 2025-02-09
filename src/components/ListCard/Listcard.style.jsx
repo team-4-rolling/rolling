@@ -16,7 +16,6 @@ export const Container = styled.div`
   }
 `;
 
-// Swiper 버튼 공통 스타일 (테블릿에서 제거)
 const SwiperButton = styled.div`
   position: absolute;
   top: 50%;
@@ -34,23 +33,20 @@ const SwiperButton = styled.div`
   }
 `;
 
-// 이전 버튼
 export const PrevButton = styled(SwiperButton)`
   left: -30px;
 `;
 
-// 다음 버튼
 export const NextButton = styled(SwiperButton)`
   right: -20px;
 `;
 
-// Swiper 슬라이드 (카드 컨테이너) - 카드 간 간격 조정
 export const Slide = styled.div`
   flex: 0 0 auto;
   width: 275px;
   height: 260px;
   margin-right: 10px;
-  width: auto; //이거 삭제하지 마셈 제발
+  width: auto;
 
   @media (max-width: 1024px) {
     width: 275px;
@@ -67,7 +63,6 @@ export const Slide = styled.div`
   }
 `;
 
-// 카드 스타일
 export const Card = styled.div`
   width: 100%;
   height: 100%;
@@ -103,7 +98,6 @@ export const Card = styled.div`
   }
 `;
 
-// 배경 오버레이
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -113,21 +107,18 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.15);
 `;
 
-// 제목
 export const Title = styled.h3`
   margin-top: 10px;
   font: ${theme.font.H2Bold};
   z-index: 1;
 `;
 
-// 프로필 이미지 목록 컨테이너
 export const ProfileContainer = styled.div`
   display: flex;
   margin-top: 8px;
   z-index: 1;
 `;
 
-// 프로필 이미지
 export const ProfileImage = styled.img`
   width: 32px;
   height: 32px;
@@ -136,7 +127,6 @@ export const ProfileImage = styled.img`
   border: 2px solid white;
 `;
 
-// 추가 메시지 개수 표시
 export const MoreProfiles = styled.div`
   width: 32px;
   height: 32px;
@@ -150,7 +140,6 @@ export const MoreProfiles = styled.div`
   margin-left: -10px;
 `;
 
-// 메시지 카운트 텍스트
 export const MessageCount = styled.p`
   margin-top: 6px;
   font: ${theme.font.H5Regular};
@@ -163,7 +152,6 @@ export const MessageCount = styled.p`
   }
 `;
 
-// 구분선
 export const Divider = styled.div`
   width: 90%;
   height: 1px;
@@ -173,7 +161,6 @@ export const Divider = styled.div`
   z-index: 1;
 `;
 
-// 반응 이모지 컨테이너
 export const ReactionsContainer = styled.div`
   display: flex;
   align-items: center;
@@ -182,7 +169,6 @@ export const ReactionsContainer = styled.div`
   z-index: 1;
 `;
 
-// 개별 반응 스타일 (이모지 크기 조정)
 export const Reaction = styled.div`
   display: flex;
   align-items: center;
@@ -201,7 +187,7 @@ export const Reaction = styled.div`
     font: ${theme.font.H8};
   }
 `;
-// 반응 없음 문구 스타일
+
 export const NoReactions = styled.p`
   font: ${theme.font.H7Regular};
   color: ${({ $whiteText }) =>

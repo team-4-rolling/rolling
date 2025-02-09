@@ -15,12 +15,12 @@ import {
 function ListPage() {
   const [popularRecipients, setPopularRecipients] = useState([]);
   const [recentRecipients, setRecentRecipients] = useState([]);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
-      setLoading(true); // 데이터 요청 전 로딩 상태 true
+      setLoading(true);
       const data = await getAllRecipients();
 
       if (Array.isArray(data)) {
@@ -32,7 +32,7 @@ function ListPage() {
         setRecentRecipients(data);
       }
 
-      setLoading(false); // ✅ 데이터 로드 완료 후 false로 변경
+      setLoading(false);
     }
 
     fetchData();
