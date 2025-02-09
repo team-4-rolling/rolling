@@ -1,29 +1,37 @@
-import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
+import * as S from "./Editor.styles";
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useState, useEffect } from "react";
 
 export default function EditorContent({ editorRef, content, onChange }) {
-  const toolbarItems = [["bold", "italic", "strike"]];
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-  const handleEditorChange = () => {
-    const editorInstance = editorRef.current.getInstance();
-    const currentContent = editorInstance.getMarkdown();
-    onChange(currentContent);
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
+    const content = convertToRaw(editorState.getCurrentContent());
+    onChange(JSON.stringify(content));
   };
 
   return (
-    <div style={{ zIndex: "1" }}>
+    <S.StyledEditor>
       <Editor
-        ref={editorRef}
-        placeholder="메시지 내용을 입력해 주세요"
-        initialValue={content}
-        height="260px"
-        language="ko-KR"
-        initialEditType="wysiwyg"
-        useCommandShortcut={false}
-        hideModeSwitch={true}
-        toolbarItems={toolbarItems}
-        onChange={handleEditorChange}
+        placeholder="메시지 내용을 작성해 주세요."
+        localization={{
+          locale: "ko",
+        }}
+        toolbar={{
+          options: ["inline"],
+          inline: {
+            options: ["bold", "italic", "underline", "strikethrough"],
+          },
+        }}
+        editorState={editorState}
+        editorClassName="editor"
+        toolbarClassName="editorToollbar"
+        wrapperClassName="editorWrapper"
+        onEditorStateChange={onEditorStateChange}
       />
-    </div>
+    </S.StyledEditor>
   );
 }
