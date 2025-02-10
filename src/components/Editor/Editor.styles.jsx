@@ -16,8 +16,7 @@ export const StyledEditor = styled.div`
     background-color: ${theme.color.Grayscale200};
   }
   .editor {
-    height: 260px;
+    min-height: 210px;
     padding: 10px;
-    margin: 0;
   }
 `;

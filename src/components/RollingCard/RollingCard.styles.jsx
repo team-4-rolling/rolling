@@ -111,6 +111,14 @@ export const Content = styled.p`
   text-align: left;
   overflow: hidden;
 
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
   @media (max-width: 480px) {
     height: 44px;
     font-size: 15px;
