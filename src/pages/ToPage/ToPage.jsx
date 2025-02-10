@@ -9,6 +9,7 @@ import Form from "./Form/Form";
 export default function ToPage() {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true); // 추가된 로딩상태
   const [dataToSend, setDataToSend] = useState({
     name: "",
     backgroundColor: "beige",
@@ -16,12 +17,15 @@ export default function ToPage() {
   });
 
   useEffect(() => {
+    setLoading(true); // API 호출 전 로딩 시작
     getBackgroundImages()
       .then((response) => {
         setImages(response);
       })
-      .catch((error) => console.error("Failed to fetch images:", error));
+      .catch((error) => console.error("Failed to fetch images:", error))
+      .finally(() => setLoading(false)); //API 호출 후 로딩 종료
   }, []);
+  console.log("loading 상태:", loading);
 
   // dataToSend 상태 업데이트
   const handleChange = (name, value) => {
@@ -48,6 +52,8 @@ export default function ToPage() {
     <div style={{ overflowY: "auto" }}>
       <Form
         images={images}
+        loading={loading} // 로딩 상태 전달
+        setLoading={setLoading}
         dataToSend={dataToSend}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
