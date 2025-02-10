@@ -9,6 +9,7 @@ import Form from "./Form/Form";
 export default function ToPage() {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [dataToSend, setDataToSend] = useState({
     name: "",
     backgroundColor: "beige",
@@ -16,11 +17,13 @@ export default function ToPage() {
   });
 
   useEffect(() => {
+    setLoading(true);
     getBackgroundImages()
       .then((response) => {
         setImages(response);
       })
-      .catch((error) => console.error("Failed to fetch images:", error));
+      .catch((error) => console.error("Failed to fetch images:", error))
+      .finally(() => setLoading(false));
   }, []);
 
   // dataToSend 상태 업데이트
@@ -48,6 +51,8 @@ export default function ToPage() {
     <div style={{ overflowY: "auto" }}>
       <Form
         images={images}
+        loading={loading}
+        setLoading={setLoading}
         dataToSend={dataToSend}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
