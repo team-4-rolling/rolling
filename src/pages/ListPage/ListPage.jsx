@@ -24,11 +24,11 @@ function ListPage() {
       const data = await getAllRecipients();
 
       if (Array.isArray(data)) {
-        const sortedByReaction = [...data].sort(
-          (a, b) => b.reactionCount - a.reactionCount
+        const sortedBymessage = [...data].sort(
+          (a, b) => b.messageCount - a.messageCount
         );
 
-        setPopularRecipients(sortedByReaction);
+        setPopularRecipients(sortedBymessage);
         setRecentRecipients(data);
       }
 
