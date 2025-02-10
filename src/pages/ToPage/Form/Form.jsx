@@ -37,12 +37,7 @@ export default function Form({
   };
 
   return (
-    <div
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <div>
       <S.PageContainer>
         <S.ToContainer>
           <Input
