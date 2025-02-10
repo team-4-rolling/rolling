@@ -36,3 +36,12 @@ export async function deleteMessage(deletedIds) {
     showToast(C.TOAST_TEXT.HAVE_NO_DELETE_MESSAGE, "error", "top");
   }
 }
+
+export async function postMessage(recipientId, payload) {
+  const response = await axios.post(
+    `${RECIPIENTS_URL}${recipientId}/messages/`,
+    payload
+  );
+
+  return response;
+}

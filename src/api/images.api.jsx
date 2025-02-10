@@ -12,3 +12,9 @@ export async function getBackgroundImages() {
     return [];
   }
 }
+
+export async function getProfiles() {
+  const response = await axios.get(`${BASE_URL}profile-images/`);
+
+  return response.data.imageUrls;
+}

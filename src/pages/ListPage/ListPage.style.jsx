@@ -59,6 +59,7 @@ export const LoadingMessage = styled.p`
 export const ButtonContainer = styled.div`
   margin-top: 80px;
   width: 280px;
+  z-index: 999;
 
   @media (max-width: 1024px) {
     bottom: 20px;

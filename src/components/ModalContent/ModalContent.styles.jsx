@@ -83,6 +83,14 @@ export const Content = styled.p`
   line-height: 28px;
   color: ${theme.color.Grayscale600};
   text-align: left;
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
 `;
 
 export const Date = styled.div`
