@@ -14,8 +14,8 @@ const COLORS = [
 
 export default function Form({
   images,
-  loading, // 추가된 로딩 상태
-  setLoading, // 토글 바꿀 때마다 스켈레톤 나오게 하려고 추가한 프롭스
+  loading,
+  setLoading,
   dataToSend,
   handleChange,
   handleSubmit,
@@ -28,8 +28,8 @@ export default function Form({
     setMode(modeValue);
     setSelected(modeValue === "color" ? "beige" : 0);
 
-    setLoading(true); // 토글을 변경할 때마다 스켈레톤 표시
-    setTimeout(() => setLoading(false), 1000);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 700);
   };
 
   const handleSelect = (key) => {
@@ -100,7 +100,7 @@ export default function Form({
             onSubmit={handleSubmit}
             onSelect={handleSelect}
             type={mode}
-            loading={loading} // 로딩 상태 전달
+            loading={loading}
           />
         </S.BoxContainer>
 

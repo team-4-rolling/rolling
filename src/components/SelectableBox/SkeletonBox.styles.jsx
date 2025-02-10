@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { GradientWave } from "../Skeleton/Skeleton.style";
+import theme from "../../styles/theme";
 
 export const Grid = styled.div`
   display: grid;
@@ -18,18 +20,15 @@ export const Grid = styled.div`
 `;
 
 export const SkeletonBox = styled.div`
+  animation: ${GradientWave} 1.7s linear infinite;
+  background: linear-gradient(
+    to right,
+    ${theme.color.Grayscale200} 25%,
+    ${theme.color.Grayscale100} 50%,
+    ${theme.color.Grayscale200} 75%
+  );
+  background-size: 200% 100%;
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 8px;
-  background-color: #e0e0e0; /* 회색 배경 */
-  animation: pulse 1.5s infinite alternate;
-
-  @keyframes pulse {
-    from {
-      opacity: 0.6;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 `;

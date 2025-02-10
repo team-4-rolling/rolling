@@ -1,6 +1,6 @@
 import * as S from "./SelectableBox.styles.jsx";
 import select from "../../assets/icons/select.svg";
-import Skeleton from "./Skeleton.jsx";
+import Skeleton from "./SkeletonBox.jsx";
 
 export default function SelectableBox({
   items,
@@ -8,7 +8,7 @@ export default function SelectableBox({
   onSelect,
   onClick,
   type,
-  loading, // 추가된 로딩 상태
+  loading,
 }) {
   const handleClick = (item, index) => {
     const isColorType = type === "color";
@@ -19,9 +19,7 @@ export default function SelectableBox({
     onSelect(isColorType ? item.key : index);
   };
 
-  console.log("SelectableBox loading", loading);
-  if (loading) {
-    console.log("스켈레톤 렌더링됨");
+  if (loading && type === "image") {
     return <Skeleton />; //로딩 중일 때 스켈레톤 컴포넌트 표시
   }
 
