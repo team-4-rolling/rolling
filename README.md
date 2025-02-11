@@ -93,7 +93,6 @@
 │		│       ├── Header/
 │		│       ├── Button/
 │		│       ├── Input/
-│		│       ├── Line/
 │		│       ├── Modal/
 │		│       ├── Select/
 │		│       └── Toast/
